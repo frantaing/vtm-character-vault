@@ -1,8 +1,8 @@
 function App() {
 
   return (
-    <div className="bg-gray-800">
-      <h1>Hello, world!</h1>
+    <div className="flex justify-center items-center min-h-screen bg-gray-800">
+      <h1 className="text-white text-5xl">Hello, world!</h1>
     </div>
   )
 }
