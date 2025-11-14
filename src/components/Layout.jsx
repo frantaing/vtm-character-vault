@@ -11,9 +11,7 @@ function Layout() {
                 {/* insert ContentBox main container here! */}
                 <ContentBox></ContentBox>       
             </main>
-
             
-
         </div>
     );
 }
