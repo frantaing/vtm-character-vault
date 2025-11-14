@@ -1,12 +1,23 @@
+// React stuff
+import { Routes, Route } from 'react-router-dom'
 // import components
-import { Layout } from './components';
+import { Layout } from './components'
+// import pages
+import { HomePage } from './pages';
 
 function App() {
-
   return (
-    <Layout>
-      {/* this should show Layout.jsx */}
-    </Layout>
+    <Routes>
+
+      {/* default layout */}
+      <Route path="/" element={<Layout />}>
+
+        {/* default page for "/..."" */}
+        <Route index element={<HomePage />} />
+
+      </Route>
+      
+    </Routes>
   );
 }
 
