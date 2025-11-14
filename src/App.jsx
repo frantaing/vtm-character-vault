@@ -15,6 +15,8 @@ function App() {
         {/* default page for "/..."" */}
         <Route index element={<HomePage />} />
 
+        {/* add more pages here... */}
+
       </Route>
       
     </Routes>

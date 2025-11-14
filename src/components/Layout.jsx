@@ -12,7 +12,10 @@ function Layout() {
 
             <main>
                 {/* insert ContentBox main container here! */}
-                <ContentBox><Outlet /></ContentBox>       
+                <ContentBox>
+                    {/* insert outlet geez */}
+                    <Outlet />
+                </ContentBox>       
             </main>
             
         </div>
