@@ -1,6 +1,6 @@
 function Layout() {
     return(
-        <div className="min-h-screen bg-white">
+        <div className="">
             <h1>Hello, world!</h1>
         </div>
     );

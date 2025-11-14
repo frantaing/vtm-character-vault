@@ -1,1 +1,9 @@
+/* global styles */
+
 @import 'tailwindcss';
+
+@layer utilities {
+
+    body { @apply overflow-x-hidden flex justify-center min-h-screen bg-white }
+
+}
