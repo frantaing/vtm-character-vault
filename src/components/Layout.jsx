@@ -1,4 +1,7 @@
-import { NavBar, ContentBox } from './';
+// import react stuff
+import { Outlet } from 'react-router-dom'
+// import components
+import { NavBar, ContentBox } from './'
 
 function Layout() {
     return(
@@ -9,7 +12,10 @@ function Layout() {
 
             <main>
                 {/* insert ContentBox main container here! */}
-                <ContentBox></ContentBox>       
+                <ContentBox>
+                    {/* insert outlet geez */}
+                    <Outlet />
+                </ContentBox>       
             </main>
             
         </div>
