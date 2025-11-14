@@ -20,7 +20,7 @@ function Layout() {
             </nav>
 
             {/* HOMEPAGE SECTION */}
-            <section className="flex flex-col gap-10 h-[70vh] p-5 bg-gray-100 rounded-xl">
+            <section className="flex flex-col gap-10 h-[80vh] p-5 bg-gray-100 rounded-xl">
                 <div className="overflow-y-scroll h-full rounded-xl">
                     <h1>Hello, world!</h1>
                     <div className="flex flex-col gap-5 pr-5">
