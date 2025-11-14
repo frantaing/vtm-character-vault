@@ -4,6 +4,6 @@
 
 @layer utilities {
 
-    body { @apply overflow-x-hidden flex justify-center min-h-screen bg-white }
+    body { @apply overflow-x-hidden min-h-screen bg-white }
 
 }
