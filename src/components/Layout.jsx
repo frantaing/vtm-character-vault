@@ -1,17 +1,15 @@
 function Layout() {
     return(
-        <div className="flex">
+        <div className="flex flex-col w-screen max-w-4xl px-10">
 
             {/* NAVIGATION SECTION */}
-            <nav className="w-screen max-w-72 min-h-screen p-5 bg-gray-100">
+            <nav className="flex justify-between p-5 bg-gray-100 rounded-xl">
                 <h1>Character Vault</h1>
-                <div className="">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti necessitatibus maiores in libero, eos laboriosam aperiam iure! Eos dignissimos assumenda animi error ipsum modi blanditiis, incidunt, veritatis hic possimus nostrum!
-                </div>
+                <p className="text-right">not impossible side-effect</p>
             </nav>
 
             {/* HOMEPAGE SECTION */}
-            <section className="flex flex-col gap-10 p-16">
+            <section className="flex flex-col gap-10 px-5 py-10">
                 <h1>Hello, world!</h1>
                 <div className="flex flex-col gap-5">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque rerum explicabo esse inventore molestias, eligendi repellendus expedita? Incidunt dolores voluptates deserunt suscipit modi recusandae officia sit omnis dicta? Consectetur, quo?</p>
