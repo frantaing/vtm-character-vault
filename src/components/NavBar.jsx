@@ -1,5 +1,5 @@
 // import breadcrumbs nav
-import { BreadCrumbs } from './';
+import { BreadCrumbs } from './'
 
 function NavBar() {
     return(

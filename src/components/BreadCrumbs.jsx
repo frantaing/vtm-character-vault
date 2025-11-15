@@ -1,4 +1,4 @@
-function breadCrumbs() {
+function BreadCrumbs() {
     return(
         <nav className="flex items-center gap-3 text-sm">
             <a href="" className="px-5 py-2 text-gray-600 bg-gray-100 rounded-md transition hover:text-black hover:bg-gray-200">breadcrumbs</a>
@@ -10,4 +10,4 @@ function breadCrumbs() {
     );
 }
 
-export default breadCrumbs
+export default BreadCrumbs

@@ -1,15 +1,9 @@
 // nav links array
 const clanLinks = [ // clans
-    { href: '/', text: 'clan' },
-    { href: '/', text: 'clan' },
-    { href: '/', text: 'clan' },
-    { href: '/', text: 'fishmalk' },
+    { href: '/brujah', text: 'Brujah' },
 ]
 const bloodlineLinks = [ // bloodlines
-    { href: '/', text: 'bloodline' },
-    { href: '/', text: 'ahriman?' },
-    { href: '/', text: 'trujah' },
-    { href: '/', text: 'bloodline' },
+    { href: '/ahrimanes', text: 'Ahrimanes' },
 ]
 
 function HomePage(){
@@ -35,7 +29,7 @@ function HomePage(){
             </section>
             <section className="flex flex-col gap-5">
                 {/* bloodline links! */}
-                <h2>Clans</h2>
+                <h2>Bloodlines</h2>
                 <nav className="flex flex-col w-fit pl-2 border-l-6 border-gray-300">
                     {bloodlineLinks.map((link) => (
                             // change <a> to custom link component when made!
