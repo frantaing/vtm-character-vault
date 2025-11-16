@@ -13,8 +13,8 @@ function prettyCrumb(crumb) { // display "John Smith" instead of "john-smith"
 const crumbAnimation = {
     initial: { opacity: 0, x: 20 },
     animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -20 },
-    transition: { type: "spring", stiffness: 300, damping: 30 }
+    exit: { opacity: 0, x: 20 },
+    transition: { type: "", stiffness: 500, damping: 40, duration: 0.13 }
 }
 
 function BreadCrumbs() {
