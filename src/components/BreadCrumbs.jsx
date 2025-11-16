@@ -1,11 +1,20 @@
 // imports
 import { NavLink, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 // make the slug not display URL
 function prettySlug(slug) { // display "John Smith" instead of "john-smith"
     return slug
         .replace(/-/g, " ")
         .replace(/\b\w/g, (l) => l.toUpperCase());
+}
+
+// crumb animation [TINKER!!!]
+const crumbAnimation = {
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 },
+    transition: { type: "spring", stiffness: 300, damping: 30 }
 }
 
 function BreadCrumbs() {
@@ -48,32 +57,38 @@ function BreadCrumbs() {
                 </span>
             )}
 
-            {/* render each crumb */}
-            {crumbs.map((crumb, i) => (
-                <span key={crumb.to} className="flex items-center gap-3">
+            {/* wrap dynamic crumbs for animation */}
+            <AnimatePresence>
+                {/* render each crumb */}
+                {crumbs.map((crumb, i) => (
+                    <motion.span 
+                        key={crumb.to} // unique key!!
+                        className="flex items-center gap-3"
+                        {...crumbAnimation} 
+                    >
+                        {/* separator (animate separator too) */}
+                        <motion.span {...crumbAnimation}>&gt;</motion.span>
 
-                    {/* separator (probably change to icon/svg?) */}
-                    <span>&gt;</span>
-
-                    {/* last crumb is active and unclickable */}
-                    {i === crumbs.length - 1 ? (
-                        <span className="px-3 py-1 text-red-600 bg-red-100 rounded-md">
-                            {crumb.name}
-                        </span>
-                    ) : (
-                        <NavLink
-                            to={crumb.to}
-                            className={({ isActive }) =>
-                                `px-3 py-1 rounded-md transition
-                                 ${isActive ? "text-red-600 bg-red-100"
-                                            : "text-gray-600 bg-gray-100 hover:text-black hover:bg-gray-200"}`
-                            }
-                        >
-                            {crumb.name}
-                        </NavLink>
-                    )}
-                </span>
-            ))}
+                        {/* last crumb is active and unclickable */}
+                        {i === crumbs.length - 1 ? (
+                            <span className="px-3 py-1 text-red-600 bg-red-100 rounded-md">
+                                {crumb.name}
+                            </span>
+                        ) : (
+                            <NavLink
+                                to={crumb.to}
+                                className={({ isActive }) =>
+                                    `px-3 py-1 rounded-md transition
+                                     ${isActive ? "text-red-600 bg-red-100"
+                                                : "text-gray-600 bg-gray-100 hover:text-black hover:bg-gray-200"}`
+                                }
+                            >
+                                {crumb.name}
+                            </NavLink>
+                        )}
+                    </motion.span>
+                ))}
+            </AnimatePresence>
         </nav>
     );
 }
