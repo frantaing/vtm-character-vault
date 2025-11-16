@@ -18,6 +18,8 @@
         2. links: 'text-gray-600'
         3. text-accent: 'text-red-600'
         3. hover-links: 'text-black'
+        ===OTHER===
+        1. border-radius (all): 'rounded-md'
     */
 }
 
@@ -27,7 +29,8 @@
     body { @apply overflow-x-hidden flex justify-center items-center min-h-screen p-10 font-body leading-relaxed bg-white }
     /* headings */
     h1 { @apply font-heading font-bold text-5xl leading-tight }
-    h2 { @apply font-heading font-bold text-lg }
+    h2 { @apply font-heading font-bold text-2xl }
+    span { @apply font-heading font-bold text-xl }
     /* link cursor */
     a { @apply cursor-pointer
     /* placeholder */
