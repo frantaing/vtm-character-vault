@@ -1,19 +1,23 @@
+/* imports */
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Gloock&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+/* theme variables */
+@theme {
+    --font-heading: "Gloock", serif;
+    --font-body: "Inter", sans-serif;
+}
+
+/* classes */
 @layer utilities {
-
     /* big boi base */
-    body { @apply overflow-x-hidden flex justify-center items-center min-h-screen p-10 bg-white }
-
+    body { @apply overflow-x-hidden flex justify-center items-center min-h-screen p-10 font-body bg-white }
     /* headings */
-    h1 { @apply font-bold text-2xl }
-    h2 { @apply font-bold text-lg }
-
+    h1 { @apply font-heading font-bold text-2xl }
+    h2 { @apply font-heading font-bold text-lg }
     /* link cursor */
     a { @apply cursor-pointer
-    
     /* placeholder */
     px-5 py-2 text-gray-600 bg-gray-100 rounded-md transition hover:text-black hover:bg-gray-200
     }
-
 }
