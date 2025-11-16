@@ -2,9 +2,9 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-// make the slug not display URL
-function prettySlug(slug) { // display "John Smith" instead of "john-smith"
-    return slug
+// make the crumb not display URL
+function prettyCrumb(crumb) { // display "John Smith" instead of "john-smith"
+    return crumb
         .replace(/-/g, " ")
         .replace(/\b\w/g, (l) => l.toUpperCase());
 }
@@ -27,7 +27,7 @@ function BreadCrumbs() {
     const crumbs = parts.map((part, idx) => { // { name, to }
         const to = "/" + parts.slice(0, idx + 1).join("/");
         return {
-            name: prettySlug(part),
+            name: prettyCrumb(part),
             to: to,
         };
     });
@@ -35,9 +35,9 @@ function BreadCrumbs() {
     return(
         <nav className="flex items-center gap-3 text-sm">
 
-            {/* NOTE: active slug/crumb should be accented */}
+            {/* NOTE: active crumb should be accented */}
 
-            {/* Home slug should always exist */}
+            {/* Home crumb should always exist */}
             {crumbs.length > 0 ? (
                 <>
                     <NavLink
