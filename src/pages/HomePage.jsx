@@ -1,3 +1,5 @@
+// imports
+import { Link } from "react-router-dom";
 // nav links array
 const clanLinks = [ // clans
     { href: '/brujah', text: 'Brujah' },
@@ -21,9 +23,9 @@ function HomePage(){
                 <nav className="flex flex-col w-fit pl-2 border-l-6 border-gray-300">
                     {clanLinks.map((link) => (
                             // change <a> to custom link component when made!
-                            <a key={link.href} to={link.href} end>
+                            <Link key={link.href} to={link.href} end>
                                 {link.text}
-                            </a>
+                            </Link>
                     ))}
                 </nav>
             </section>
@@ -33,9 +35,9 @@ function HomePage(){
                 <nav className="flex flex-col w-fit pl-2 border-l-6 border-gray-300">
                     {bloodlineLinks.map((link) => (
                             // change <a> to custom link component when made!
-                            <a key={link.href} to={link.href} end>
+                            <Link key={link.href} to={link.href} end>
                                 {link.text}
-                            </a>
+                            </Link>
                     ))}
                 </nav>
             </section>
