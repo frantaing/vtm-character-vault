@@ -4,16 +4,29 @@
 
 /* theme variables */
 @theme {
+    /* typograhy */
     --font-heading: "Gloock", serif;
     --font-body: "Inter", sans-serif;
+    /* colors:
+        ===BACKGROUNDS===
+        1. background: 'bg-white'
+        2. containers/wrappers/component backgrounds: 'bg-gray-100'
+        3. background-accent: 'bg-red-100'
+        4. hover-background: 'bg-gray-200'
+        ===TEXT===
+        1. general: 'text-black'
+        2. links: 'text-gray-600'
+        3. text-accent: 'text-red-600'
+        3. hover-links: 'text-black'
+    */
 }
 
 /* classes */
 @layer utilities {
     /* big boi base */
-    body { @apply overflow-x-hidden flex justify-center items-center min-h-screen p-10 font-body bg-white }
+    body { @apply overflow-x-hidden flex justify-center items-center min-h-screen p-10 font-body leading-relaxed bg-white }
     /* headings */
-    h1 { @apply font-heading font-bold text-2xl }
+    h1 { @apply font-heading font-bold text-5xl leading-tight }
     h2 { @apply font-heading font-bold text-lg }
     /* link cursor */
     a { @apply cursor-pointer
