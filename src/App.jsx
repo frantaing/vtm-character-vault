@@ -3,7 +3,9 @@ import { Routes, Route } from 'react-router-dom'
 // import components
 import { Layout } from './components'
 // import pages
-import { HomePage } from './pages';
+import { 
+  HomePage, ClanBrujahPage
+ } from './pages';
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         <Route index element={<HomePage />} />
 
         {/* add more pages here... */}
+        <Route path="/brujah" element={<ClanBrujahPage />} />
 
       </Route>
       
