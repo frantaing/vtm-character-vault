@@ -9,7 +9,7 @@ function prettyCrumb(crumb) { // display "John Smith" instead of "john-smith"
         .replace(/\b\w/g, (l) => l.toUpperCase());
 }
 
-// crumb animation [TINKER!!!]
+// crumb animation
 const crumbAnimation = {
     initial: { opacity: 0, x: 20 },
     animate: { opacity: 1, x: 0 },
@@ -42,6 +42,7 @@ function BreadCrumbs() {
                 <>
                     <NavLink
                         to="/"
+                        end
                         className={({ isActive }) =>
                             `px-3 py-1 rounded-md transition
                              ${isActive ? "text-red-600 bg-red-100"
@@ -77,6 +78,7 @@ function BreadCrumbs() {
                         ) : (
                             <NavLink
                                 to={crumb.to}
+                                end
                                 className={({ isActive }) =>
                                     `px-3 py-1 rounded-md transition
                                      ${isActive ? "text-red-600 bg-red-100"
