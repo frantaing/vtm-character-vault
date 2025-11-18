@@ -1,6 +1,8 @@
 // imports
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+// import components
+import { useBreadcrumbs } from "../context/BreadCrumbContext";
 
 // make the crumb not display URL
 function prettyCrumb(crumb) { // display "John Smith" instead of "john-smith"
@@ -19,15 +21,18 @@ const crumbAnimation = {
 
 function BreadCrumbs() {
     const location = useLocation();
+    const { crumbNames } = useBreadcrumbs();
     const path = location.pathname; // "/brujah"
+    const parts = path.split("/").filter(Boolean);
 
     // split into parts and remove empty "" from '/'
-    const parts = path.split("/").filter(Boolean); // ['brujah']
-    // build the breadcrumb list
-    const crumbs = parts.map((part, idx) => { // { name, to }
+    const crumbs = parts.map((part, idx) => {
         const to = "/" + parts.slice(0, idx + 1).join("/");
+        // check if a custom name exists in context for this path.
+        // if it does, use it. if not, use the prettyCrumb function.
+        const name = crumbNames[to] || prettyCrumb(part);
         return {
-            name: prettyCrumb(part),
+            name: name, // use the dynamically found name
             to: to,
         };
     });
