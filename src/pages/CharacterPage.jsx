@@ -1,11 +1,15 @@
 // imports
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import matter from 'gray-matter';
+// import components
+import { useBreadcrumbs } from '../context/BreadCrumbContext';
 
 function CharacterPage() {
+    const location = useLocation();                             // get the current location object
+    const { setCrumbName } = useBreadcrumbs();                  // get function from context
     const { clan, character } = useParams();                    // fill in key "/:clan/:character"
     const [characterData, setCharacterData] = useState(null);   // store frontmatter (name, alias, etc)
     const [content, setContent] = useState('');                 // store main md content aside from frontmatter
@@ -22,12 +26,17 @@ function CharacterPage() {
                 const { data, content } = matter(fileContent);
                 setCharacterData(data);
                 setContent(content);
+
+                // afer getting data, set the name for the current path
+                if (data.name) {
+                    setCrumbName(location.pathname, data.name);
+                }
             } catch (error) { // handle error state, maybe redirect to a 404 page (i'll make one sooooooon)
                 console.error("Error fetching character data:", error);
             }
         };
         fetchCharacterData();
-    }, [clan, character]); // rerun if clan or character in URL change
+    }, [clan, character, location.pathname, setCrumbName]); // rerun if clan or character in URL change; add depedencies
     if (!characterData) {
         return <div>Loading...</div>;
     }
