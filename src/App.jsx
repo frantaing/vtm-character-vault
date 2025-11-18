@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Layout } from './components'
 // import pages
 import { 
-  HomePage, ClanBrujahPage, CharacterPage
+  HomePage, ClanPage, CharacterPage
  } from './pages';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
         <Route index element={<HomePage />} />
 
         {/* clan pages */}
-        <Route path="/brujah" element={<ClanBrujahPage />} />
+        <Route path="/:clan" element={<ClanPage />} />
 
         {/* bloodline pages */}
 
