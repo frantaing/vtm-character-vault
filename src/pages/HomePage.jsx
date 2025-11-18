@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 // nav links array
 const clanLinks = [ // clans
     { href: '/brujah', text: 'Brujah' },
+    { href: '/toreador', text: 'Toreador' }
 ]
 const bloodlineLinks = [ // bloodlines
     { href: '/ahrimanes', text: 'Ahrimanes' },
