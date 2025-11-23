@@ -57,14 +57,35 @@ function ClanPage() {
     return (
         <div className="flex flex-col gap-10">
             {/* section for Clan Details */}
-            <section>
-                <h1>Clan {clanInfo.name}</h1>
-                {/* use the ReactMarkdown component to render the clan's description */}
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{clanContent}</ReactMarkdown>
-                
-                <div className="mt-6 p-4 border-t-2 border-gray-300">
-                    <h3 className="font-bold text-lg mb-`2">Clan Details</h3>
-                    <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
+            <section className="flex justify-between gap-10">
+                <div className="flex flex-col gap-10 w-fit">
+                    {/* section for page title + description */}
+                    <div className="flex flex-col gap-5">
+                        <h1>Clan {clanInfo.name}</h1>
+                        {/* use the ReactMarkdown component to render the clan's description */}
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{clanContent}</ReactMarkdown>                        
+                    </div> 
+                    {/* section for the character list */}
+                    <section>
+                        <h2 className="text-2xl font-bold mb-4">Known Members of Clan {clanInfo.name}</h2>
+                        {characters.length > 0 ? (
+                            <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
+                                {characters.map((char) => (
+                                    <Link key={char.slug} to={`/${clan}/${char.slug}`}>
+                                        {char.name}
+                                    </Link>
+                                ))}
+                            </nav>
+                        ) : (
+                            <p>No members of this clan have been recorded.</p>
+                        )}
+                    </section>                
+                </div>
+
+                {/* detail sidebar pane */}
+                <div className="flex flex-col w-xl mt-20 p-6 bg-gray-200 rounded-md">
+                    <h3 className="font-bold text-lg mb-2">Clan Details</h3>
+                    <dl className="flex flex-col">
                         <div><dt className="font-bold">Nickname:</dt><dd>{clanInfo.nickname}</dd></div>
                         <div><dt className="font-bold">Disciplines:</dt>
                             <dd>{clanInfo.disciplines}</dd>
@@ -73,22 +94,6 @@ function ClanPage() {
                         <div className="md:col-span-3 mt-2"><dt className="font-bold">Bane:</dt><dd>{clanInfo.bane}</dd></div>
                     </dl>
                 </div>
-            </section>
-
-            {/* section for the character list */}
-            <section>
-                <h2 className="text-2xl font-bold mb-4">Known Members of Clan {clanInfo.name}</h2>
-                {characters.length > 0 ? (
-                    <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
-                        {characters.map((char) => (
-                            <Link key={char.slug} to={`/${clan}/${char.slug}`}>
-                                {char.name}
-                            </Link>
-                        ))}
-                    </nav>
-                ) : (
-                    <p>No members of this clan have been recorded.</p>
-                )}
             </section>
         </div>
     );
