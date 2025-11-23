@@ -5,7 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 function ClanPage() {
-    const { clan } = useParams();
+
+    const { type, clan } = useParams();                     // add 'type' to get the folder (clans/bloodlines/caitiff)
     // state for the clan's own information (from _index.md)
     const [clanInfo, setClanInfo] = useState(null);         // for frontmatter
     const [clanContent, setClanContent] = useState('');     // for the main markdown content
@@ -16,7 +17,7 @@ function ClanPage() {
         const fetchClanInfo = async () => {
             try {
                 // dynamically import the clan's _index.md file
-                const clanModule = await import(`../content/${clan}/_index.md?raw`);
+                const clanModule = await import(`../content/${type}/${clan}/_index.md?raw`);
                 const { data, content } = matter(clanModule.default);
                 setClanInfo(data);
                 setClanContent(content);
@@ -30,8 +31,8 @@ function ClanPage() {
             const allCharacterModules = import.meta.glob('../content/**/*.md', { as: 'raw' });
 
             const characterPromises = Object.entries(allCharacterModules)
-                // filter for paths that are in the current clan's directory
-                .filter(([path, _]) => path.startsWith(`../content/${clan}/`))
+                // filter for paths that are in the current clan/bloodline/etc directory
+                .filter(([path, _]) => path.startsWith(`../content/${type}/${clan}/`))
                 // IMPORTANT: also filter out the _index.md file itself!
                 .filter(([path, _]) => !path.endsWith('_index.md'))
                 .map(async ([path, importer]) => {
@@ -49,7 +50,7 @@ function ClanPage() {
         fetchClanInfo();
         fetchClanCharacters();
 
-    }, [clan]); // re-run whenever the URL param `clan` changes
+    }, [type, clan]); // re-run whenever the URL param changes
     if (!clanInfo) { // add a loading state to prevent errors before data is fetched
         return <div>Loading clan information...</div>;
     }
@@ -66,7 +67,10 @@ function ClanPage() {
                     <h3 className="font-bold text-lg mb-`2">Clan Details</h3>
                     <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
                         <div><dt className="font-bold">Nickname:</dt><dd>{clanInfo.nickname}</dd></div>
-                        <div><dt className="font-bold">Disciplines:</dt><dd>{clanInfo.disciplines}</dd></div>
+                        <div><dt className="font-bold">Disciplines:</dt>
+                            <dd>{clanInfo.disciplines}</dd>
+                            <dd>{clanInfo.disciplinesv5}</dd>
+                        </div>
                         <div className="md:col-span-3 mt-2"><dt className="font-bold">Bane:</dt><dd>{clanInfo.bane}</dd></div>
                     </dl>
                 </div>

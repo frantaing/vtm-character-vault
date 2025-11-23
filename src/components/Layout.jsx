@@ -8,10 +8,10 @@ function Layout() {
     return(
         // provider wrapper
         <BreadcrumbProvider>
-            <div className="flex flex-col gap-5 w-screen max-w-4xl px-10">
+            <div className="flex flex-col gap-5 w-screen max-w-4xl p-10">
 
                 {/* insert navigation here! */}
-                <NavBar></NavBar>
+                <NavBar />
 
                 <main>
                     {/* insert ContentBox main container here! */}

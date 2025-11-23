@@ -2,19 +2,19 @@
 import { Link } from "react-router-dom";
 // nav links array
 const clanLinks = [ // clans
-    { href: '/banu-haqim', text: 'Banu Haqim' },
-    { href: '/brujah', text: 'Brujah' },
-    { href: '/gangrel', text: 'Gangrel' },
-    { href: '/hecata', text: 'Hecata' },
-    { href: '/lasombra', text: 'Lasombra' },
-    { href: '/malkavian', text: 'Malkavian' },
-    { href: '/ministry', text: 'Ministry' },
-    { href: '/nosferatu', text: 'Nosferatu' },
-    { href: '/ravnos', text: 'Ravnos' },
-    { href: '/toreador', text: 'Toreador' },
-    { href: '/tremere', text: 'Tremere' },
-    { href: '/tzimisce', text: 'Tzimisce' },
-    { href: '/ventrue', text: 'Ventrue' },
+    { href: '/clan/banu-haqim', text: 'Banu Haqim' },
+    { href: '/clan/brujah', text: 'Brujah' },
+    { href: '/clan/gangrel', text: 'Gangrel' },
+    { href: '/clan/hecata', text: 'Hecata' },
+    { href: '/clan/lasombra', text: 'Lasombra' },
+    { href: '/clan/malkavian', text: 'Malkavian' },
+    { href: '/clan/ministry', text: 'Ministry' },
+    { href: '/clan/nosferatu', text: 'Nosferatu' },
+    { href: '/clan/ravnos', text: 'Ravnos' },
+    { href: '/clan/toreador', text: 'Toreador' },
+    { href: '/clan/tremere', text: 'Tremere' },
+    { href: '/clan/tzimisce', text: 'Tzimisce' },
+    { href: '/clan/ventrue', text: 'Ventrue' },
 ]
 const bloodlineLinks = [ // bloodlines
     { href: '/ahrimanes', text: 'Ahrimanes' }, // doesn't exit yet. to test for 404
@@ -22,7 +22,7 @@ const bloodlineLinks = [ // bloodlines
 
 function HomePage(){
     return(
-        <div className="overflow-y-scroll flex flex-col gap-10 h-full pr-5">
+        <div className="flex flex-col gap-10 h-full pr-5">
 
             <section className="flex flex-col gap-5">
                 <h1>Welcome to my Vampire: the Masquerade Character Vault!</h1>

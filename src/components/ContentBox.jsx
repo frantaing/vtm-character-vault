@@ -5,7 +5,10 @@ function ContentBox({children}) {
 
     return(
       <div className={BoxStyles}>
-        {children}
+        <div className="overflow-y-scroll">
+          {children}          
+        </div>
+
       </div>  
     );
 }
