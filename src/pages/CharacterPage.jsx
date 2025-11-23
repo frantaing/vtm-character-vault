@@ -19,7 +19,7 @@ function CharacterPage() {
         const fetchCharacterData = async () => {
             try {
                 // dynamically import the markdown file
-                const markdownModule = await import(`../content/clan/${clan}/${character}.md?raw`);
+                const markdownModule = await import(`../content/${clan}/${character}.md?raw`);
                 const fileContent = markdownModule.default;
 
                 // parse the frontmatter and content

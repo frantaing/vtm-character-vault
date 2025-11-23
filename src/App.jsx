@@ -18,12 +18,12 @@ function App() {
         <Route index element={<HomePage />} />
 
         {/* clan pages */}
-        <Route path="/:type/:clan" element={<ClanPage />} />
+        <Route path="/:clan" element={<ClanPage />} />
 
         {/* bloodline pages */}
 
         {/* character page */}
-        <Route path="/:type/:clan/:character" element={<CharacterPage />} />
+        <Route path="/:clan/:character" element={<CharacterPage />} />
 
       </Route>
       

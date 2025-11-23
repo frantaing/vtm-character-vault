@@ -2,19 +2,19 @@
 import { Link } from "react-router-dom";
 // nav links array
 const clanLinks = [ // clans
-    { href: '/clan/banu-haqim', text: 'Banu Haqim' },
-    { href: '/clan/brujah', text: 'Brujah' },
-    { href: '/clan/gangrel', text: 'Gangrel' },
-    { href: '/clan/hecata', text: 'Hecata' },
-    { href: '/clan/lasombra', text: 'Lasombra' },
-    { href: '/clan/malkavian', text: 'Malkavian' },
-    { href: '/clan/ministry', text: 'Ministry' },
-    { href: '/clan/nosferatu', text: 'Nosferatu' },
-    { href: '/clan/ravnos', text: 'Ravnos' },
-    { href: '/clan/toreador', text: 'Toreador' },
-    { href: '/clan/tremere', text: 'Tremere' },
-    { href: '/clan/tzimisce', text: 'Tzimisce' },
-    { href: '/clan/ventrue', text: 'Ventrue' },
+    { href: '/banu-haqim', text: 'Banu Haqim' },
+    { href: '/brujah', text: 'Brujah' },
+    { href: '/gangrel', text: 'Gangrel' },
+    { href: '/hecata', text: 'Hecata' },
+    { href: '/lasombra', text: 'Lasombra' },
+    { href: '/malkavian', text: 'Malkavian' },
+    { href: '/ministry', text: 'Ministry' },
+    { href: '/nosferatu', text: 'Nosferatu' },
+    { href: '/ravnos', text: 'Ravnos' },
+    { href: '/toreador', text: 'Toreador' },
+    { href: '/tremere', text: 'Tremere' },
+    { href: '/tzimisce', text: 'Tzimisce' },
+    { href: '/ventrue', text: 'Ventrue' },
 ]
 const bloodlineLinks = [ // bloodlines
     { href: '/ahrimanes', text: 'Ahrimanes' }, // doesn't exit yet. to test for 404
@@ -30,7 +30,7 @@ function HomePage(){
             </section>
 
             <section className="flex flex-col">
-                {/* clan links! */}
+                {/* links! */}
                 <h2>Clans</h2>
                 <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
                     {clanLinks.map((link) => (
