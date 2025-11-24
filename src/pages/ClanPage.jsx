@@ -100,7 +100,9 @@ function ClanPage() {
                         {/* bane */}
                         <dt className="font-bold">Bane:</dt>
                         <dd>{clanInfo.bane}</dd>
-                        {/* should include compulsions */}
+                        {/* compulsion */}
+                        <dt className="font-bold">Compulsion:</dt>
+                        <dd>{clanInfo.compulsion}</dd>
                     </div>
                 </aside>
             </section>

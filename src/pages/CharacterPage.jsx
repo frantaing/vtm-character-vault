@@ -48,6 +48,7 @@ function CharacterPage() {
             {/* Main Content */}
             <div className="flex flex-col gap-5 w-fit">
                 <h1>{characterData.name}</h1>
+                <h2>{characterData.clan}, {characterData.generation} generation</h2>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
 
@@ -74,6 +75,8 @@ function CharacterPage() {
                     <dt className="font-bold">Sire:</dt>
                     <dd>{characterData.sire}</dd>
                     {/* affiliation? */}
+                    <dt className="font-bold">Affiliation:</dt>
+                    <dd>{characterData.affiliation}</dd>
                 </dl>
             </aside>
         </div>
