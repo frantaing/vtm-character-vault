@@ -84,18 +84,24 @@ function ClanPage() {
 
                 {/* detail sidebar pane */}
                 <aside className="flex flex-col w-xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
-                    <h3 className="font-bold text-lg mb-2">Clan Details</h3>
-                    <dl className="grid">
-
-
-
-                        <div><dt className="font-bold">Nickname:</dt><dd>{clanInfo.nickname}</dd></div>
-                        <div><dt className="font-bold">Disciplines:</dt>
-                            <dd>{clanInfo.disciplines}</dd>
-                            <dd>{clanInfo.disciplinesv5}</dd>
-                        </div>
-                        <div className="md:col-span-3 mt-2"><dt className="font-bold">Bane:</dt><dd>{clanInfo.bane}</dd></div>
-                    </dl>
+                    {/* title */}
+                    <h3 className="font-bold text-lg mb-4">Clan Details</h3>
+                    {/* details */}
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                        {/* clan nicknames */}
+                        <dt className="font-bold">Nickname:</dt>
+                        <dd>{clanInfo.nickname}</dd>
+                        {/* clan disciplines */}
+                        <dt className="font-bold">Disciplines:</dt>
+                        <dd>
+                            <div>{clanInfo.disciplines}</div>
+                            <div>{clanInfo.disciplinesv5}</div>
+                        </dd>
+                        {/* bane */}
+                        <dt className="font-bold">Bane:</dt>
+                        <dd>{clanInfo.bane}</dd>
+                        {/* should include compulsions */}
+                    </div>
                 </aside>
             </section>
         </div>
