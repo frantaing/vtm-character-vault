@@ -27,13 +27,13 @@ function ClanPage() {
         };
 
         const fetchClanCharacters = async () => {
-            const allCharacterModules = import.meta.glob('../content/**/*.md', { as: 'raw' });
+          const allCharacterModules = import.meta.glob('../content/**/*.md', { query: '?raw', import: 'default' });
 
             const characterPromises = Object.entries(allCharacterModules)
                 // filter for paths that are in the current clan's directory
-                .filter(([path, _]) => path.startsWith(`../content/${clan}/`))
+                .filter(([path, ]) => path.startsWith(`../content/${clan}/`))
                 // IMPORTANT: also filter out the _index.md file itself!
-                .filter(([path, _]) => !path.endsWith('_index.md'))
+                .filter(([path, ]) => !path.endsWith('_index.md'))
                 .map(async ([path, importer]) => {
                     const fileContent = await importer();
                     const { data } = matter(fileContent);
