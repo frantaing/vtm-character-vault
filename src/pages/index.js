@@ -7,4 +7,4 @@ export { default as HomePage } from './HomePage'
 export { default as CharacterPage } from './CharacterPage'
 
 // Clans
-export { default as ClanBrujahPage } from './ClanBrujahPage'
+export { default as ClanPage } from './ClanPage'

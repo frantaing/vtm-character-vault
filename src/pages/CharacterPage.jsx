@@ -44,33 +44,40 @@ function CharacterPage() {
     return (
 
         // FIX FORMATTING/STYLING IT'S UGLY AF
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex justify-between gap-10">
             {/* Main Content */}
-            <div className="md:col-span-2">
+            <div className="flex flex-col gap-5 w-fit">
+                <h1>{characterData.name}</h1>
+                <h2>{characterData.clan}, {characterData.generation} generation</h2>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
 
-            {/* Sidebar */}
-            <aside className="md:col-span-1">
-                <div className="bg-gray-200 p-6 rounded-md">
-                    <h2 className="text-2xl font-bold mb-4">{characterData.name}</h2>
-                    {characterData.image && (
-                        <img src={characterData.image} alt={characterData.name} className="w-full h-auto rounded-md mb-4" />
-                    )}
-                    <dl>
-                        <dt className="font-bold">Alias:</dt>
-                        <dd className="mb-2">{characterData.alias}</dd>
-
-                        <dt className="font-bold">Clan:</dt>
-                        <dd className="mb-2">{characterData.clan}</dd>
-
-                        <dt className="font-bold">Generation:</dt>
-                        <dd className="mb-2">{characterData.generation}</dd>
-
-                        <dt className="font-bold">Sire:</dt>
-                        <dd>{characterData.sire}</dd>
-                    </dl>
-                </div>
+            {/* detail sidebar pane */}
+            <aside className="flex flex-col w-xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
+                {/* title */}
+                <h3 className="text-2xl font-bold mb-4">{characterData.name}</h3>
+                {/* image */}
+                {characterData.image && (
+                    <img src={characterData.image} alt={characterData.name} className="w-full h-auto rounded-md mb-4" />
+                )}
+                {/* character details */}
+                <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
+                    {/* titles? aliases? nicknames? */}
+                    <dt className="font-bold">Alias:</dt>
+                    <dd>{characterData.alias}</dd>
+                    {/* clan/bloodline? */}
+                    <dt className="font-bold">Clan</dt>
+                    <dd>{characterData.clan}</dd>
+                    {/* gen? */}
+                    <dt className="font-bold">Generation:</dt>
+                    <dd>{characterData.generation}</dd>
+                    {/* sire? */}
+                    <dt className="font-bold">Sire:</dt>
+                    <dd>{characterData.sire}</dd>
+                    {/* affiliation? */}
+                    <dt className="font-bold">Affiliation:</dt>
+                    <dd>{characterData.affiliation}</dd>
+                </dl>
             </aside>
         </div>
     );
