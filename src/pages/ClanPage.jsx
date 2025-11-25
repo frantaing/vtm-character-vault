@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 function ClanPage() {
-    const { clan } = useParams();
+    const { type, clan } = useParams();
     // state for the clan's own information (from _index.md)
     const [clanInfo, setClanInfo] = useState(null);         // for frontmatter
     const [clanContent, setClanContent] = useState('');     // for the main markdown content
@@ -16,7 +16,7 @@ function ClanPage() {
         const fetchClanInfo = async () => {
             try {
                 // dynamically import the clan's _index.md file
-                const clanModule = await import(`../content/${clan}/_index.md?raw`);
+                const clanModule = await import(`../content/${type}/${clan}/_index.md?raw`);
                 const { data, content } = matter(clanModule.default);
                 setClanInfo(data);
                 setClanContent(content);
@@ -30,8 +30,8 @@ function ClanPage() {
           const allCharacterModules = import.meta.glob('../content/**/*.md', { query: '?raw', import: 'default' });
 
             const characterPromises = Object.entries(allCharacterModules)
-                // filter for paths that are in the current clan's directory
-                .filter(([path, ]) => path.startsWith(`../content/${clan}/`))
+                // filter for paths that are in the current $type (clan/bloodline/misc)'s directory
+                .filter(([path, ]) => path.startsWith(`../content/${type}/${clan}/`))
                 // IMPORTANT: also filter out the _index.md file itself!
                 .filter(([path, ]) => !path.endsWith('_index.md'))
                 .map(async ([path, importer]) => {
@@ -49,7 +49,7 @@ function ClanPage() {
         fetchClanInfo();
         fetchClanCharacters();
 
-    }, [clan]); // re-run whenever the URL param `clan` changes
+    }, [type, clan]); // re-run whenever the URL param `clan` changes
     if (!clanInfo) { // add a loading state to prevent errors before data is fetched
         return <div>Loading clan information...</div>;
     }
