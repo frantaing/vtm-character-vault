@@ -25,9 +25,16 @@ function BreadCrumbs() {
     const path = location.pathname; // "/brujah"
     const parts = path.split("/").filter(Boolean);
 
+    // filter out 'clan' from the parts array
+    const filteredParts = parts.filter(part => part !== 'clan');
+
     // split into parts and remove empty "" from '/'
-    const crumbs = parts.map((part, idx) => {
-        const to = "/" + parts.slice(0, idx + 1).join("/");
+    const crumbs = filteredParts.map((part, idx) => {
+        // rebuild the path based on original parts (not filtered)
+        // to maintain correct linking
+        const originalIdx = parts.indexOf(part);
+        const to = "/" + parts.slice(0, originalIdx + 1).join("/");
+        
         // check if a custom name exists in context for this path.
         // if it does, use it. if not, use the prettyCrumb function.
         const name = crumbNames[to] || prettyCrumb(part);
