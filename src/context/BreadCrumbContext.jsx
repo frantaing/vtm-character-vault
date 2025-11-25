@@ -1,9 +1,7 @@
+// BreadCrumbsContext.jsx
 import { createContext, useState, useContext } from 'react';
 
 const BreadcrumbContext = createContext();
-
-// custom hook to make it easier to use this context
-export const useBreadcrumbs = () => useContext(BreadcrumbContext);
 
 export const BreadcrumbProvider = ({ children }) => {
     // store mappings of paths to their proper names
@@ -23,3 +21,8 @@ export const BreadcrumbProvider = ({ children }) => {
         </BreadcrumbContext.Provider>
     );
 };
+
+// custom hook to make it easier to use this context
+// moved to bottom and added eslint disable comment
+// eslint-disable-next-line react-refresh/only-export-components
+export const useBreadcrumbs = () => useContext(BreadcrumbContext);
