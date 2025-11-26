@@ -59,7 +59,7 @@ function CharacterPage() {
                 {/* image */}
                 {characterData.image && (
                     <img // add img URL preemptively
-                        src={`${import.meta.env.BASE_URL}/assets/character-imgs/${characterData.image}`} 
+                    src={`${import.meta.env.BASE_URL}/assets/character-imgs/${clan}/${characterData.image}`}
                         alt={characterData.name} 
                         className="w-full h-auto rounded-md mb-4" 
                     />
