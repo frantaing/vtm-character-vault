@@ -10,7 +10,7 @@ import { useBreadcrumbs } from '../context/BreadCrumbContext';
 function CharacterPage() {
     const location = useLocation();                             // get the current location object
     const { setCrumbName } = useBreadcrumbs();                  // get function from context
-    const { clan, character } = useParams();                    // fill in key "/:clan/:character"
+    const { type, clan, character } = useParams();                    // fill in key "/:type/:clan/:character"
     const [characterData, setCharacterData] = useState(null);   // store frontmatter (name, alias, etc)
     const [content, setContent] = useState('');                 // store main md content aside from frontmatter
 
@@ -19,7 +19,7 @@ function CharacterPage() {
         const fetchCharacterData = async () => {
             try {
                 // dynamically import the markdown file
-                const markdownModule = await import(`../content/${clan}/${character}.md?raw`);
+                const markdownModule = await import(`../content/${type}/${clan}/${character}.md?raw`);
                 const fileContent = markdownModule.default;
 
                 // parse the frontmatter and content
@@ -36,7 +36,7 @@ function CharacterPage() {
             }
         };
         fetchCharacterData();
-    }, [clan, character, location.pathname, setCrumbName]); // rerun if clan or character in URL change; add depedencies
+    }, [type, clan, character, location.pathname, setCrumbName]); // rerun if clan or character in URL change; add depedencies
     if (!characterData) {
         return <div>Loading...</div>;
     }
