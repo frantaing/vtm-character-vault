@@ -39,7 +39,7 @@ function HomePage(){
                 <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
                     {clanLinks.map((link) => (
                             // change <a> to custom link component when made!
-                            <Link key={link.href} to={link.href} end>
+                            <Link key={link.href} to={link.href}>
                                 {link.text}
                             </Link>
                     ))}
@@ -51,7 +51,7 @@ function HomePage(){
                 <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
                     {bloodlineLinks.map((link) => (
                             // change <a> to custom link component when made!
-                            <Link key={link.href} to={link.href} end>
+                            <Link key={link.href} to={link.href}>
                                 {link.text}
                             </Link>
                     ))}
@@ -63,7 +63,7 @@ function HomePage(){
                 <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
                     {nonclanLinks.map((link) => (
                             // change <a> to custom link component when made!
-                            <Link key={link.href} to={link.href} end>
+                            <Link key={link.href} to={link.href}>
                                 {link.text}
                             </Link>
                     ))}
