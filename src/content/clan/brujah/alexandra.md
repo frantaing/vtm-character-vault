@@ -7,8 +7,8 @@ generation: 7th
 sire: Marcus of Carthage
 affiliation: Anarchs
 images:
-  - 'test.jpg'
   - 'test2.jpg'
+  - 'test.jpg'
 ---
 
 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure tempora earum doloribus assumenda a! Harum, id. Explicabo voluptatibus necessitatibus praesentium a, hic dolor at vel amet, unde eligendi inventore. Officia?

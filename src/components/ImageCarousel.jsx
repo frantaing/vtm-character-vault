@@ -20,10 +20,13 @@ function ImageCarousel({ images, clan, characterName }) {
             modules={[Navigation, Pagination, A11y]}
             spaceBetween={50}
             slidesPerView={1}
-            navigation
+            navigation={{
+              prevEl: '.custom-prev',
+              nextEl: '.custom-next',
+            }}
             pagination={{ clickable: true }}
             loop={true}
-            className="w-full h-80 mb-4 rounded-md"
+            className="custom-carousel w-full h-80 mb-4 rounded-md"
         >
             {images.map((imageFile, index) => (
                 <SwiperSlide key={index}>
@@ -34,6 +37,22 @@ function ImageCarousel({ images, clan, characterName }) {
                     />
                 </SwiperSlide>
             ))}
+            
+            {/* pagination buttons */}
+            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 rounded-full cursor-pointer">
+                <img 
+                    src={`${import.meta.env.BASE_URL}/assets/icons/arrow-left-stroke.png`} 
+                    alt="Previous" 
+                    className="w-full h-full"
+                />
+            </button>
+            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 rounded-full cursor-pointer rotate-180">
+                <img 
+                    src={`${import.meta.env.BASE_URL}/assets/icons/arrow-left-stroke.png`} 
+                    alt="Next" 
+                    className="w-full h-full"
+                />
+            </button>
         </Swiper>
     );
 }
