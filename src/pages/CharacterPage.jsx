@@ -13,7 +13,7 @@ function CharacterPage() {
     const { type, clan, character } = useParams();                    // fill in key "/:type/:clan/:character"
     const [characterData, setCharacterData] = useState(null);   // store frontmatter (name, alias, etc)
     const [content, setContent] = useState('');                 // store main md content aside from frontmatter
-
+    
     // fetch data based on current URL
     useEffect(() => {
         const fetchCharacterData = async () => {
@@ -58,7 +58,11 @@ function CharacterPage() {
                 <h3 className="text-2xl font-bold mb-4">{characterData.name}</h3>
                 {/* image */}
                 {characterData.image && (
-                    <img src={characterData.image} alt={characterData.name} className="w-full h-auto rounded-md mb-4" />
+                    <img // add img URL preemptively
+                        src={`${import.meta.env.BASE_URL}/assets/character-imgs/${characterData.image}`} 
+                        alt={characterData.name} 
+                        className="w-full h-auto rounded-md mb-4" 
+                    />
                 )}
                 {/* character details */}
                 <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
