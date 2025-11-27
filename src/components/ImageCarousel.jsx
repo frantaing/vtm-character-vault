@@ -9,10 +9,20 @@ import 'swiper/css/pagination';
 // import required modules
 import { Navigation, Pagination, A11y } from 'swiper/modules';
 
-function ImageCarousel({ images, clan, characterName }) {
+function ImageCarousel({ images, type, clan, name }) {
     if (!images || images.length === 0) {
         return null; // don't render anything if there are no images
     }
+    
+    // build the image path based on type
+    const getImagePath = (imageFile) => {
+      if (type === 'character' && clan) {
+          return `${import.meta.env.BASE_URL}/assets/character-imgs/${clan}/${imageFile}`;
+      } else if (type === 'clan') {
+          return `${import.meta.env.BASE_URL}/assets/clan-imgs/${imageFile}`;
+      }
+      return imageFile; // fallback
+    };
 
     return (
         <Swiper
@@ -30,11 +40,11 @@ function ImageCarousel({ images, clan, characterName }) {
         >
             {images.map((imageFile, index) => (
                 <SwiperSlide key={index}>
-                    <img
-                        src={`${import.meta.env.BASE_URL}/assets/character-imgs/${clan}/${imageFile}`}
-                        alt={`${characterName} - Image ${index + 1}`}
-                        className="w-full h-full object-cover"
-                    />
+                  <img
+                      src={getImagePath(imageFile)}
+                      alt={`${name || 'Image'} - ${index + 1}`}
+                      className="w-full h-full object-contain"
+                  />
                 </SwiperSlide>
             ))}
             
