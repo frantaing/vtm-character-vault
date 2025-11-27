@@ -63,14 +63,14 @@ function ImageCarousel({ images, type, clan, characterName }) {
             ))}
             
             {/* pagination buttons */}
-            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 rounded-full cursor-pointer">
+            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-black/50 rounded-full cursor-pointer">
                 <img 
                     src={`${import.meta.env.BASE_URL}/assets/icons/arrow-left-stroke.png`} 
                     alt="Previous" 
                     className="w-full h-full"
                 />
             </button>
-            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 rounded-full cursor-pointer rotate-180">
+            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-black/50 rounded-full cursor-pointer rotate-180">
                 <img 
                     src={`${import.meta.env.BASE_URL}/assets/icons/arrow-left-stroke.png`} 
                     alt="Next" 
