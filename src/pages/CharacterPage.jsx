@@ -54,12 +54,13 @@ function CharacterPage() {
             </div>
 
             {/* detail sidebar pane */}
-            <aside className="overflow-x-hidden flex flex-col max-w-xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
+            <aside className="overflow-x-hidden flex flex-col w-2xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
                 {/* title */}
                 <h3 className="text-2xl font-bold mb-4">{characterData.name}</h3>
                 {/* image */}
                 <ImageCarousel 
                   images={characterData.images}
+                  type="character"
                   clan={clan}
                   characterName={characterData.name}
                 />

@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+// import components
+import { ImageCarousel } from '../components';
 
 function ClanPage() {
     const { type, clan } = useParams();
@@ -83,9 +85,12 @@ function ClanPage() {
                 </div>
 
                 {/* detail sidebar pane */}
-                <aside className="flex flex-col w-xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
-                    {/* title */}
-                    <h3 className="font-bold text-lg mb-4">Clan Details</h3>
+                <aside className="overflow-x-hidden flex flex-col w-2xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
+                    <ImageCarousel 
+                        images={clanInfo.images} 
+                        type="clan"
+                        characterName={clanInfo.name}
+                    />
                     {/* details */}
                     <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                         {/* clan nicknames */}

@@ -5,15 +5,38 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-// import required modules
+// import swiper modules
 import { Navigation, Pagination, A11y } from 'swiper/modules';
 
-function ImageCarousel({ images, clan, characterName }) {
+function ImageCarousel({ images, type, clan, characterName }) {
     if (!images || images.length === 0) {
         return null; // don't render anything if there are no images
     }
-
+    
+    // build the image path based on type
+    const getImagePath = (imageFile) => {
+      if (type === 'character' && clan) {
+          return `${import.meta.env.BASE_URL}/assets/character-imgs/${clan}/${imageFile}`;
+      } else if (type === 'clan') {
+          return `${import.meta.env.BASE_URL}/assets/clan-imgs/${imageFile}`;
+      }
+      return imageFile; // fallback
+    };
+    
+    // for handling single images:
+    if (images.length === 1) {
+        return (
+            <div className="w-full h-80 mb-4 rounded-md">
+                <img
+                    src={getImagePath(images[0])}
+                    alt={characterName || 'Image'}
+                    className="w-full h-full object-contain"
+                />
+            </div>
+        );
+    }
+    
+    // if there is more than one image:
     return (
         <Swiper
             // install Swiper modules
@@ -29,13 +52,14 @@ function ImageCarousel({ images, clan, characterName }) {
             className="custom-carousel w-full h-80 mb-4 rounded-md"
         >
             {images.map((imageFile, index) => (
-                <SwiperSlide key={index}>
-                    <img
-                        src={`${import.meta.env.BASE_URL}/assets/character-imgs/${clan}/${imageFile}`}
-                        alt={`${characterName} - Image ${index + 1}`}
-                        className="w-full h-full object-cover"
-                    />
-                </SwiperSlide>
+              <SwiperSlide key={index}>
+                <img
+                    src={getImagePath(imageFile)}
+                    // FIX: Use the 'characterName' prop for the alt text
+                    alt={`${characterName || 'Image'} - ${index + 1}`}
+                    className="w-full h-full object-contain"
+                />
+              </SwiperSlide>
             ))}
             
             {/* pagination buttons */}
