@@ -83,7 +83,7 @@ function ClanPage() {
                 </div>
 
                 {/* detail sidebar pane */}
-                <aside className="flex flex-col w-xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
+                <aside className="flex flex-col w-2xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
                     {/* title */}
                     <h3 className="font-bold text-lg mb-4">Clan Details</h3>
                     {/* details */}
