@@ -60,6 +60,7 @@ function CharacterPage() {
                 {/* image */}
                 <ImageCarousel 
                   images={characterData.images}
+                  type="character"
                   clan={clan}
                   characterName={characterData.name}
                 />

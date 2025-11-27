@@ -89,7 +89,7 @@ function ClanPage() {
                     <ImageCarousel 
                         images={clanInfo.images} 
                         type="clan"
-                        name={clanInfo.name}
+                        characterName={clanInfo.name}
                     />
                     {/* details */}
                     <div className="grid grid-cols-2 gap-x-4 gap-y-2">

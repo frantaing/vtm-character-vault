@@ -5,11 +5,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-// import required modules
+// import swiper modules
 import { Navigation, Pagination, A11y } from 'swiper/modules';
 
-function ImageCarousel({ images, type, clan, name }) {
+function ImageCarousel({ images, type, clan, characterName }) {
     if (!images || images.length === 0) {
         return null; // don't render anything if there are no images
     }
@@ -39,13 +38,14 @@ function ImageCarousel({ images, type, clan, name }) {
             className="custom-carousel w-full h-80 mb-4 rounded-md"
         >
             {images.map((imageFile, index) => (
-                <SwiperSlide key={index}>
-                  <img
-                      src={getImagePath(imageFile)}
-                      alt={`${name || 'Image'} - ${index + 1}`}
-                      className="w-full h-full object-contain"
-                  />
-                </SwiperSlide>
+              <SwiperSlide key={index}>
+                <img
+                    src={getImagePath(imageFile)}
+                    // FIX: Use the 'characterName' prop for the alt text
+                    alt={`${characterName || 'Image'} - ${index + 1}`}
+                    className="w-full h-full object-contain"
+                />
+              </SwiperSlide>
             ))}
             
             {/* pagination buttons */}
