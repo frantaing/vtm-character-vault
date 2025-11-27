@@ -22,7 +22,21 @@ function ImageCarousel({ images, type, clan, characterName }) {
       }
       return imageFile; // fallback
     };
-
+    
+    // for handling single images:
+    if (images.length === 1) {
+        return (
+            <div className="w-full h-80 mb-4 rounded-md">
+                <img
+                    src={getImagePath(images[0])}
+                    alt={characterName || 'Image'}
+                    className="w-full h-full object-contain"
+                />
+            </div>
+        );
+    }
+    
+    // if there is more than one image:
     return (
         <Swiper
             // install Swiper modules
