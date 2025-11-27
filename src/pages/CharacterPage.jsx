@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import matter from 'gray-matter';
 // import components
 import { useBreadcrumbs } from '../context/BreadCrumbContext';
+import { ImageCarousel } from '../components';
 
 function CharacterPage() {
     const location = useLocation();                             // get the current location object
@@ -53,17 +54,15 @@ function CharacterPage() {
             </div>
 
             {/* detail sidebar pane */}
-            <aside className="flex flex-col w-xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
+            <aside className="overflow-x-hidden flex flex-col max-w-xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
                 {/* title */}
                 <h3 className="text-2xl font-bold mb-4">{characterData.name}</h3>
                 {/* image */}
-                {characterData.image && (
-                    <img // add img URL preemptively
-                    src={`${import.meta.env.BASE_URL}/assets/character-imgs/${clan}/${characterData.image}`}
-                        alt={characterData.name} 
-                        className="w-full h-auto rounded-md mb-4" 
-                    />
-                )}
+                <ImageCarousel 
+                  images={characterData.images}
+                  clan={clan}
+                  characterName={characterData.name}
+                />
                 {/* character details */}
                 <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
                     {/* titles? aliases? nicknames? */}
