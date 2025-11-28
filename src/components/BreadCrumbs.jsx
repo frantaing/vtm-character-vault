@@ -18,8 +18,8 @@ function BreadCrumbs() {
     const path = location.pathname; // "/clan/brujah"
     const parts = path.split("/").filter(Boolean);
 
-    // filter out 'clan' from the parts array
-    const filteredParts = parts.filter(part => part !== 'clan');
+    // filter out the 'middleman' (clan/non clan/bloodlines/etc) from the parts array
+    const filteredParts = parts.filter(part => !['clan', 'bloodline', 'non-clan'].includes(part));
 
     // split into parts and remove empty "" from '/'
     const crumbs = filteredParts.map((part) => { // removed unused 'idx'
