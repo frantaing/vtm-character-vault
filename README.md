@@ -7,9 +7,7 @@ This is a simple, wiki-esque collection of my characters (mostly V20), organized
 > [!NOTE]
 > Currently under construction! Probably a litle rough around the edge, and I haven't even added a single character aside from the test/placeholder, but I figured I'd just get the future pain of deployment out of the way and relish in the knowing that it does, indeed, work.
 
-~**[Check out the live demo on GitHub Pages!](link...E)**~ *Not yet*
-
----
+~**[Check out the live demo on GitHub Pages!](#)**~ *Not yet*
 
 ## ✨ Features
 
@@ -31,8 +29,6 @@ This is currently a pure frontend project built with:
 *   **Image Carousel:** Swiper.js
 
 In the future, I may add a backend component and deploy on Vercel, but for now, it's living happily on GitHub Pages.
-
----
 
 ## 📜 Disclaimer
 
