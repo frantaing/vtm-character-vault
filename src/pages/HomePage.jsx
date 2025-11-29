@@ -30,7 +30,9 @@ function HomePage(){
 
             <section className="flex flex-col gap-5">
                 <h1>Welcome to my Vampire: the Masquerade Character Vault!</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo facilis tempora dolorum! Quis repellat provident, facilis inventore dolore, velit expedita, natus sint saepe accusamus id fugiat hic mollitia soluta fuga.</p>
+                <p>This is a personal, wiki-style vault for the Kindred from my various chronicles (or just characters I created and particularly liked). It's a way for me to keep notes, images, and character details all in one organized place.</p>
+                <p>Feel free to brwose by Clan or Bloodline (or the clanless) using the links below!</p>
+                <span className="text-xs italic">Please be kind, even though some are cringe 🥺</span>
             </section>
 
             <section className="flex flex-col">
@@ -51,7 +53,7 @@ function HomePage(){
                 <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
                     {bloodlineLinks.map((link) => (
                             // change <a> to custom link component when made!
-                            <Link key={link.href} to={link.href}>
+                            <Link key={link.href} to={link.href} className="line-through">
                                 {link.text}
                             </Link>
                     ))}
