@@ -31,7 +31,7 @@ function HomePage(){
             <section className="flex flex-col gap-5">
                 <h1>Welcome to my Vampire: the Masquerade Character Vault!</h1>
                 <p>This is a personal, wiki-style vault for the Kindred from my various chronicles (or just characters I created and particularly liked). It's a way for me to keep notes, images, and character details all in one organized place.</p>
-                <p>Feel free to brwose by Clan or Bloodline (or the clanless) using the links below!</p>
+                <p>Feel free to browse by Clan or Bloodline (or the clanless) using the links below!</p>
                 <span className="text-xs italic">Please be kind, even though some are cringe 🥺</span>
             </section>
 
