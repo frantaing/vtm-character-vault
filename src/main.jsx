@@ -12,7 +12,7 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <StrictMode>
-    <BrowserRouter basename="/vtm-vault">
+    <BrowserRouter basename="/vtm-character-vault/">
       <App />
     </BrowserRouter>
   </StrictMode>,
