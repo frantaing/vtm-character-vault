@@ -5,9 +5,10 @@ Welcome to my personal VtM Character Vault! This project started as a way for me
 This is a simple, wiki-esque collection of my characters (mostly V20), organized by clan, bloodline, or status (Caitiff/Thin-Blood). Each character has their own page with their character sheet, notes, images, and other details, all rendered dynamically from Markdown files.
 
 > [!NOTE]
-> Currently under construction! Probably a litle rough around the edge, and I haven't even added a single character aside from the test/placeholder, but I figured I'd just get the future pain of deployment out of the way and relish in the knowing that it does, indeed, work.
+> Currently under construction! Probably a litle rough around the edges, and I haven't even added a single character aside from the test/placeholder, but I figured I'd just get the future pain of deployment out of the way and relish in the knowing that it does, indeed, work.
+> Mobile also needs adapting and polishing, ha!
 
-~**[Check out the live demo on GitHub Pages!](#)**~ *Not yet*
+**[Check out the live demo on GitHub Pages!](https://frantaing.github.io/vtm-character-vault/)**
 
 ## ✨ Features
 
