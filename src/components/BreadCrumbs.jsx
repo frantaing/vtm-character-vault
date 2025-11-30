@@ -1,7 +1,6 @@
-// BreadCrumbs.jsx
 // imports
 import { NavLink, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion"; // removed 'motion' since it's not used
+import { motion, AnimatePresence } from "framer-motion"; // add 'motion' !! IGNORE THE SQUIGGLY RED LINE!
 // import components
 import { useBreadcrumbs } from "../context/BreadCrumbContext";
 
@@ -10,6 +9,14 @@ function prettyCrumb(crumb) { // display "John Smith" instead of "john-smith"
     return crumb
         .replace(/-/g, " ")
         .replace(/\b\w/g, (l) => l.toUpperCase());
+}
+
+// 2. animation constant !!
+const crumbAnimation = {
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 20 },
+    transition: { type: "", stiffness: 500, damping: 40, duration: 0.13 }
 }
 
 function BreadCrumbs() {
@@ -67,12 +74,13 @@ function BreadCrumbs() {
             <AnimatePresence>
                 {/* render each crumb */}
                 {crumbs.map((crumb, i) => (
-                    <span 
+                    <motion.span 
                         key={crumb.to} // unique key!!
                         className="flex items-center gap-3"
+                        {...crumbAnimation}
                     >
                         {/* separator */}
-                        <span>&gt;</span>
+                        <motion.span {...crumbAnimation}>&gt;</motion.span>
 
                         {/* last crumb is active and unclickable */}
                         {i === crumbs.length - 1 ? (
@@ -92,7 +100,7 @@ function BreadCrumbs() {
                                 {crumb.name}
                             </NavLink>
                         )}
-                    </span>
+                    </motion.span>
                 ))}
             </AnimatePresence>
         </nav>
