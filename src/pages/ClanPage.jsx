@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 // import components
-import { ImageCarousel } from '../components';
+import { SidePanel, ImageCarousel } from '../components';
 
 function ClanPage() {
     const { type, clan } = useParams();
@@ -57,10 +57,10 @@ function ClanPage() {
     }
 
     return (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-5">
             {/* section for Clan Details */}
-            <section className="flex justify-between gap-10">
-                <div className="flex flex-col gap-10 w-fit">
+            <section className="flex flex-col justify-between gap-7 sm:flex-row sm:gap-10">
+                <div className="flex flex-col order-last gap-10 w-fit sm:order-first">
                     {/* section for page title + description */}
                     <div className="flex flex-col gap-5">
                         <h1>Clan {clanInfo.name}</h1>
@@ -85,31 +85,7 @@ function ClanPage() {
                 </div>
 
                 {/* detail sidebar pane */}
-                <aside className="overflow-x-hidden flex flex-col w-2xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
-                    <ImageCarousel 
-                        images={clanInfo.images} 
-                        type="clan"
-                        characterName={clanInfo.name}
-                    />
-                    {/* details */}
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                        {/* clan nicknames */}
-                        <dt className="font-bold">Nickname:</dt>
-                        <dd>{clanInfo.nickname}</dd>
-                        {/* clan disciplines */}
-                        <dt className="font-bold">Disciplines:</dt>
-                        <dd>
-                            <div>{clanInfo.disciplines}</div>
-                            <div>{clanInfo.disciplinesv5}</div>
-                        </dd>
-                        {/* bane */}
-                        <dt className="font-bold">Bane:</dt>
-                        <dd>{clanInfo.bane}</dd>
-                        {/* compulsion */}
-                        <dt className="font-bold">Compulsion:</dt>
-                        <dd>{clanInfo.compulsion}</dd>
-                    </div>
-                </aside>
+                <SidePanel type="clan" data={clanInfo} className="order-first sm:order-last" />
             </section>
         </div>
     );

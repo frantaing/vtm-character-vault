@@ -9,6 +9,8 @@
       export { default as BreadCrumbs } from './BreadCrumbs';
   // main/outlet container
   export { default as ContentBox } from './ContentBox';
+  // side panel details container
+  export { default as SidePanel } from './SidePanel';
 
 // ===PAGE-SPECIFIC===
  // image carousel
