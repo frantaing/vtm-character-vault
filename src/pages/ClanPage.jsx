@@ -57,9 +57,9 @@ function ClanPage() {
     }
 
     return (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-5">
             {/* section for Clan Details */}
-            <section className="flex flex-col justify-between gap-10 sm:flex-row">
+            <section className="flex flex-col justify-between gap-7 sm:flex-row sm:gap-10">
                 <div className="flex flex-col order-last gap-10 w-fit sm:order-first">
                     {/* section for page title + description */}
                     <div className="flex flex-col gap-5">

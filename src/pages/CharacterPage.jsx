@@ -43,7 +43,7 @@ function CharacterPage() {
     }
 
     return (
-        <div className="flex flex-col justify-between gap-10 sm:flex-row">
+        <div className="flex flex-col justify-between gap-7 sm:flex-row sm:gap-10">
             {/* Main Content */}
             <div className="flex flex-col order-last gap-5 w-fit sm:order-first">
                 <h1>{characterData.name}</h1>

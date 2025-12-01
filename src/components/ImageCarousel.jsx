@@ -26,11 +26,11 @@ function ImageCarousel({ images, type, clan, characterName }) {
     // for handling single images:
     if (images.length === 1) {
         return (
-            <div className="w-full h-80 mb-4 rounded-md">
+            <div className="w-full mb-4 rounded-md">
                 <img
                     src={getImagePath(images[0])}
                     alt={characterName || 'Image'}
-                    className="w-full h-full object-contain"
+                    className="w-full object-contain"
                 />
             </div>
         );
