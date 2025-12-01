@@ -45,7 +45,7 @@ function BreadCrumbs() {
     });
 
     return(
-        <nav className="flex items-center gap-3 text-sm">
+        <nav className="overflow-x-auto flex items-center gap-1 w-full whitespace-nowrap text-xs sm:gap-3 sm:text-sm">
 
             {/* NOTE: active crumb should be accented */}
 
@@ -56,7 +56,7 @@ function BreadCrumbs() {
                         to="/"
                         end
                         className={({ isActive }) =>
-                            `px-3 py-1 rounded-md transition
+                            `px-2 py-1 rounded-md transition sm:px-3
                              ${isActive ? "text-red-600 bg-red-100"
                                         : "text-gray-600 bg-gray-100 hover:text-black hover:bg-gray-200"}`
                         }
@@ -65,7 +65,7 @@ function BreadCrumbs() {
                     </NavLink>
                 </>
             ) : (
-                <span className="px-3 py-1 text-red-600 bg-red-100 rounded-md">
+                <span className="px-2 py-1 text-red-600 bg-red-100 rounded-md sm:px-3">
                     Home
                 </span>
             )}
@@ -76,11 +76,17 @@ function BreadCrumbs() {
                 {crumbs.map((crumb, i) => (
                     <motion.span 
                         key={crumb.to} // unique key!!
-                        className="flex items-center gap-3"
+                        className="flex items-center gap-1"
                         {...crumbAnimation}
                     >
-                        {/* separator */}
-                        <motion.span {...crumbAnimation}>&gt;</motion.span>
+                        {/* separators */}
+                        <motion.span {...crumbAnimation}>
+                            {/* show Slash on Mobile (hidden on sm and up) */}
+                            <span className="sm:hidden">/</span>
+                            
+                            {/* show Arrow on Desktop (hidden on mobile) */}
+                            <span className="hidden sm:inline">&gt;</span>
+                        </motion.span>
 
                         {/* last crumb is active and unclickable */}
                         {i === crumbs.length - 1 ? (
@@ -92,7 +98,7 @@ function BreadCrumbs() {
                                 to={crumb.to}
                                 end
                                 className={({ isActive }) =>
-                                    `px-3 py-1 rounded-md transition
+                                    `px-2 py-1 rounded-md transition sm:px-3
                                      ${isActive ? "text-red-600 bg-red-100"
                                                 : "text-gray-600 bg-gray-100 hover:text-black hover:bg-gray-200"}`
                                 }
