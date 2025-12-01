@@ -5,11 +5,11 @@ function NavBar() {
     return(
         <nav className="flex flex-col gap-5">
             <section>
-                <div className="flex flex-col justify-between items-center pl-5 pr-2 py-2 bg-gray-100 rounded-md sm:flex-row">
+                <div className="flex justify-between items-center pl-5 pr-2 py-2 bg-gray-100 rounded-md">
                     {/* title, maybe logo idk*/}
-                    <span className="pt-1 font-heading font-bold text-sm sm:pt-0 sm:text-lg">vtm character vault</span>
+                    <span className="font-heading font-bold text-sm sm:text-lg">vtm character vault</span>
                     {/* search */}
-                    <input type="text" placeholder="Search?" className="px-5 py-2 text-black text-xs text-center rounded-md transition hover:bg-gray-200 focus:outline-0 sm:text-right" />
+                    <input type="text" placeholder="Search?" className="w-24 px-5 py-2 text-black text-xs text-right rounded-md transition hover:bg-gray-200 focus:outline-0" />
                 </div>     
             </section>
             {/* primary navigation: BreadCrumbs */}
