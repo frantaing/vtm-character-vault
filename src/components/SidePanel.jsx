@@ -1,9 +1,9 @@
 import React from 'react';
 import { ImageCarousel } from './';
 
-// A small helper component to avoid rendering empty detail rows
+// to avoid rendering empty detail rows
 const DetailRow = ({ label, value }) => {
-    if (!value) return null; // If there's no data, don't render anything
+    if (!value) return null; // if there's no data, don't render anything
     return (
         <>
             <dt className="font-bold">{label}:</dt>
@@ -13,13 +13,13 @@ const DetailRow = ({ label, value }) => {
 };
 
 function SidePanel({ type, data }) {
-    // If there's no data for some reason, don't render the panel
+    // if there's no data for some reason, don't render the panel
     if (!data) {
         return null;
     }
 
     const renderCharacterDetails = () => (
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs sm:text-sm">
             <DetailRow label="Alias" value={data.alias} />
             <DetailRow label="Clan" value={data.clan} />
             <DetailRow label="Generation" value={data.generation} />
@@ -29,7 +29,7 @@ function SidePanel({ type, data }) {
     );
 
     const renderClanDetails = () => (
-        <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs sm:text-sm">
             <DetailRow label="Nickname" value={data.nickname} />
             <DetailRow label="Disciplines" value={data.disciplines} />
             <DetailRow label="Disciplines (V5)" value={data.disciplinesv5} />
@@ -39,13 +39,13 @@ function SidePanel({ type, data }) {
     );
 
     return (
-        <aside className="overflow-x-hidden flex flex-col w-full md:w-2xl h-fit mt-8 md:mt-20 p-6 bg-gray-200 rounded-md">
-            {/* Title (Characters have a proper name, clans don't need a separate one from the H1) */}
+        <aside className="overflow-x-hidden flex flex-col w-full md:w-2xl h-fit sm:mt-8 md:mt-20 p-6 bg-gray-200 rounded-md">
+            {/* Title */}
             {type === 'character' && (
-                <h3 className="text-2xl font-bold mb-4">{data.name}</h3>
+                <h3 className="text-center text-2xl font-bold font-heading mb-4">{data.name}</h3>
             )}
             
-            {/* Image Carousel is shared */}
+            {/* image Carousel is shared */}
             <ImageCarousel 
               images={data.images}
               type={type}
@@ -53,7 +53,7 @@ function SidePanel({ type, data }) {
               characterName={data.name}
             />
             
-            {/* Conditionally render the correct details */}
+            {/* conditionally render the correct details */}
             {type === 'character' && renderCharacterDetails()}
             {type === 'clan' && renderClanDetails()}
         </aside>

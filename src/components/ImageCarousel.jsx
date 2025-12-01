@@ -49,30 +49,29 @@ function ImageCarousel({ images, type, clan, characterName }) {
             }}
             pagination={{ clickable: true }}
             loop={true}
-            className="custom-carousel w-full h-80 mb-4 rounded-md"
+            className="custom-carousel w-full mb-4 rounded-md"
         >
             {images.map((imageFile, index) => (
               <SwiperSlide key={index}>
                 <img
                     src={getImagePath(imageFile)}
-                    // FIX: Use the 'characterName' prop for the alt text
                     alt={`${characterName || 'Image'} - ${index + 1}`}
-                    className="w-full h-full object-contain"
+                    className="w-full object-contain"
                 />
               </SwiperSlide>
             ))}
             
             {/* pagination buttons */}
-            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-black/50 rounded-full cursor-pointer">
+            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer sm:w-8 sm:h-8">
                 <img 
                     src={`${import.meta.env.BASE_URL}/assets/icons/arrow-left-stroke.png`} 
                     alt="Previous" 
                     className="w-full h-full"
                 />
             </button>
-            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-black/50 rounded-full cursor-pointer rotate-180">
+            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer sm:w-8 sm:h-8">
                 <img 
-                    src={`${import.meta.env.BASE_URL}/assets/icons/arrow-left-stroke.png`} 
+                    src={`${import.meta.env.BASE_URL}/assets/icons/arrow-right-stroke.png`} 
                     alt="Next" 
                     className="w-full h-full"
                 />

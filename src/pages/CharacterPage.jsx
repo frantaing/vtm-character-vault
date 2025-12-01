@@ -11,7 +11,7 @@ import { SidePanel, ImageCarousel } from '../components';
 function CharacterPage() {
     const location = useLocation();                             // get the current location object
     const { setCrumbName } = useBreadcrumbs();                  // get function from context
-    const { type, clan, character } = useParams();                    // fill in key "/:type/:clan/:character"
+    const { type, clan, character } = useParams();              // fill in key "/:type/:clan/:character"
     const [characterData, setCharacterData] = useState(null);   // store frontmatter (name, alias, etc)
     const [content, setContent] = useState('');                 // store main md content aside from frontmatter
     
@@ -45,14 +45,14 @@ function CharacterPage() {
     return (
         <div className="flex flex-col justify-between gap-10 sm:flex-row">
             {/* Main Content */}
-            <div className="flex flex-col order-last gap-5 w-fit">
+            <div className="flex flex-col order-last gap-5 w-fit sm:order-first">
                 <h1>{characterData.name}</h1>
                 <h2>{characterData.clan}, {characterData.generation} generation</h2>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
 
             {/* detail sidebar pane */}
-            <SidePanel type="character" data={characterData} className="order-first" />
+            <SidePanel type="character" data={characterData} className="order-first sm:order-last" />
         </div>
     );
 }
