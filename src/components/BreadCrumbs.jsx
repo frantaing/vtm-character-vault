@@ -76,7 +76,7 @@ function BreadCrumbs() {
                 {crumbs.map((crumb, i) => (
                     <motion.span 
                         key={crumb.to} // unique key!!
-                        className="flex items-center gap-1"
+                        className="flex items-center gap-1 sm:gap-3"
                         {...crumbAnimation}
                     >
                         {/* separators */}

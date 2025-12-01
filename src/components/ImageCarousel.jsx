@@ -16,9 +16,9 @@ function ImageCarousel({ images, type, clan, characterName }) {
     // build the image path based on type
     const getImagePath = (imageFile) => {
       if (type === 'character' && clan) {
-          return `${import.meta.env.BASE_URL}/assets/character-imgs/${clan}/${imageFile}`;
+          return `${import.meta.env.BASE_URL}assets/character-imgs/${clan}/${imageFile}`;
       } else if (type === 'clan') {
-          return `${import.meta.env.BASE_URL}/assets/clan-imgs/${imageFile}`;
+          return `${import.meta.env.BASE_URL}assets/clan-imgs/${imageFile}`;
       }
       return imageFile; // fallback
     };

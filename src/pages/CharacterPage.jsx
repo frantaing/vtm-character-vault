@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import matter from 'gray-matter';
 // import components
 import { useBreadcrumbs } from '../context/BreadCrumbContext';
-import { ImageCarousel } from '../components';
+import { SidePanel, ImageCarousel } from '../components';
 
 function CharacterPage() {
     const location = useLocation();                             // get the current location object
@@ -43,46 +43,16 @@ function CharacterPage() {
     }
 
     return (
-
-        // FIX FORMATTING/STYLING IT'S UGLY AF
-        <div className="flex justify-between gap-10">
+        <div className="flex flex-col justify-between gap-10 sm:flex-row">
             {/* Main Content */}
-            <div className="flex flex-col gap-5 w-fit">
+            <div className="flex flex-col order-last gap-5 w-fit">
                 <h1>{characterData.name}</h1>
                 <h2>{characterData.clan}, {characterData.generation} generation</h2>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
 
             {/* detail sidebar pane */}
-            <aside className="overflow-x-hidden flex flex-col w-2xl h-fit mt-20 p-6 bg-gray-200 rounded-md">
-                {/* title */}
-                <h3 className="text-2xl font-bold mb-4">{characterData.name}</h3>
-                {/* image */}
-                <ImageCarousel 
-                  images={characterData.images}
-                  type="character"
-                  clan={clan}
-                  characterName={characterData.name}
-                />
-                {/* character details */}
-                <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
-                    {/* titles? aliases? nicknames? */}
-                    <dt className="font-bold">Alias:</dt>
-                    <dd>{characterData.alias}</dd>
-                    {/* clan/bloodline? */}
-                    <dt className="font-bold">Clan</dt>
-                    <dd>{characterData.clan}</dd>
-                    {/* gen? */}
-                    <dt className="font-bold">Generation:</dt>
-                    <dd>{characterData.generation}</dd>
-                    {/* sire? */}
-                    <dt className="font-bold">Sire:</dt>
-                    <dd>{characterData.sire}</dd>
-                    {/* affiliation? */}
-                    <dt className="font-bold">Affiliation:</dt>
-                    <dd>{characterData.affiliation}</dd>
-                </dl>
-            </aside>
+            <SidePanel type="character" data={characterData} className="order-first" />
         </div>
     );
 }
