@@ -1,6 +1,5 @@
 // React stuff
-import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom'
 // import components
 import { Layout } from './components'
 // import pages
