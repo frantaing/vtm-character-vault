@@ -56,18 +56,18 @@ function ImageCarousel({ images, type, clan, characterName }) {
             }}
             pagination={{ clickable: true }}
             loop={true}
-            className="custom-carousel w-full mb-4 rounded-md"
+            className="custom-carousel group relative w-full mb-4 rounded-md"
         >
             {images.map((image, index) => ( // <-- `image` is now an object
                 <SwiperSlide key={index}>
                     <img
                       src={getImagePath(image.file)} // <-- Use image.file
                       alt={`${characterName || 'Image'} - ${index + 1}`}
-                      className="relative w-full h-full object-contain"
+                      className="w-full h-full object-contain"
                     />
                     {/* conditionally render the caption inside the slide */}
                     {image.artist && (
-                        <p className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50">
+                        <p className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-0 transition group-hover:opacity-100">
                             Art by {image.artist}
                         </p>
                     )}
@@ -75,14 +75,14 @@ function ImageCarousel({ images, type, clan, characterName }) {
             ))}
             
             {/* pagination buttons */}
-            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer sm:w-8 sm:h-8">
+            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer opacity-0 transition sm:w-8 sm:h-8 group-hover:opacity-100">
                 <img 
                     src={`/assets/icons/arrow-left-stroke.png`} 
                     alt="Previous" 
                     className="w-full h-full"
                 />
             </button>
-            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer sm:w-8 sm:h-8">
+            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer opacity-0 transition sm:w-8 sm:h-8 group-hover:opacity-100">
                 <img 
                     src={`/assets/icons/arrow-right-stroke.png`} 
                     alt="Next" 
