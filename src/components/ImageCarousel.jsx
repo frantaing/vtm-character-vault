@@ -16,9 +16,9 @@ function ImageCarousel({ images, type, clan, characterName }) {
     // build the image path based on type
     const getImagePath = (imageFile) => {
       if (type === 'character' && clan) {
-          return `${import.meta.env.BASE_URL}assets/character-imgs/${clan}/${imageFile}`;
+          return `/assets/character-imgs/${clan}/${imageFile}`;
       } else if (type === 'clan') {
-          return `${import.meta.env.BASE_URL}assets/clan-imgs/${imageFile}`;
+          return `/assets/clan-imgs/${imageFile}`;
       }
       return imageFile; // fallback
     };
@@ -64,14 +64,14 @@ function ImageCarousel({ images, type, clan, characterName }) {
             {/* pagination buttons */}
             <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer sm:w-8 sm:h-8">
                 <img 
-                    src={`${import.meta.env.BASE_URL}/assets/icons/arrow-left-stroke.png`} 
+                    src={`/assets/icons/arrow-left-stroke.png`} 
                     alt="Previous" 
                     className="w-full h-full"
                 />
             </button>
             <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer sm:w-8 sm:h-8">
                 <img 
-                    src={`${import.meta.env.BASE_URL}/assets/icons/arrow-right-stroke.png`} 
+                    src={`/assets/icons/arrow-right-stroke.png`} 
                     alt="Next" 
                     className="w-full h-full"
                 />
