@@ -23,15 +23,22 @@ function ImageCarousel({ images, type, clan, characterName }) {
       return imageFile; // fallback
     };
     
-    // for handling single images:
+    // for single vs. multiple images
     if (images.length === 1) {
+        const image = images[0];
         return (
-            <div className="w-full mb-4 rounded-md">
+            <div className="w-full h-80 mb-4 rounded-md">
                 <img
-                    src={getImagePath(images[0])}
+                    src={getImagePath(image.file)} // <-- use image.file
                     alt={characterName || 'Image'}
-                    className="w-full object-contain"
+                    className="w-full h-full object-contain"
                 />
+                {/* conditionally render the caption */}
+                {image.artist && (
+                    <p className="text-center text-xs italic text-gray-600 mt-2">
+                        Art by: {image.artist}
+                    </p>
+                )}
             </div>
         );
     }
@@ -51,14 +58,20 @@ function ImageCarousel({ images, type, clan, characterName }) {
             loop={true}
             className="custom-carousel w-full mb-4 rounded-md"
         >
-            {images.map((imageFile, index) => (
-              <SwiperSlide key={index}>
-                <img
-                    src={getImagePath(imageFile)}
-                    alt={`${characterName || 'Image'} - ${index + 1}`}
-                    className="w-full object-contain"
-                />
-              </SwiperSlide>
+            {images.map((image, index) => ( // <-- `image` is now an object
+                <SwiperSlide key={index}>
+                    <img
+                      src={getImagePath(image.file)} // <-- Use image.file
+                      alt={`${characterName || 'Image'} - ${index + 1}`}
+                      className="relative w-full h-full object-contain"
+                    />
+                    {/* conditionally render the caption inside the slide */}
+                    {image.artist && (
+                        <p className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50">
+                            Art by {image.artist}
+                        </p>
+                    )}
+                </SwiperSlide>
             ))}
             
             {/* pagination buttons */}
