@@ -8,7 +8,7 @@ This is a simple, wiki-esque collection of my characters (mostly V20), organized
 > Currently under construction! Probably a litle rough around the edges, and I haven't even added a single character aside from the test/placeholder, but I figured I'd just get the future pain of deployment out of the way and relish in the knowing that it does, indeed, work.
 > Mobile also needs adapting and polishing, ha!
 
-**[Check out the live demo on GitHub Pages!](https://frantaing.github.io/vtm-character-vault/)**
+**[Check it out here!](https://vtm-character-vault.vercel.app/)**
 
 ## ✨ Features
 
