@@ -33,7 +33,7 @@
     /* paragraph */
     p { @apply text-sm sm:text-base }
     /* link cursor */
-    a { @apply text-sm cursor-pointer
+    .pageLink { @apply text-sm cursor-pointer
     /* placeholder */
     px-5 py-2 text-gray-600 bg-gray-100 rounded-md transition hover:text-black hover:bg-gray-200 sm:text-base
     }

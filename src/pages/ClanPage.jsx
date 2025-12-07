@@ -73,7 +73,7 @@ function ClanPage() {
                         {characters.length > 0 ? (
                             <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
                                 {characters.map((char) => (
-                                  <Link key={char.slug} to={`/${type}/${clan}/${char.slug}`}>
+                                  <Link key={char.slug} to={`/${type}/${clan}/${char.slug}`} className="pageLink">
                                         {char.name}
                                     </Link>
                                 ))}

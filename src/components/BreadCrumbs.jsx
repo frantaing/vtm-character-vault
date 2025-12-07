@@ -90,7 +90,7 @@ function BreadCrumbs() {
 
                         {/* last crumb is active and unclickable */}
                         {i === crumbs.length - 1 ? (
-                            <span className="px-3 py-1 text-red-600 bg-red-100 rounded-md">
+                            <span className="px-2 py-1 text-red-600 bg-red-100 rounded-md sm:px-3">
                                 {crumb.name}
                             </span>
                         ) : (
