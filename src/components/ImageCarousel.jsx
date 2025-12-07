@@ -27,7 +27,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
     if (images.length === 1) {
         const image = images[0];
         return (
-            <div className="w-full h-80 mb-4 rounded-md">
+            <div className="group relative w-full h-80 mb-4 rounded-md">
                 <img
                     src={getImagePath(image.file)} // <-- use image.file
                     alt={characterName || 'Image'}
@@ -35,7 +35,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
                 />
                 {/* conditionally render the caption */}
                 {image.artist && (
-                    <p className="text-center text-xs italic text-gray-600 mt-2">
+                    <p className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition md:opacity-0 md:group-hover:opacity-100">
                         Art by: {image.artist}
                     </p>
                 )}
@@ -63,11 +63,11 @@ function ImageCarousel({ images, type, clan, characterName }) {
                     <img
                       src={getImagePath(image.file)} // <-- Use image.file
                       alt={`${characterName || 'Image'} - ${index + 1}`}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain rounded-md"
                     />
                     {/* conditionally render the caption inside the slide */}
                     {image.artist && (
-                        <p className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-0 transition group-hover:opacity-100">
+                        <p className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition  md:opacity-0 md:group-hover:opacity-100">
                             Art by {image.artist}
                         </p>
                     )}
@@ -75,14 +75,14 @@ function ImageCarousel({ images, type, clan, characterName }) {
             ))}
             
             {/* pagination buttons */}
-            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer opacity-0 transition sm:w-8 sm:h-8 group-hover:opacity-100">
+            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer opacity-100 transition sm:w-8 sm:h-8 md:opacity-0 md:group-hover:opacity-100">
                 <img 
                     src={`/assets/icons/arrow-left-stroke.png`} 
                     alt="Previous" 
                     className="w-full h-full"
                 />
             </button>
-            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer opacity-0 transition sm:w-8 sm:h-8 group-hover:opacity-100">
+            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-black/50 rounded-full cursor-pointer opacity-100 transition sm:w-8 sm:h-8 md:opacity-0 md:group-hover:opacity-100">
                 <img 
                     src={`/assets/icons/arrow-right-stroke.png`} 
                     alt="Next" 
