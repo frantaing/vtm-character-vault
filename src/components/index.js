@@ -11,6 +11,8 @@
   export { default as ContentBox } from './ContentBox';
   // side panel details container
   export { default as SidePanel } from './SidePanel';
+  // side panel character sheet container
+  export { default as CharacterSheetPanel } from './CharacterSheetPanel';
 
 // ===PAGE-SPECIFIC===
  // image carousel

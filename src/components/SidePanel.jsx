@@ -39,7 +39,7 @@ function SidePanel({ type, data }) {
     );
 
     return (
-        <aside className="overflow-x-hidden flex flex-col w-full md:w-2xl h-fit sm:mt-8 md:mt-20 p-6 bg-gray-200 rounded-md">
+        <aside className="overflow-x-hidden flex flex-col w-full md:max-w-2xl h-fit sm:mt-8 md:mt-20 p-6 bg-gray-200 rounded-md">
             {/* Title */}
             {type === 'character' && (
                 <h3 className="text-center text-2xl font-bold font-heading mb-4">{data.name}</h3>
