@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import matter from 'gray-matter';
 // import components
 import { useBreadcrumbs } from '../context/BreadCrumbContext';
-import { SidePanel, ImageCarousel } from '../components';
+import { DetailPanel, CharacterSheetPanel } from '../components';
 
 function CharacterPage() {
     const location = useLocation();                             // get the current location object
@@ -43,16 +43,21 @@ function CharacterPage() {
     }
 
     return (
-        <div className="flex flex-col justify-between gap-7 sm:flex-row sm:gap-10">
+        <div className="flex flex-col justify-between gap-7 md:flex-row md:gap-10">
+            <h1 className='md:hidden'>{characterData.name}</h1>
             {/* Main Content */}
-            <div className="flex flex-col order-last gap-5 w-fit sm:order-first">
-                <h1>{characterData.name}</h1>
+            <div className="flex flex-col order-last gap-5 w-full md:order-first">
+                <h1 className='hidden md:inline'>{characterData.name}</h1>
                 <h2>{characterData.clan}, {characterData.generation} generation</h2>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
 
-            {/* detail sidebar pane */}
-            <SidePanel type="character" data={characterData} className="order-first sm:order-last" />
+            <div className="w-full md:w-5/12 flex flex-col gap-3">
+              {/* Detail sidebar panel */}
+              <DetailPanel type="character" data={characterData} className="order-first md:order-last" />
+              {/* Character sheet sidebar panel */}
+              <CharacterSheetPanel sheet={characterData.sheet} />
+            </div>
         </div>
     );
 }

@@ -10,7 +10,9 @@
   // main/outlet container
   export { default as ContentBox } from './ContentBox';
   // side panel details container
-  export { default as SidePanel } from './SidePanel';
+  export { default as DetailPanel } from './DetailPanel';
+  // side panel character sheet container
+  export { default as CharacterSheetPanel } from './CharacterSheetPanel';
 
 // ===PAGE-SPECIFIC===
  // image carousel
