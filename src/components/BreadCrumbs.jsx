@@ -45,7 +45,7 @@ function BreadCrumbs() {
     });
 
     return(
-        <nav className="overflow-x-auto flex items-center gap-1 w-full whitespace-nowrap text-xs sm:gap-3 sm:text-sm">
+        <nav className="overflow-x-auto flex items-center gap-1 w-full whitespace-nowrap text-xs sm:gap-2 sm:text-sm">
 
             {/* NOTE: active crumb should be accented */}
 
@@ -76,16 +76,16 @@ function BreadCrumbs() {
                 {crumbs.map((crumb, i) => (
                     <motion.span 
                         key={crumb.to} // unique key!!
-                        className="flex items-center gap-1 sm:gap-3"
+                        className="flex items-center gap-1 sm:gap-2"
                         {...crumbAnimation}
                     >
                         {/* separators */}
                         <motion.span {...crumbAnimation}>
                             {/* show Slash on Mobile (hidden on sm and up) */}
-                            <span className="sm:hidden">/</span>
+                            <img src="/assets/icons/forward-slash.png" className="w-3 sm:hidden" />
                             
                             {/* show Arrow on Desktop (hidden on mobile) */}
-                            <span className="hidden sm:inline">&gt;</span>
+                            <img src="/assets/icons/chevron-right.png" className="w-3 hidden sm:inline" />
                         </motion.span>
 
                         {/* last crumb is active and unclickable */}

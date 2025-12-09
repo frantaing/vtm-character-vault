@@ -44,11 +44,16 @@ function CharacterPage() {
 
     return (
         <div className="flex flex-col justify-between gap-7 md:flex-row md:gap-10">
-            <h1 className='md:hidden'>{characterData.name}</h1>
+            <div className='flex flex-col gap-2'>
+              <h1 className='md:hidden'>{characterData.name}</h1>
+              <h2 className='md:hidden'>{characterData.clan}, {characterData.generation} generation</h2>
+            </div>
             {/* Main Content */}
             <div className="flex flex-col order-last gap-5 w-full md:order-first">
+              <div className='flex flex-col gap-2'>
                 <h1 className='hidden md:inline'>{characterData.name}</h1>
-                <h2>{characterData.clan}, {characterData.generation} generation</h2>
+                <h2 className='hidden md:inline'>{characterData.clan}, {characterData.generation} generation</h2>
+              </div>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
 

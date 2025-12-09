@@ -33,13 +33,13 @@ function CharacterSheetPanel({ sheet }) {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex justify-between items-center w-full px-6 py-2 text-left text-lg font-bold font-heading rounded-md cursor-pointer transition hover:bg-gray-300"
             >
-                Character Sheet
+                Character sheet
                 <motion.span
                     animate={{ rotate: isOpen ? -90 : 90 }}
                     transition={{ duration: 0.3 }}
                     className="text-2xl"
                 >
-                    &gt;
+                  <img src="/assets/icons/chevron-right.png" className="w-3.5" />
                 </motion.span>
             </button>
 
@@ -51,7 +51,7 @@ function CharacterSheetPanel({ sheet }) {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.4, ease: 'easeInOut' }}
-                        className="overflow-hidden mt-2 pt-4 pb-8 px-6 py-2" // pt-4 for spacing
+                        className="overflow-hidden mt-2 pt-4 pb-5 px-6 py-2" // pt-4 for spacing
                     >
 
                         <dl className="grid grid-cols-3 gap-x-16 gap-y-3 text-xs sm:text-sm">
