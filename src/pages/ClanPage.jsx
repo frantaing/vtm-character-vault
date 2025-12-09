@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 // import components
-import { SidePanel, ImageCarousel } from '../components';
+import { DetailPanel, ImageCarousel } from '../components';
 
 function ClanPage() {
     const { type, clan } = useParams();
@@ -86,7 +86,7 @@ function ClanPage() {
                 </div>
 
                 {/* detail sidebar pane */}
-                <SidePanel type="clan" data={clanInfo} className="order-first md:order-last" />
+                <DetailPanel type="clan" data={clanInfo} className="order-first md:order-last" />
             </section>
         </div>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageCarousel } from './';
+import { ImageCarousel } from '.';
 
 // to avoid rendering empty detail rows
 const DetailRow = ({ label, value }) => {
@@ -12,7 +12,7 @@ const DetailRow = ({ label, value }) => {
     );
 };
 
-function SidePanel({ type, data }) {
+function DetailPanel({ type, data }) {
     // if there's no data for some reason, don't render the panel
     if (!data) {
         return null;
@@ -55,4 +55,4 @@ function SidePanel({ type, data }) {
     );
 }
 
-export default SidePanel;
+export default DetailPanel

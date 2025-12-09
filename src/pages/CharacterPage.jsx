@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import matter from 'gray-matter';
 // import components
 import { useBreadcrumbs } from '../context/BreadCrumbContext';
-import { SidePanel, CharacterSheetPanel } from '../components';
+import { DetailPanel, CharacterSheetPanel } from '../components';
 
 function CharacterPage() {
     const location = useLocation();                             // get the current location object
@@ -54,7 +54,7 @@ function CharacterPage() {
 
             <div className="w-full md:w-5/12 flex flex-col gap-3">
               {/* Detail sidebar panel */}
-              <SidePanel type="character" data={characterData} className="order-first md:order-last" />
+              <DetailPanel type="character" data={characterData} className="order-first md:order-last" />
               {/* Character sheet sidebar panel */}
               <CharacterSheetPanel sheet={characterData.sheet} />
             </div>
