@@ -43,17 +43,18 @@ function CharacterPage() {
     }
 
     return (
-        <div className="flex flex-col justify-between gap-7 sm:flex-row sm:gap-10">
+        <div className="flex flex-col justify-between gap-7 md:flex-row md:gap-10">
+            <h1 className='md:hidden'>{characterData.name}</h1>
             {/* Main Content */}
-            <div className="flex flex-col order-last gap-5 w-full sm:order-first">
-                <h1>{characterData.name}</h1>
+            <div className="flex flex-col order-last gap-5 w-full md:order-first">
+                <h1 className='hidden md:inline'>{characterData.name}</h1>
                 <h2>{characterData.clan}, {characterData.generation} generation</h2>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
 
-            <div className="w-full sm:w-5/12 flex flex-col gap-3">
+            <div className="w-full md:w-5/12 flex flex-col gap-3">
               {/* Detail sidebar panel */}
-              <SidePanel type="character" data={characterData} className="order-first sm:order-last" />
+              <SidePanel type="character" data={characterData} className="order-first md:order-last" />
               {/* Character sheet sidebar panel */}
               <CharacterSheetPanel sheet={characterData.sheet} />
             </div>

@@ -6,8 +6,8 @@ const DetailRow = ({ label, value }) => {
     if (!value) return null; // if there's no data, don't render anything
     return (
         <>
-            <dt className="font-bold">{label}:</dt>
-            <dd>{value}</dd>
+            <dt className="col-span-1 font-bold">{label}:</dt>
+            <dd className="col-span-2">{value}</dd>
         </>
     );
 };
@@ -19,7 +19,7 @@ function SidePanel({ type, data }) {
     }
 
     const renderCharacterDetails = () => (
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs sm:text-sm">
+        <dl className="grid grid-cols-3 gap-x-16 gap-y-3 text-sm">
             <DetailRow label="Alias" value={data.alias} />
             <DetailRow label="Clan" value={data.clan} />
             <DetailRow label="Generation" value={data.generation} />
@@ -29,7 +29,7 @@ function SidePanel({ type, data }) {
     );
 
     const renderClanDetails = () => (
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs sm:text-sm">
+        <dl className="grid grid-cols-3 gap-x-4 gap-y-2 text-sm">
             <DetailRow label="Nickname" value={data.nickname} />
             <DetailRow label="Disciplines" value={data.disciplines} />
             <DetailRow label="Disciplines (V5)" value={data.disciplinesv5} />
@@ -39,12 +39,7 @@ function SidePanel({ type, data }) {
     );
 
     return (
-        <aside className="overflow-x-hidden flex flex-col w-full md:max-w-2xl h-fit sm:mt-8 md:mt-20 p-6 bg-gray-200 rounded-md">
-            {/* Title */}
-            {type === 'character' && (
-                <h3 className="text-center text-2xl font-bold font-heading mb-4">{data.name}</h3>
-            )}
-            
+        <aside className="overflow-x-hidden flex flex-col w-full md:max-w-2xl h-fit md:mt-20 p-6 bg-gray-200 rounded-md">
             {/* image Carousel is shared */}
             <ImageCarousel 
               images={data.images}

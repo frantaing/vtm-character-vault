@@ -58,12 +58,13 @@ function ClanPage() {
 
     return (
         <div className="flex flex-col gap-5">
+            <h1 className='md:hidden'>Clan {clanInfo.name}</h1>
             {/* section for Clan Details */}
-            <section className="flex flex-col justify-between gap-7 sm:flex-row sm:gap-10">
-                <div className="flex flex-col order-last gap-10 w-fit sm:order-first">
+            <section className="flex flex-col justify-between gap-7 md:flex-row md:gap-10">
+                <div className="flex flex-col order-last gap-10 w-fit md:order-first">
                     {/* section for page title + description */}
                     <div className="flex flex-col gap-5">
-                        <h1>Clan {clanInfo.name}</h1>
+                        <h1 className='hidden md:inline'>Clan {clanInfo.name}</h1>
                         {/* use the ReactMarkdown component to render the clan's description */}
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>{clanContent}</ReactMarkdown>                        
                     </div> 
@@ -85,7 +86,7 @@ function ClanPage() {
                 </div>
 
                 {/* detail sidebar pane */}
-                <SidePanel type="clan" data={clanInfo} className="order-first sm:order-last" />
+                <SidePanel type="clan" data={clanInfo} className="order-first md:order-last" />
             </section>
         </div>
     );
