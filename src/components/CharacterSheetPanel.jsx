@@ -33,7 +33,7 @@ function CharacterSheetPanel({ sheet }) {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex justify-between items-center w-full px-6 py-2 text-left text-lg font-bold font-heading rounded-md cursor-pointer transition hover:bg-gray-300"
             >
-                Character Sheet
+                Character sheet
                 <motion.span
                     animate={{ rotate: isOpen ? -90 : 90 }}
                     transition={{ duration: 0.3 }}
