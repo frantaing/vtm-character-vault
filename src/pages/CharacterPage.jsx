@@ -1,4 +1,4 @@
-// imports
+// imports: react stuff
 import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import matter from 'gray-matter';
 // import components
 import { useBreadcrumbs } from '../context/BreadCrumbContext';
+import { customRenderers } from '../utils/MarkdownComponents';
 import { DetailPanel, CharacterSheetPanel } from '../components';
 
 function CharacterPage() {
@@ -54,7 +55,9 @@ function CharacterPage() {
                 <h1 className='hidden md:inline'>{characterData.name}</h1>
                 <h2 className='hidden md:inline'>{characterData.clan}, {characterData.generation} generation</h2>
               </div>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={customRenderers}>
+                  {content}
+                </ReactMarkdown>
             </div>
 
             <div className="w-full md:w-5/12 flex flex-col gap-3">

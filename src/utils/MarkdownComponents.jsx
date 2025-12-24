@@ -7,7 +7,7 @@ const LinkRenderer = ({ href, children }) => {
   // check if link is internal or within the same site (starts with '/')
   if (href.startsWith('/')) {
     // if yes => use react-router <Link>
-    return <Link to={href}>{children}</Link>;
+    return <Link to={href}>{children}</Link>
   }
   
   // if link is external, use <a>
@@ -18,3 +18,8 @@ const LinkRenderer = ({ href, children }) => {
 
 // if you see <a> tag, use LinkRenderer instead
 export const customRenderers = { a: LinkRenderer, };
+
+// ----------
+// use github markdown for links in the .md files!
+// [link text](link URL)
+// ----------
