@@ -12,6 +12,13 @@ import { Navigation, Pagination, A11y } from 'swiper/modules';
 // import: components
 import { customRenderers } from '../utils/MarkdownComponents';
 
+// full style control over ReactMarkdown
+// so that styling remains consistent
+const captionRenderers = {
+  p: ({ children }) => <>{children}</>, // render children directly without a <p> wrapper
+  ...customRenderers // keep the smart link renderer
+};
+
 function ImageCarousel({ images, type, clan, characterName }) {
     if (!images || images.length === 0) {
         return null; // don't render anything if there are no images
@@ -39,11 +46,11 @@ function ImageCarousel({ images, type, clan, characterName }) {
                 />
                 {/* conditionally render the caption */}
                 {image.artist && (
-                    <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
-                      <ReactMarkdown components={customRenderers}>
-                          {`Art by ${image.artist}`}
-                      </ReactMarkdown>
-                    </div>
+                  <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                    <ReactMarkdown components={captionRenderers}>
+                        {`Art by ${image.artist}`}
+                    </ReactMarkdown>
+                  </div>
                 )}
             </div>
         );
@@ -73,11 +80,11 @@ function ImageCarousel({ images, type, clan, characterName }) {
                     />
                     {/* conditionally render the caption inside the slide */}
                     {image.artist && (
-                        <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
-                          <ReactMarkdown components={customRenderers}>
-                              {`Art by ${image.artist}`}
-                          </ReactMarkdown>
-                        </div>
+                      <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                        <ReactMarkdown components={captionRenderers}>
+                            {`Art by ${image.artist}`}
+                        </ReactMarkdown>
+                      </div>
                     )}
                 </SwiperSlide>
             ))}
