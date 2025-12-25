@@ -1,12 +1,20 @@
+// import: react stuff
 import React from 'react';
-// import swiper React components
+import ReactMarkdown from 'react-markdown';
+// import: swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import swiper styles
+// import: swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// import swiper modules
+// import: swiper modules
 import { Navigation, Pagination, A11y } from 'swiper/modules';
+// import: components
+import { createMarkdownRenderers } from '../utils/MarkdownComponents';
+
+// caption link styles
+const captionLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-0.5 hover:text-black hover:bg-white";
+const captionRenderers = createMarkdownRenderers(captionLinkClasses, true);
 
 function ImageCarousel({ images, type, clan, characterName }) {
     if (!images || images.length === 0) {
@@ -27,7 +35,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
     if (images.length === 1) {
         const image = images[0];
         return (
-            <div className="group relative w-full h-80 mb-4 rounded-md">
+            <div className="group relative w-full h-fit mb-4 rounded-md">
                 <img
                     src={getImagePath(image.file)} // <-- use image.file
                     alt={characterName || 'Image'}
@@ -35,9 +43,11 @@ function ImageCarousel({ images, type, clan, characterName }) {
                 />
                 {/* conditionally render the caption */}
                 {image.artist && (
-                    <p className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
-                        Art by: {image.artist}
-                    </p>
+                  <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                    <ReactMarkdown components={captionRenderers}>
+                        {`Art by ${image.artist}`}
+                    </ReactMarkdown>
+                  </div>
                 )}
             </div>
         );
@@ -56,7 +66,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
             }}
             pagination={{ clickable: true }}
             loop={true}
-            className="custom-carousel group relative w-full mb-4 rounded-md"
+            className="custom-carousel group relative w-full h-fit mb-4 rounded-md"
         >
             {images.map((image, index) => ( // <-- `image` is now an object
                 <SwiperSlide key={index}>
@@ -67,9 +77,11 @@ function ImageCarousel({ images, type, clan, characterName }) {
                     />
                     {/* conditionally render the caption inside the slide */}
                     {image.artist && (
-                        <p className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
-                            Art by {image.artist}
-                        </p>
+                      <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                        <ReactMarkdown components={captionRenderers}>
+                            {`Art by ${image.artist}`}
+                        </ReactMarkdown>
+                      </div>
                     )}
                 </SwiperSlide>
             ))}

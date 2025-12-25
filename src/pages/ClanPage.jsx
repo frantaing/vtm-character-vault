@@ -3,8 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 // import components
 import { DetailPanel, ImageCarousel } from '../components';
+import { createMarkdownRenderers } from '../utils/MarkdownComponents';
+
+// markdown link styles
+const markdownLinkClasses = "px-1 underline text-gray-900 bg-gray-200 rounded-md transition-all hover:px-1.5 hover:py-0.5 hover:italic hover:text-black hover:bg-gray-300";
+const mainContentRenderers = createMarkdownRenderers(markdownLinkClasses);
 
 function ClanPage() {
     const { type, clan } = useParams();
@@ -66,7 +72,9 @@ function ClanPage() {
                     <div className="flex flex-col gap-5">
                         <h1 className='hidden md:inline'>Clan {clanInfo.name}</h1>
                         {/* use the ReactMarkdown component to render the clan's description */}
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{clanContent}</ReactMarkdown>                        
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={mainContentRenderers}>
+                            {clanContent}
+                        </ReactMarkdown>                
                     </div> 
                     {/* section for the character list */}
                     <section>
