@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 // import components
 import { DetailPanel, ImageCarousel } from '../components';
 
@@ -66,7 +67,7 @@ function ClanPage() {
                     <div className="flex flex-col gap-5">
                         <h1 className='hidden md:inline'>Clan {clanInfo.name}</h1>
                         {/* use the ReactMarkdown component to render the clan's description */}
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{clanContent}</ReactMarkdown>                        
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{clanContent}</ReactMarkdown>                        
                     </div> 
                     {/* section for the character list */}
                     <section>

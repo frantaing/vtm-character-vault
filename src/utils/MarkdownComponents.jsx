@@ -2,10 +2,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// styling for markdown links (grey background; in main content)
+// styling for DetailPanel links
+const detailLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-1 hover:text-black hover:bg-gray-300";
+// styling for DetailPanel links
 const markdownLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-1 hover:text-black hover:bg-gray-300";
 // styling for image captions
-const detailLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-0.5 hover:text-black hover:bg-white";
+const captionLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-0.5 hover:text-black hover:bg-white";
 
 // custom renderer for link (<a>) tags
 const LinkRenderer = ({ href, children }) => {  
@@ -17,7 +19,7 @@ const LinkRenderer = ({ href, children }) => {
   
   // if link is external, use <a>
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={detailLinkClasses}>{children}</a>
+    <a href={href} target="_blank" rel="noopener noreferrer" className={captionLinkClasses}>{children}</a>
   );
 };
 
