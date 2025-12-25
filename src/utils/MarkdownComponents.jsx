@@ -1,40 +1,34 @@
-// import react stuff
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// styling for DetailPanel links
-const detailLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-1 hover:text-black hover:bg-gray-300";
-// styling for DetailPanel links
-const markdownLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-1 hover:text-black hover:bg-gray-300";
-// styling for image captions
-const captionLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-0.5 hover:text-black hover:bg-white";
+/**
+ * @param {string} className - tailwind classes to apply to the links.
+ * @returns
+ */
+const createLinkRenderer = (className) => {
+  // component to be rendered
+  const LinkRenderer = ({ href, children }) => {
+    if (href.startsWith('/')) {
+      return <Link to={href} className={className}>{children}</Link>;
+    }
+    return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>;
+  };
+  return LinkRenderer;
+};
 
-// custom renderer for link (<a>) tags
-const LinkRenderer = ({ href, children }) => {  
-  // check if link is internal or within the same site (starts with '/')
-  if (href.startsWith('/')) {
-    // if yes => use react-router <Link>
-    return <Link to={href} className={markdownLinkClasses}>{children}</Link>
+/**
+ * @param {string} linkClassName - the classes to apply to links.
+ * @param {boolean} isInline - if yes => remove the <p> tag wrapper.
+ * @returns
+ */
+export const createMarkdownRenderers = (linkClassName, isInline = false) => {
+  const config = {
+    a: createLinkRenderer(linkClassName),
+  };
+
+  if (isInline) {
+    config.p = ({ children }) => <>{children}</>;
   }
-  
-  // if link is external, use <a>
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={captionLinkClasses}>{children}</a>
-  );
-};
 
-// default renderer. used for main body content
-export const customRenderers = {
-  a: LinkRenderer,
+  return config;
 };
-
-// if you see <a> tag, use LinkRenderer instead
-export const inlineMarkdownRenderers = {
-  ...customRenderers, // inherit the styled link renderer
-  p: ({ children }) => <>{children}</>, // override the paragraph renderer
-};
-
-// ----------
-// use github markdown for links in the .md files!
-// [link text](link URL)
-// ----------

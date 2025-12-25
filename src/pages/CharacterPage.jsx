@@ -7,8 +7,12 @@ import rehypeRaw from 'rehype-raw';
 import matter from 'gray-matter';
 // import components
 import { useBreadcrumbs } from '../context/BreadCrumbContext';
-import { customRenderers } from '../utils/MarkdownComponents';
+import { createMarkdownRenderers } from '../utils/MarkdownComponents';
 import { DetailPanel, CharacterSheetPanel } from '../components';
+
+// markdown link styles
+const markdownLinkClasses = "px-1 underline text-gray-900 bg-gray-200 rounded-md transition-all hover:px-1.5 hover:py-0.5 hover:italic hover:text-black hover:bg-gray-300";
+const mainContentRenderers = createMarkdownRenderers(markdownLinkClasses);
 
 function CharacterPage() {
   const location = useLocation();                             // get the current location object
@@ -57,7 +61,7 @@ function CharacterPage() {
           <h2 className='hidden md:inline'>{characterData.clan}, {characterData.generation} generation</h2>
         </div>
         <div className="prose max-w-none">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={customRenderers}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={mainContentRenderers}>
               {content}
           </ReactMarkdown>
         </div>

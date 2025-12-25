@@ -57,15 +57,15 @@ function BreadCrumbs() {
                         end
                         className={({ isActive }) =>
                             `px-2 py-1 rounded-md transition sm:px-3
-                             ${isActive ? "text-red-600 bg-red-100"
-                                        : "text-gray-600 bg-gray-100 hover:text-black hover:bg-gray-200"}`
+                             ${isActive ? "italic text-red-600 bg-red-100"
+                                        : "text-gray-600 bg-gray-100 hover:italic hover:text-black hover:bg-gray-200"}`
                         }
                     >
                         Home
                     </NavLink>
                 </>
             ) : (
-                <span className="px-2 py-1 text-red-600 bg-red-100 rounded-md sm:px-3">
+                <span className="px-2 py-1 italic text-red-600 bg-red-100 rounded-md sm:px-3">
                     Home
                 </span>
             )}
@@ -90,7 +90,7 @@ function BreadCrumbs() {
 
                         {/* last crumb is active and unclickable */}
                         {i === crumbs.length - 1 ? (
-                            <span className="px-2 py-1 text-red-600 bg-red-100 rounded-md sm:px-3">
+                            <span className="px-2 py-1 italic text-red-600 bg-red-100 rounded-md sm:px-3">
                                 {crumb.name}
                             </span>
                         ) : (
@@ -99,8 +99,8 @@ function BreadCrumbs() {
                                 end
                                 className={({ isActive }) =>
                                     `px-2 py-1 rounded-md transition sm:px-3
-                                     ${isActive ? "text-red-600 bg-red-100"
-                                                : "text-gray-600 bg-gray-100 hover:text-black hover:bg-gray-200"}`
+                                     ${isActive ? "italic text-red-600 bg-red-100"
+                                                : "text-gray-600 bg-gray-100 hover:italic hover:text-black hover:bg-gray-200"}`
                                 }
                             >
                                 {crumb.name}

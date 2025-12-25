@@ -2,8 +2,12 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 // imports: components
-import { inlineMarkdownRenderers } from '../utils/MarkdownComponents';
+import { createMarkdownRenderers } from '../utils/MarkdownComponents';
 import { ImageCarousel } from '.';
+
+// markdown link styles
+const detailLinkClasses = "underline rounded-md transition-all hover:px-2 hover:py-1 hover:italic hover:text-black hover:bg-gray-300";
+const detailPanelRenderers = createMarkdownRenderers(detailLinkClasses, true);
 
 // to avoid rendering empty detail rows
 const DetailRow = ({ label, children }) => {
@@ -31,7 +35,7 @@ function DetailPanel({ type, data }) {
             {/* link wrapping for sire */}
             {data.sire && (
                 <DetailRow label="Sire">
-                    <ReactMarkdown components={inlineMarkdownRenderers}>
+                    <ReactMarkdown components={detailPanelRenderers}>
                         {data.sire}
                     </ReactMarkdown>
                 </DetailRow>
