@@ -2,15 +2,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 // imports: components
-import { customRenderers } from '../utils/MarkdownComponents';
+import { inlineMarkdownRenderers } from '../utils/MarkdownComponents';
 import { ImageCarousel } from '.';
-
-// full style control over ReactMarkdown
-// so that styling remains consistent
-const inlineMarkdownRenderers = {
-  p: ({ children }) => <>{children}</>, // render children directly without a <p> wrapper
-  ...customRenderers // keep the smart link renderer
-};
 
 // to avoid rendering empty detail rows
 const DetailRow = ({ label, children }) => {
@@ -37,12 +30,12 @@ function DetailPanel({ type, data }) {
             <DetailRow label="Generation">{data.generation}</DetailRow>
             {/* link wrapping for sire */}
             {data.sire && (
-                            <DetailRow label="Sire">
-                                <ReactMarkdown components={inlineMarkdownRenderers}>
-                                    {data.sire}
-                                </ReactMarkdown>
-                            </DetailRow>
-                        )}
+                <DetailRow label="Sire">
+                    <ReactMarkdown components={inlineMarkdownRenderers}>
+                        {data.sire}
+                    </ReactMarkdown>
+                </DetailRow>
+            )}
             <DetailRow label="Affiliation">{data.affiliation}</DetailRow>
         </dl>
     );
