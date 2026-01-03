@@ -32,13 +32,13 @@ function HomePage(){
                 <h1>Welcome to my Character Vault!</h1>
                 <p>This is a personal, wiki-style vault for the Kindred from my various chronicles (or just characters I created and particularly liked). It's a way for me to keep notes, images, and character details all in one organized place.</p>
                 <p>Feel free to browse by Clan or Bloodline (or the clanless) using the links below!</p>
-                <span className="text-xs italic">Please be kind, even though some are cringe 🥺</span>
+                <span className="text-text-primary dark:text-text-primary-dark text-xs italic">Please be kind, even though some are cringe 🥺</span>
             </section>
 
             <section className="flex flex-col">
                 {/* links! */}
                 <h2>Clans</h2>
-                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
+                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 dark:border-gray-700 mt-4">
                     {clanLinks.map((link) => (
                             // change <a> to custom link component when made!
                             <Link key={link.href} to={link.href} className="pageLink">
@@ -50,7 +50,7 @@ function HomePage(){
             <section className="flex flex-col">
                 {/* bloodline links! */}
                 <h2>Bloodlines</h2>
-                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
+                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 dark:border-gray-700 mt-4">
                     {bloodlineLinks.map((link) => (
                             // change <a> to custom link component when made!
                             <Link key={link.href} to={link.href} className="pageLink line-through">
@@ -62,7 +62,7 @@ function HomePage(){
             <section className="flex flex-col">
                 {/* misc links! */}
                 <h2>Non-clans</h2>
-                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 mt-4">
+                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 dark:border-gray-700 mt-4">
                     {nonclanLinks.map((link) => (
                             // change <a> to custom link component when made!
                             <Link key={link.href} to={link.href} className="pageLink">
