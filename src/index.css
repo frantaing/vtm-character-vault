@@ -2,6 +2,9 @@
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Gloock&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+/* Configure dark mode */
+@variant dark (&:where(.dark, .dark *));
+
 /* theme variables */
 @theme {
     /* typograhy */
@@ -21,23 +24,23 @@
         ===OTHER===
         1. border-radius (all): 'rounded-md'
     */
+    
+    /* ===DARK MODE=== */
 }
-
-@config theme { darkMode = 'class' }
 
 /* classes */
 @layer utilities {
     /* big boi base */
-    body { @apply flex justify-center items-center min-h-screen font-body leading-relaxed bg-white }
+    body { @apply flex justify-center items-center min-h-screen font-body leading-relaxed bg-white dark:bg-gray-900 text-black dark:text-white transition-colors }
     /* headings */
-    h1 { @apply font-heading font-bold text-2xl leading-tight sm:text-5xl }
-    h2 { @apply font-heading font-bold text-lg sm:text-2xl }
+    h1 { @apply font-heading font-bold text-2xl leading-tight text-black dark:text-white sm:text-5xl }
+    h2 { @apply font-heading font-bold text-lg text-black dark:text-white sm:text-2xl }
     /* paragraph */
-    p { @apply text-sm sm:text-base }
+    p { @apply text-sm text-black dark:text-gray-300 sm:text-base }
     /* link cursor */
     .pageLink { @apply text-sm cursor-pointer
     /* placeholder */
-    px-5 py-2 text-gray-600 bg-gray-100 rounded-md transition hover:italic hover:text-black hover:bg-gray-200 sm:text-base
+    px-5 py-2 text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-md transition hover:italic hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700 sm:text-base
     }
     
     /* HIDE image carousel pagination bullets */
