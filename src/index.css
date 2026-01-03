@@ -23,6 +23,8 @@
     */
 }
 
+@config theme { darkMode = 'class' }
+
 /* classes */
 @layer utilities {
     /* big boi base */
