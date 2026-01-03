@@ -8,41 +8,43 @@
 /* theme variables */
 @theme {
     /* typograhy */
-    --font-heading: "Gloock", serif;
+    --font-heading: "Gloock", serif;       /* Might change to be serif? */
     --font-body: "Inter", sans-serif;
-    /* colors:
-        ===BACKGROUNDS===
-        1. background: 'bg-white'
-        2. containers/wrappers/component backgrounds: 'bg-gray-100'
-        3. background-accent: 'bg-red-100'
-        4. hover-background: 'bg-gray-200'
-        ===TEXT===
-        1. general: 'text-black'
-        2. links: 'text-gray-600'
-        3. text-accent: 'text-red-600'
-        3. hover-links: 'text-black'
-        ===OTHER===
-        1. border-radius (all): 'rounded-md'
-    */
     
-    /* ===DARK MODE=== */
-    /* wait... */
+    /* === LIGHT MODE === */
+    /* backgrounds */
+    --color-bg-primary: #ffffff;           /* bg-white */
+    --color-bg-secondary: #f3f4f6;         /* bg-gray-100 */
+    --color-bg-tertiary: #e5e7eb;          /* bg-gray-200 */
+    --color-bg-accent: #fee2e2;            /* bg-red-100 */
+    
+    /* text */
+    --color-text-primary: #000000;         /* text-black */
+    --color-text-secondary: #4b5563;       /* text-gray-600 */
+    --color-text-accent: #dc2626;          /* text-red-600 */
+    
+    /* ===DARK MODE COLORS=== */
+    /* backgrounds */
+    --color-bg-primary-dark: #111827;      /* bg-gray-900 */
+    --color-bg-secondary-dark: #1f2937;    /* bg-gray-800 */
+    --color-bg-tertiary-dark: #374151;     /* bg-gray-700 */
+    
+    /* text */
+    --color-text-primary-dark: #ffffff;    /* text-white */
+    --color-text-secondary-dark: #9ca3af;  /* text-gray-400 */
 }
 
 /* classes */
 @layer utilities {
     /* big boi base */
-    body { @apply flex justify-center items-center min-h-screen font-body leading-relaxed bg-white dark:bg-gray-900 text-black dark:text-white transition-colors }
+    body { @apply flex justify-center items-center min-h-screen font-body leading-relaxed bg-bg-primary dark:bg-bg-primary-dark text-text-primary dark:text-bg-primary-dark transition-colors }
     /* headings */
-    h1 { @apply font-heading font-bold text-2xl leading-tight text-black dark:text-white sm:text-5xl }
-    h2 { @apply font-heading font-bold text-lg text-black dark:text-white sm:text-2xl }
+    h1 { @apply font-heading font-bold text-2xl leading-tight text-text-primary dark:text-text-primary-dark sm:text-5xl }
+    h2 { @apply font-heading font-bold text-lg text-text-primary dark:text-text-primary-dark sm:text-2xl }
     /* paragraph */
-    p { @apply text-sm text-black dark:text-gray-300 sm:text-base }
+    p { @apply text-sm text-text-primary dark:text-text-primary-dark sm:text-base }
     /* link cursor */
-    .pageLink { @apply text-sm cursor-pointer
-    /* placeholder */
-    px-5 py-2 text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-md transition hover:italic hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700 sm:text-base
-    }
+    .pageLink { @apply text-sm cursor-pointer px-5 py-2 text-text-secondary dark:text-text-secondary-dark bg-bg-secondary dark:bg-bg-secondary-dark rounded-md transition hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark sm:text-base }
     
     /* HIDE image carousel pagination bullets */
     .custom-carousel .swiper-pagination { @apply hidden }

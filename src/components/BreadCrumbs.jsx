@@ -3,6 +3,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"; // add 'motion' !! IGNORE THE SQUIGGLY RED LINE!
 // import components
 import { useBreadcrumbs } from "../context/BreadCrumbContext";
+// import context
+import { useThemeContext } from '../context/ThemeContext';
 
 // make the crumb not display URL
 function prettyCrumb(crumb) { // display "John Smith" instead of "john-smith"
@@ -43,6 +45,10 @@ function BreadCrumbs() {
             to: to,
         };
     });
+    
+    // theme swithcing
+    const { theme } = useThemeContext();
+    const isDarkMode = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
     return(
         <nav className="overflow-x-auto flex items-center gap-1 w-full whitespace-nowrap text-xs sm:gap-2 sm:text-sm">
@@ -57,15 +63,15 @@ function BreadCrumbs() {
                         end
                         className={({ isActive }) =>
                             `px-2 py-1 rounded-md transition sm:px-3
-                             ${isActive ? "italic text-red-600 bg-red-100"
-                                        : "text-gray-600 bg-gray-100 hover:italic hover:text-black hover:bg-gray-200"}`
+                             ${isActive ? "italic text-text-accent bg-bg-accent"
+                                        : "text-text-secondary dark:text-text-secondary-dark bg-bg-secondary dark:bg-bg-secondary-dark hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark"}`
                         }
                     >
                         Home
                     </NavLink>
                 </>
             ) : (
-                <span className="px-2 py-1 italic text-red-600 bg-red-100 rounded-md sm:px-3">
+                <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-md sm:px-3">
                     Home
                 </span>
             )}
@@ -82,15 +88,18 @@ function BreadCrumbs() {
                         {/* separators */}
                         <motion.span {...crumbAnimation}>
                             {/* show Slash on Mobile (hidden on sm and up) */}
-                            <img src="/assets/icons/forward-slash.png" className="w-3 sm:hidden" />
+                            {/* removed for now... */}
                             
                             {/* show Arrow on Desktop (hidden on mobile) */}
-                            <img src="/assets/icons/chevron-right.png" className="w-3 hidden sm:inline" />
+                            <img 
+                                src={isDarkMode ? "/assets/icons/chevron-right_light.png" : "/assets/icons/chevron-right.png"} 
+                                alt="Description" className="w-3 sm:w-5"
+                            />
                         </motion.span>
 
                         {/* last crumb is active and unclickable */}
                         {i === crumbs.length - 1 ? (
-                            <span className="px-2 py-1 italic text-red-600 bg-red-100 rounded-md sm:px-3">
+                            <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-md sm:px-3">
                                 {crumb.name}
                             </span>
                         ) : (
@@ -99,8 +108,8 @@ function BreadCrumbs() {
                                 end
                                 className={({ isActive }) =>
                                     `px-2 py-1 rounded-md transition sm:px-3
-                                     ${isActive ? "italic text-red-600 bg-red-100"
-                                                : "text-gray-600 bg-gray-100 hover:italic hover:text-black hover:bg-gray-200"}`
+                                    ${isActive ? "italic text-text-accent bg-bg-accent"
+                                      : "text-text-secondary dark:text-text-secondary-dark bg-bg-secondary dark:bg-bg-secondary-dark hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark"}`
                                 }
                             >
                                 {crumb.name}
