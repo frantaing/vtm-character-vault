@@ -6,7 +6,7 @@ import { createMarkdownRenderers } from '../utils/MarkdownComponents';
 import { ImageCarousel } from '.';
 
 // markdown link styles
-const detailLinkClasses = "underline rounded-md transition-all hover:px-2 hover:py-1 hover:italic hover:text-black hover:bg-gray-300";
+const detailLinkClasses = "text-text-primary dark:text-text-primary-dark underline rounded-md transition-all hover:px-2 hover:py-1 hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-hover dark:hover:bg-bg-hover-dark";
 const detailPanelRenderers = createMarkdownRenderers(detailLinkClasses, true);
 
 // to avoid rendering empty detail rows
@@ -56,7 +56,7 @@ function DetailPanel({ type, data }) {
     );
 
     return (
-        <aside className="overflow-x-hidden flex flex-col w-full md:max-w-2xl h-fit md:mt-20 p-6 bg-gray-200 rounded-md">
+        <aside className="overflow-x-hidden flex flex-col w-full md:max-w-2xl h-fit md:mt-20 p-6 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-md">
             {/* image Carousel is shared */}
             <ImageCarousel 
               images={data.images}
