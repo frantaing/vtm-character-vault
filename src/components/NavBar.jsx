@@ -28,23 +28,25 @@ function NavBar() {
                 {/* link to repo */}
                 <a href='https://github.com/frantaing/vtm-character-vault' className='group flex gap-2 items-center px-3 py-1 bg-transparent rounded-md opacity-75 transition hover:bg-gray-200 dark:hover:bg-gray-700 hover:opacity-100'>
                   <span className='text-xs text-black dark:text-white opacity-0 translate-x-2 transition group-hover:opacity-100 group-hover:translate-x-0'>Made by Frantaing</span>
-                  <img src={isDarkMode ? '/assets/icons/github_light.png' : '/assets/icons/github.png'} className='w-5.5' alt="GitHub" />
+                  <img src={isDarkMode ? '/assets/icons/github_light.png' : '/assets/icons/github.png'} className='w-5' alt="GitHub" />
                 </a>
               
               {/* Theme toggle button */}
               <button 
                 onClick={toggleTheme}
-                className="group px-1 py-1 rounded-md cursor-pointer transition hover:bg-gray-200 dark:hover:bg-gray-700"
+                className="group px-1 py-1 rounded-md cursor-pointer transition hover:bg-black dark:hover:bg-white"
                 aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               >
-                <div className="relative w-5">
+                <div className="relative w-5!">
                   {isDarkMode ? (
                     <>
-                      <img src="/assets/icons/sun-bright_dark.png" alt="Switch to light mode" className="transition group-hover:opacity-0" />
-                      <img src="/assets/icons/sun-bright.png" alt="Switch to light mode" className="absolute inset-0 opacity-0 transition group-hover:opacity-100" />
+                      {/* Dark mode: show light icon, hover shows dark icon */}
+                      <img src="/assets/icons/sun-bright.png" alt="Switch to light mode" className="transition group-hover:opacity-0" />
+                      <img src="/assets/icons/sun-bright_dark.png" alt="Switch to light mode" className="absolute inset-0 opacity-0 transition group-hover:opacity-100" />
                     </>
                   ) : (
                     <>
+                      {/* Light mode: show dark icon, hover shows light icon */}
                       <img src="/assets/icons/moon_dark.png" alt="Switch to dark mode" className="transition group-hover:opacity-0" />
                       <img src="/assets/icons/moon.png" alt="Switch to dark mode" className="absolute inset-0 opacity-0 transition group-hover:opacity-100" />
                     </>

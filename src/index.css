@@ -2,7 +2,7 @@
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Gloock&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-/* Configure dark mode */
+/* dark mode */
 @variant dark (&:where(.dark, .dark *));
 
 /* theme variables */
@@ -26,6 +26,7 @@
     */
     
     /* ===DARK MODE=== */
+    /* wait... */
 }
 
 /* classes */
