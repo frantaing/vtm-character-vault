@@ -35,7 +35,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
     if (images.length === 1) {
         const image = images[0];
         return (
-            <div className="group relative w-full h-fit mb-4 rounded-md">
+            <div className="group relative w-full h-fit mb-4 dark:bg-bg-primary rounded-md">
                 <img
                     src={getImagePath(image.file)} // <-- use image.file
                     alt={characterName || 'Image'}
@@ -66,7 +66,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
             }}
             pagination={{ clickable: true }}
             loop={true}
-            className="custom-carousel group relative w-full h-fit mb-4 rounded-md"
+            className="custom-carousel group relative w-full h-fit mb-4 dark:bg-bg-primary rounded-md"
         >
             {images.map((image, index) => ( // <-- `image` is now an object
                 <SwiperSlide key={index}>
