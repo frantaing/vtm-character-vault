@@ -20,7 +20,7 @@ This is a simple, wiki-esque collection of my characters (mostly V20), organized
 Non-commercial fan project · 100 % personal & portfolio use  
 Vampire: The Masquerade is © Paradox Interactive
 
-All character portraits sourced from Pinterest, Tumblr, etc., credited when possible. If you’re the artist and want your work removed, please contact me and it'll be gone in 5 minutes.
+All character portraits sourced from Pinterest, Tumblr, etc., credited when possible. If you’re the artist and want your work removed, please open an issue or contact me at frantan.github@manyme.com, and it'll be removed promptly.
 
 ## 📄 License
 
