@@ -20,8 +20,8 @@ function NavBar() {
         <div className="flex justify-between items-center pl-5 pr-2 py-2 bg-gray-100 dark:bg-gray-800 rounded-md transition-colors">
           {/* title, maybe logo idk*/}
           <div className="flex gap-2 items-center">
-            <img src={isDarkMode ? '/favicon/favicon-dark.png' : '/favicon/favicon.ico'} className='w-5 h-5' />
-            <span className="font-heading font-bold text-sm sm:text-lg text-black dark:text-white">vtm character vault</span>
+            <img src={isDarkMode ? '/favicon/favicon-dark.png' : '/favicon/favicon.ico'} className='w-6 h-6' />
+            <span className="hidden sm:block font-heading font-bold sm:text-lg text-black dark:text-white">vtm character vault</span>
           </div>
           
           {/* search (commented out for safekeeping) */}
