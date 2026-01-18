@@ -30,16 +30,22 @@ function ImageCarousel({ images, type, clan, characterName }) {
       }
       return imageFile; // fallback
     };
-    
-    // for single vs. multiple images
+  
+    // CHECK: is this a clan symbol?
+    // YES: add invert filter for dark mode
+    const imageClasses = `w-full h-full object-contain rounded-md transition-all ${
+        type === 'clan' ? 'dark:brightness-0 dark:invert opacity-80' : ''
+    }`;
+  
+    // for single images
     if (images.length === 1) {
         const image = images[0];
         return (
-            <div className="group relative w-full h-fit mb-4 dark:bg-bg-primary rounded-md">
+            <div className="group relative w-full h-fit mb-4 rounded-md">
                 <img
                     src={getImagePath(image.file)} // <-- use image.file
                     alt={characterName || 'Image'}
-                    className="w-full h-full object-contain"
+                    className={imageClasses}
                 />
                 {/* conditionally render the caption */}
                 {image.artist && (
@@ -66,14 +72,14 @@ function ImageCarousel({ images, type, clan, characterName }) {
             }}
             pagination={{ clickable: true }}
             loop={true}
-            className="custom-carousel group relative w-full h-fit mb-4 dark:bg-bg-primary rounded-md"
+            className="custom-carousel group relative w-full h-fit mb-4 rounded-md"
         >
             {images.map((image, index) => ( // <-- `image` is now an object
                 <SwiperSlide key={index}>
                     <img
                       src={getImagePath(image.file)} // <-- Use image.file
                       alt={`${characterName || 'Image'} - ${index + 1}`}
-                      className="w-full h-full object-contain rounded-md"
+                      className={imageClasses}
                     />
                     {/* conditionally render the caption inside the slide */}
                     {image.artist && (
