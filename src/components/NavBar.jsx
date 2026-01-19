@@ -19,8 +19,8 @@ function NavBar() {
       <section>
         <div className="flex justify-between items-center pl-5 pr-2 py-2 bg-gray-100 dark:bg-gray-800 rounded-md transition-colors">
           {/* title, maybe logo idk*/}
-          <div className="flex gap-2 items-center">
-            <img src={isDarkMode ? '/assets/favicon-light.png' : '/assets/favicon-dark.png'} className='w-6 h-6' />
+          <div className="flex gap-2.5 items-center">
+            <img src={isDarkMode ? '/assets/favicon-light.png' : '/assets/favicon-dark.png'} className='w-5 h-5' />
             <span className="hidden sm:block font-heading font-bold sm:text-lg text-black dark:text-white">vtm character vault</span>
           </div>
           
@@ -29,7 +29,7 @@ function NavBar() {
       
           <div className="flex px-3">
             {/* link to repo */}
-            <a href='https://github.com/frantaing/vtm-character-vault' className='group flex gap-2 items-center px-3 py-1 bg-transparent rounded-md opacity-75 transition hover:bg-gray-200 dark:hover:bg-gray-700 hover:opacity-100'>
+            <a href='https://github.com/frantaing/vtm-character-vault' className='group flex gap-2 items-center px-3 py-1 bg-transparent rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700'>
               <span className='text-xs text-black dark:text-white opacity-0 translate-x-2 transition group-hover:opacity-100 group-hover:translate-x-0'>Made by Frantaing</span>
               <img src={isDarkMode ? '/assets/icons/github_light.png' : '/assets/icons/github.png'} className='w-5' alt="GitHub" />
             </a>
