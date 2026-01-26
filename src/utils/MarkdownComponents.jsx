@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Helper for labelling keys! (This is for the dynamic panel thing)
+// Turns "blood_potency" to "Blood Potency", etc
+export const formatLabel = (key) => {
+  return key
+    .replace(/_/g, ' ') 
+    .replace(/\b\w/g, (l) => l.toUpperCase()) 
+    .replace('V5', '(V5)'); 
+};
+
 /**
  * @param {string} className - tailwind classes to apply to the links.
  * @returns
