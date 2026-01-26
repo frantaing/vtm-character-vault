@@ -1,111 +1,131 @@
-// IMPORT: React stuff
+// Imports
 import React, { useState } from "react";
-// IMPORT: framer-motion
-import { motion, AnimatePresence } from 'framer-motion';
-// IMPORT: context
-import { useThemeContext } from '../context/ThemeContext';
+import { motion, AnimatePresence } from "framer-motion";
+import { useThemeContext } from "../context/ThemeContext";
+import { formatLabel } from "../utils/MarkdownComponents";
 
 // For rows...
 const DetailRow = ({ label, children }) => {
-    if (!children) return null;
-    return (
-        <>
-            <dt className="col-span-1 font-bold capitalize">{label.replace(/_/g, ' ')}:</dt>
-            <dd className="col-span-2">{children}</dd>
-        </>
-    );
+  if (!children) return null;
+  return (
+    <>
+      <dt className="col-span-1 font-bold capitalize">{label}:</dt>
+      <dd className="col-span-2">{children}</dd>
+    </>
+  );
 };
 
+// Helper for section headers
+const SectionHeader = ({ title }) => (
+  <div className="col-span-3 mt-4 first:mt-0 mb-1">
+    <h3 className="text-base font-bold font-heading border-b border-gray-400 dark:border-gray-600">
+      {title}
+    </h3>
+  </div>
+);
+
 function CharacterSheetPanel({ sheet }) {
-  // theme swithcing
+  // Theme switching
   const { theme } = useThemeContext();
-  const isDarkMode = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  
+  const isDarkMode = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
   const [isOpen, setIsOpen] = useState(false); // Start closed by default
 
   if (!sheet) return null;
-
-  // A list of the keys for standard stat rows to render them in order
-  const statKeys = [
-      'physical', 'social', 'mental', 'talents', 'skills', 'knowledges',
-      'disciplines', 'backgrounds', 'virtues', 'morality', 'willpower'
-  ];
 
   return (
     <aside className="overflow-hidden flex flex-col w-full h-fit text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-md">
       {/* Button to open/collapse panel */}
       <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex justify-between items-center w-full px-6 py-2 text-left text-lg font-bold font-heading rounded-md cursor-pointer transition hover:bg-bg-hover dark:hover:bg-bg-hover-dark"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex justify-between items-center w-full px-6 py-2 text-left text-lg font-bold font-heading rounded-md cursor-pointer transition hover:bg-bg-hover dark:hover:bg-bg-hover-dark"
       >
-          Character sheet
-          <motion.span
-              animate={{ rotate: isOpen ? -90 : 90 }}
-              transition={{ duration: 0.3 }}
-              className="text-2xl"
-          >
-            <img 
-                src={isDarkMode ? "/assets/icons/chevron-right_light.png" : "/assets/icons/chevron-right.png"} 
-                alt="Description" className="w-3 sm:w-5"
-            />
-          </motion.span>
+        Character sheet
+        <motion.span
+          animate={{ rotate: isOpen ? -90 : 90 }}
+          transition={{ duration: 0.3 }}
+          className="text-2xl"
+        >
+          <img
+            src={ isDarkMode ? "/assets/icons/chevron-right_light.png" : "/assets/icons/chevron-right.png" }
+            alt="Toggle"
+            className="w-3 sm:w-5"
+          />
+        </motion.span>
       </button>
 
       {/* The rest of the sidepanel */}
       <AnimatePresence>
-          {isOpen && (
-              <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: 'easeInOut' }}
-                  className="overflow-hidden mt-2 pt-4 pb-5 px-6 py-2" // pt-4 for spacing
-              >
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="overflow-hidden mt-2 pt-4 pb-5 px-6 py-2"
+          >
+            <dl className="grid grid-cols-3 gap-x-16 gap-y-3 text-xs sm:text-sm">
+              {/* DYNAMIC MAPPING */}
+              {Object.entries(sheet).map(([key, value]) => {
+                // Merits & Flaws (Special List Logic)
+                if (key === "merits_flaws") {
+                  return (
+                    <DetailRow key={key} label="Merits/Flaws">
+                      <div className="flex flex-col gap-2">
+                        {value.merits && (
+                          <div>
+                            <h4 className="font-medium">Merits</h4>
+                            <ul className="list-disc pl-5">
+                              {value.merits.map((m, i) => (
+                                <li key={i}>{m}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {value.flaws && (
+                          <div>
+                            <h4 className="font-medium">Flaws</h4>
+                            <ul className="list-disc pl-5">
+                              {value.flaws.map((f, i) => (
+                                <li key={i}>{f}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    </DetailRow>
+                  );
+                }
 
-                  <dl className="grid grid-cols-3 gap-x-16 gap-y-3 text-xs sm:text-sm">
-                      
-                      {/* Render all the simple stat rows */}
-                      {statKeys.map(key => (
-                          sheet[key] && (
-                              <DetailRow key={key} label={key}>
-                                  {sheet[key]}
-                              </DetailRow>
-                          )
+                // Case 2: Nested Object (e.g., Attributes: { Physical: ... })
+                // If value is an object (and not null/array), it's a category header
+                if (
+                  typeof value === "object" &&
+                  value !== null &&
+                  !Array.isArray(value)
+                ) {
+                  return (
+                    <React.Fragment key={key}>
+                      <SectionHeader title={formatLabel(key)} />
+                      {/* Map the inner object */}
+                      {Object.entries(value).map(([subKey, subValue]) => (
+                        <DetailRow key={subKey} label={formatLabel(subKey)}>
+                          {subValue}
+                        </DetailRow>
                       ))}
+                    </React.Fragment>
+                  );
+                }
 
-                      {/* --- Special Case: Merits & Flaws --- */}
-                      {sheet.merits_flaws && (
-                          <DetailRow label="Merits/Flaws">
-                              <div className="flex flex-col gap-2">
-                                  {/* Merits List */}
-                                  {sheet.merits_flaws.merits && (
-                                      <div>
-                                          <h4 className="font-medium">Merits</h4>
-                                          <ul className="list-disc pl-5">
-                                              {sheet.merits_flaws.merits.map((merit, index) => (
-                                                  <li key={index}>{merit}</li>
-                                              ))}
-                                          </ul>
-                                      </div>
-                                  )}
-                                  {/* Flaws List */}
-                                  {sheet.merits_flaws.flaws && (
-                                      <div>
-                                          <h4 className="font-medium">Flaws</h4>
-                                          <ul className="list-disc pl-5">
-                                              {sheet.merits_flaws.flaws.map((flaw, index) => (
-                                                  <li key={index}>{flaw}</li>
-                                              ))}
-                                          </ul>
-                                      </div>
-                                  )}
-                              </div>
-                          </DetailRow>
-                      )}
-
-                  </dl>
-              </motion.div>
-          )}
+                // Case 3: Simple Value (e.g., Willpower: 8)
+                return (
+                  <DetailRow key={key} label={formatLabel(key)}>
+                    {value}
+                  </DetailRow>
+                );
+              })}
+            </dl>
+          </motion.div>
+        )}
       </AnimatePresence>
     </aside>
   );
