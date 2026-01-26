@@ -15,6 +15,7 @@ images:
 
 # Character sheet
 sheet:
+  v20:
     physical: 'Stength 3, Dexterity 4, Stamina 2'
     social: 'Charisma 3, Manipulation 2, Appearance 4'
     mental: 'Perception 3, Intelligence 4, Wits 3'
@@ -27,10 +28,13 @@ sheet:
     morality: 'Humanity 4'
     willpower: 7
     merits_flaws:
-        merits:
-          - 'Concentration (1)'
-        flaws:
-          - 'Overconfident (1)'
+      merits:
+        - 'Concentration (1)'
+      flaws:
+        - 'Overconfident (1)'
+  v5:
+    physical: 'Stength 3, Dexterity 4, Stamina 2'
+    
 ---
 
 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure tempora earum doloribus assumenda a! Harum, id. Explicabo voluptatibus necessitatibus praesentium a, hic dolor at vel amet, unde eligendi inventore. Officia?

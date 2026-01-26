@@ -1,19 +1,17 @@
-// imports
+// Imports
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"; // add 'motion' !! IGNORE THE SQUIGGLY RED LINE!
-// import components
 import { useBreadcrumbs } from "../context/BreadCrumbContext";
-// import context
 import { useThemeContext } from '../context/ThemeContext';
 
-// make the crumb not display URL
-function prettyCrumb(crumb) { // display "John Smith" instead of "john-smith"
+// Make the crumb not display URL
+function prettyCrumb(crumb) { // Display "John Smith" instead of "john-smith"
     return crumb
         .replace(/-/g, " ")
         .replace(/\b\w/g, (l) => l.toUpperCase());
 }
 
-// 2. animation constant !!
+// Animation constant !!
 const crumbAnimation = {
     initial: { opacity: 0, x: 20 },
     animate: { opacity: 1, x: 0 },
@@ -27,26 +25,26 @@ function BreadCrumbs() {
     const path = location.pathname; // "/clan/brujah"
     const parts = path.split("/").filter(Boolean);
 
-    // filter out the 'middleman' (clan/non clan/bloodlines/etc) from the parts array
+    // Filter out the 'middleman' (clan/non clan/bloodlines/etc) from the parts array
     const filteredParts = parts.filter(part => !['clan', 'bloodline', 'non-clan'].includes(part));
 
-    // split into parts and remove empty "" from '/'
+    // Split into parts and remove empty "" from '/'
     const crumbs = filteredParts.map((part) => { // removed unused 'idx'
-        // rebuild the path based on original parts (not filtered)
-        // to maintain correct linking
+        // Rebuild the path based on original parts (not filtered)
+        // To maintain correct linking
         const originalIdx = parts.indexOf(part);
         const to = "/" + parts.slice(0, originalIdx + 1).join("/");
         
-        // check if a custom name exists in context for this path.
-        // if it does, use it. if not, use the prettyCrumb function.
+        // Check if a custom name exists in context for this path.
+        // If it does, use it. if not, use the prettyCrumb function.
         const name = crumbNames[to] || prettyCrumb(part);
         return {
-            name: name, // use the dynamically found name
+            name: name, // Use the dynamically found name
             to: to,
         };
     });
     
-    // theme swithcing
+    // Theme swithcing
     const { theme } = useThemeContext();
     const isDarkMode = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
@@ -76,28 +74,28 @@ function BreadCrumbs() {
                 </span>
             )}
 
-            {/* wrap dynamic crumbs for animation */}
+            {/* Wrap dynamic crumbs for animation */}
             <AnimatePresence>
-                {/* render each crumb */}
+                {/* Render each crumb */}
                 {crumbs.map((crumb, i) => (
                     <motion.span 
                         key={crumb.to} // unique key!!
                         className="flex items-center gap-1 sm:gap-2"
                         {...crumbAnimation}
                     >
-                        {/* separators */}
+                        {/* Separators */}
                         <motion.span {...crumbAnimation}>
-                            {/* show Slash on Mobile (hidden on sm and up) */}
-                            {/* removed for now... */}
+                            {/* Show Slash on Mobile (hidden on sm and up) */}
+                            {/* Removed for now... */}
                             
-                            {/* show Arrow on Desktop (hidden on mobile) */}
+                            {/* Show Arrow on Desktop (hidden on mobile) */}
                             <img 
                                 src={isDarkMode ? "/assets/icons/chevron-right_light.png" : "/assets/icons/chevron-right.png"} 
                                 alt="Description" className="w-3 sm:w-5"
                             />
                         </motion.span>
 
-                        {/* last crumb is active and unclickable */}
+                        {/* Last crumb is active and unclickable */}
                         {i === crumbs.length - 1 ? (
                             <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-md sm:px-3">
                                 {crumb.name}
