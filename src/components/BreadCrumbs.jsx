@@ -60,7 +60,7 @@ function BreadCrumbs() {
                         to="/"
                         end
                         className={({ isActive }) =>
-                            `px-2 py-1 rounded-md transition sm:px-3
+                            `px-2 py-1 rounded-lg transition sm:px-3
                              ${isActive ? "italic text-text-accent bg-bg-accent"
                                         : "text-text-secondary dark:text-text-secondary-dark bg-bg-secondary dark:bg-bg-secondary-dark hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark"}`
                         }
@@ -69,7 +69,7 @@ function BreadCrumbs() {
                     </NavLink>
                 </>
             ) : (
-                <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-md sm:px-3">
+                <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-lg sm:px-3">
                     Home
                 </span>
             )}
@@ -97,7 +97,7 @@ function BreadCrumbs() {
 
                         {/* Last crumb is active and unclickable */}
                         {i === crumbs.length - 1 ? (
-                            <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-md sm:px-3">
+                            <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-lg sm:px-3">
                                 {crumb.name}
                             </span>
                         ) : (
@@ -105,7 +105,7 @@ function BreadCrumbs() {
                                 to={crumb.to}
                                 end
                                 className={({ isActive }) =>
-                                    `px-2 py-1 rounded-md transition sm:px-3
+                                    `px-2 py-1 rounded-lg transition sm:px-3
                                     ${isActive ? "italic text-text-accent bg-bg-accent"
                                       : "text-text-secondary dark:text-text-secondary-dark bg-bg-secondary dark:bg-bg-secondary-dark hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark"}`
                                 }
