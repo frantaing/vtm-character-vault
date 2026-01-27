@@ -67,7 +67,7 @@ function CharacterPage() {
         </div>
       </div>
 
-      <div className="w-full md:w-5/12 flex flex-col gap-3">
+      <div className="w-full md:w-5/12 flex flex-col gap-5">
         {/* Detail sidebar panel */}
         <DetailPanel type="character" data={characterData} className="order-first md:order-last" />
         {/* Character sheet sidebar panel */}
