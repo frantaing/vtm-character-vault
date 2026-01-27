@@ -49,7 +49,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
                 />
                 {/* conditionally render the caption */}
                 {image.artist && (
-                  <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                  <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-text-primary-dark bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
                     <ReactMarkdown components={captionRenderers}>
                         {`Art by ${image.artist}`}
                     </ReactMarkdown>
@@ -83,7 +83,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
                     />
                     {/* conditionally render the caption inside the slide */}
                     {image.artist && (
-                      <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                      <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-text-primary-dark bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
                         <ReactMarkdown components={captionRenderers}>
                             {`Art by ${image.artist}`}
                         </ReactMarkdown>

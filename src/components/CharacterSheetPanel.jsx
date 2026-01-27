@@ -12,21 +12,15 @@ const DetailRow = ({ label, children }) => {
     }
     return (
         <>
-            <dt className="col-span-1 font-bold capitalize text-gray-900 dark:text-gray-100">{label}:</dt>
-            <dd className="col-span-2 text-gray-800 dark:text-gray-200">{children}</dd>
+            <dt className="col-span-1 font-bold capitalize text-text-primary dark:text-text-primary-dark">{label}:</dt>
+            <dd className="col-span-2 text-text-primary dark:text-text-primary-dark">{children}</dd>
         </>
     );
 };
 
 // Helper for section headers
-const SectionHeader = ({ title }) => (
-    <div className="col-span-3 mt-4 first:mt-0 mb-1">
-        <h3 className="text-base font-bold font-heading border-b border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-100">{title}</h3>
-    </div>
-);
-
 const SubSectionHeader = ({ title }) => (
-    <dt className="col-span-3 mt-2 font-semibold capitalize text-gray-700 dark:text-gray-300">{title}</dt>
+    <dt className="col-span-3 mt-2 font-semibold capitalize text-text-primary dark:text-text-primary-dark">{title}</dt>
 );
 
 // --- THE SHEET CONTENT RENDERER ---
@@ -43,16 +37,16 @@ const SheetContent = ({ data }) => {
                             <div className="flex flex-col gap-2">
                                 {value.merits && (
                                     <div>
-                                        <h4 className="font-medium text-gray-900 dark:text-gray-100">Merits</h4>
-                                        <ul className="list-disc pl-5 text-gray-800 dark:text-gray-200">
+                                        <h4 className="font-medium text-text-primary dark:text-text-primary-dark">Merits</h4>
+                                        <ul className="list-disc pl-5 text-text-primary dark:text-text-primary-dark">
                                             {value.merits.map((m, i) => <li key={i}>{m}</li>)}
                                         </ul>
                                     </div>
                                 )}
                                 {value.flaws && (
                                     <div>
-                                        <h4 className="font-medium text-gray-900 dark:text-gray-100">Flaws</h4>
-                                        <ul className="list-disc pl-5 text-gray-800 dark:text-gray-200">
+                                        <h4 className="font-medium text-text-primary dark:text-text-primary-dark">Flaws</h4>
+                                        <ul className="list-disc pl-5 text-text-primary dark:text-text-primary-dark">
                                             {value.flaws.map((f, i) => <li key={i}>{f}</li>)}
                                         </ul>
                                     </div>
@@ -150,7 +144,7 @@ function CharacterSheetPanel({ sheet }) {
                                     className={`px-5 py-1.5 pt-2 text-xs uppercase rounded-full transition-all ease-linear cursor-pointer
                                         ${activeTab === edition 
                                             ? 'px-5 bg-bg-accent dark:bg-bg-accent-dark text-text-accent font-bold' 
-                                            : 'bg-bg-tertiary group-hover:bg-bg-hover hover:bg-bg-secondary dark:bg-bg-tertiary-dark text-text-primary group-hover:bg-bg-hover-dark dark:hover:bg-bg-secondary-dark dark:text-text-primary-dark'
+                                            : 'bg-bg-tertiary hover:bg-bg-secondary dark:bg-bg-tertiary-dark text-text-primary group-hover:bg-bg-hover-dark dark:hover:bg-bg-secondary-dark dark:text-text-primary-dark'
                                         }`}
                                 >
                                     {edition}
@@ -159,7 +153,7 @@ function CharacterSheetPanel({ sheet }) {
                         </div>
                     ) : (
                         // If only one edition, just show a subtle label
-                        <span className="text-xs uppercase text-gray-500 dark:text-gray-400 mt-1 ml-6">
+                        <span className="text-xs uppercase text-text-primary dark:text-text-primary-dark mt-1 ml-6">
                             {editions[0]}
                         </span>
                     )}
