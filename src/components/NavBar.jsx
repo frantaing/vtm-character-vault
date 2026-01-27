@@ -19,7 +19,7 @@ function NavBar() {
           {/* Logo + Title */}
           <div className="flex gap-2.5 items-center">
             <img src={isDarkMode ? '/assets/favicon-light.png' : '/assets/favicon-dark.png'} className='w-3.5 h-3.5' />
-            <span className="hidden sm:block font-heading font-bold sm:text-lg text-black dark:text-white">vtm character vault</span>
+            <span className="hidden sm:block font-heading font-bold sm:text-base text-black dark:text-white">vtm character vault</span>
           </div>
           
           {/* Search (commented out for safekeeping) */}
