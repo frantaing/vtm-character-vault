@@ -144,7 +144,7 @@ function CharacterSheetPanel({ sheet }) {
                                     className={`px-5 py-1.5 pt-2 text-xs uppercase rounded-full transition-all ease-linear cursor-pointer
                                         ${activeTab === edition 
                                             ? 'px-5 bg-bg-accent dark:bg-bg-accent-dark text-text-accent font-bold' 
-                                            : 'bg-bg-tertiary hover:bg-bg-secondary dark:bg-bg-tertiary-dark text-text-primary group-hover:bg-bg-hover-dark dark:hover:bg-bg-secondary-dark dark:text-text-primary-dark'
+                                            : 'bg-bg-tertiary hover:bg-bg-secondary group-hover:bg-bg-hover dark:bg-bg-tertiary-dark text-text-primary group-hover:dark:bg-bg-hover-dark dark:hover:bg-bg-secondary-dark dark:text-text-primary-dark'
                                         }`}
                                 >
                                     {edition}
