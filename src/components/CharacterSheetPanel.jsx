@@ -133,21 +133,21 @@ function CharacterSheetPanel({ sheet }) {
     };
 
     return (
-        <aside className="flex flex-col w-full h-fit text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-colors">
-            {/* HEADER AREA: Toggles Panel */}
-            <div
+        <div className="flex flex-col w-full h-fit gap-3">
+            {/* BUTTON: Toggles Panel */}
+            <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="group flex justify-between items-center w-full pr-6 text-left rounded-lg cursor-pointer transition"
+                className="group flex justify-between items-center w-full pr-6 text-left rounded-full bg-bg-tertiary dark:bg-bg-tertiary-dark hover:bg-bg-hover dark:hover:bg-bg-hover-dark text-text-primary dark:text-text-primary-dark transition-colors cursor-pointer"
             >
-                <div className="flex items-center gap-2 rounded-lg">                
+                <div className="flex items-center gap-2">                
                     {/* TABS AREA */}
                     {editions.length > 1 ? (
-                        <div className="group flex rounded-lg hover:bg-bg-hover dark:hover:bg-bg-hover-dark">
+                        <div className="group flex rounded-full hover:bg-bg-hover dark:hover:bg-bg-hover-dark transition-colors">
                             {editions.map(edition => (
                                 <button
                                     key={edition}
                                     onClick={(e) => handleTabClick(e, edition)}
-                                    className={`px-6 py-2 pt-2.5 text-xs uppercase rounded-lg transition-all ease-linear cursor-pointer
+                                    className={`px-6 py-2 pt-2.5 text-xs uppercase rounded-full transition-all ease-linear cursor-pointer
                                         ${activeTab === edition 
                                             ? 'px-6.5 bg-red-200 dark:bg-red-100 text-text-accent font-bold' 
                                             : 'bg-bg-tertiary hover:bg-bg-hover dark:bg-bg-tertiary-dark dark:hover:bg-bg-hover-dark text-text-primary dark:text-text-primary-dark'
@@ -159,7 +159,7 @@ function CharacterSheetPanel({ sheet }) {
                         </div>
                     ) : (
                         // If only one edition, just show a subtle label
-                        <span className="text-xs uppercase text-gray-500 dark:text-gray-400 mt-1">
+                        <span className="text-xs uppercase text-gray-500 dark:text-gray-400 mt-1 ml-6">
                             {editions[0]}
                         </span>
                     )}
@@ -173,13 +173,13 @@ function CharacterSheetPanel({ sheet }) {
                         className="w-3 sm:w-4"
                     />
                 </span>
-            </div>
+            </button>
 
-            {/* CONTENT AREA (with CSS Transition Lag Fix) */}
-            <div 
-                className={`transition-[max-height,opacity,padding] duration-300 ease-in-out overflow-hidden
+            {/* PANEL: Content Area */}
+            <aside 
+                className={`w-full text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-all duration-300 ease-in-out overflow-hidden
                 ${isOpen 
-                    ? 'max-h-fit opacity-100 pt-6 pb-5' 
+                    ? 'max-h-[3000px] opacity-100 pt-6 pb-5' 
                     : 'max-h-0 opacity-0 py-0'
                 }`}
             >
@@ -187,8 +187,8 @@ function CharacterSheetPanel({ sheet }) {
                     {/* Pass ONLY the data for the active tab to the renderer */}
                     <SheetContent data={sheet[activeTab]} />
                 </div>
-            </div>
-        </aside>
+            </aside>
+        </div>
     );
 }
 
