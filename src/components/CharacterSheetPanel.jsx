@@ -133,24 +133,24 @@ function CharacterSheetPanel({ sheet }) {
     };
 
     return (
-        <aside className="flex flex-col w-full h-fit text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-md transition-colors">
+        <aside className="flex flex-col w-full h-fit text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-colors">
             {/* HEADER AREA: Toggles Panel */}
             <div
                 onClick={() => setIsOpen(!isOpen)}
-                className="group flex justify-between items-center w-full pr-6 text-left rounded-md cursor-pointer transition hover:bg-bg-hover dark:hover:bg-bg-hover-dark"
+                className="group flex justify-between items-center w-full pr-6 text-left rounded-lg cursor-pointer transition"
             >
-                <div className="flex items-center gap-2">                
+                <div className="flex items-center gap-2 rounded-lg">                
                     {/* TABS AREA */}
                     {editions.length > 1 ? (
-                        <div className="group flex gap-1 rounded-full">
+                        <div className="group flex rounded-lg hover:bg-bg-hover dark:hover:bg-bg-hover-dark">
                             {editions.map(edition => (
                                 <button
                                     key={edition}
                                     onClick={(e) => handleTabClick(e, edition)}
-                                    className={`px-6 py-2 pt-2.5 text-xs uppercase rounded-full transition-colors cursor-pointer
+                                    className={`px-6 py-2 pt-2.5 text-xs uppercase rounded-lg transition-all ease-linear cursor-pointer
                                         ${activeTab === edition 
-                                            ? 'bg-bg-accent text-text-accent font-bold' 
-                                            : 'bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                                            ? 'px-6.5 bg-red-200 dark:bg-red-100 text-text-accent font-bold' 
+                                            : 'bg-bg-tertiary hover:bg-bg-hover dark:bg-bg-tertiary-dark dark:hover:bg-bg-hover-dark text-text-primary dark:text-text-primary-dark'
                                         }`}
                                 >
                                     {edition}
@@ -170,7 +170,7 @@ function CharacterSheetPanel({ sheet }) {
                     <img 
                         src={isDarkMode ? "/assets/icons/chevron-right_light.png" : "/assets/icons/chevron-right.png"} 
                         alt="Toggle" 
-                        className="w-3 sm:w-5"
+                        className="w-3 sm:w-4"
                     />
                 </span>
             </div>
@@ -179,7 +179,7 @@ function CharacterSheetPanel({ sheet }) {
             <div 
                 className={`transition-[max-height,opacity,padding] duration-300 ease-in-out overflow-hidden
                 ${isOpen 
-                    ? 'max-h-fit opacity-100 pt-4 pb-5' 
+                    ? 'max-h-fit opacity-100 pt-6 pb-5' 
                     : 'max-h-0 opacity-0 py-0'
                 }`}
             >
