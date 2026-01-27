@@ -60,8 +60,8 @@ function BreadCrumbs() {
                         to="/"
                         end
                         className={({ isActive }) =>
-                            `px-2 py-1 rounded-full transition sm:px-3
-                             ${isActive ? "italic text-text-accent bg-bg-accent"
+                            `min-w-fit px-2 py-1 pt-1 w-fit rounded-full transition sm:px-3
+                             ${isActive ? "italic bg-bg-accent dark:bg-bg-accent-dark text-text-accent"
                                         : "text-text-secondary dark:text-text-secondary-dark bg-bg-secondary dark:bg-bg-secondary-dark hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark"}`
                         }
                     >
@@ -69,7 +69,7 @@ function BreadCrumbs() {
                     </NavLink>
                 </>
             ) : (
-                <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-full sm:px-3">
+                <span className="px-2 py-1 pt-1 w-fit italic bg-bg-accent dark:bg-bg-accent-dark text-text-accent rounded-full sm:px-3">
                     Home
                 </span>
             )}
@@ -91,13 +91,13 @@ function BreadCrumbs() {
                             {/* Show Arrow on Desktop (hidden on mobile) */}
                             <img 
                                 src={isDarkMode ? "/assets/icons/chevron-right_light.png" : "/assets/icons/chevron-right.png"} 
-                                alt="Description" className="w-3 sm:w-5"
+                                alt="Description" className="w-3 sm:w-4"
                             />
                         </motion.span>
 
                         {/* Last crumb is active and unclickable */}
                         {i === crumbs.length - 1 ? (
-                            <span className="px-2 py-1 italic text-text-accent bg-bg-accent rounded-full sm:px-3">
+                            <span className="px-2 py-1 pt-1 italic bg-bg-accent dark:bg-bg-accent-dark text-text-accent rounded-full sm:px-3">
                                 {crumb.name}
                             </span>
                         ) : (
@@ -105,8 +105,8 @@ function BreadCrumbs() {
                                 to={crumb.to}
                                 end
                                 className={({ isActive }) =>
-                                    `px-2 py-1 rounded-full transition sm:px-3
-                                    ${isActive ? "italic text-text-accent bg-bg-accent"
+                                    `min-w-fit px-2 py-1 pt-1 rounded-full transition sm:px-3
+                                    ${isActive ? "italic bg-bg-accent dark:bg-bg-accent-dark text-text-accent"
                                       : "text-text-secondary dark:text-text-secondary-dark bg-bg-secondary dark:bg-bg-secondary-dark hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark"}`
                                 }
                             >

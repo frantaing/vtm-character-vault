@@ -137,20 +137,20 @@ function CharacterSheetPanel({ sheet }) {
             {/* BUTTON: Toggles Panel */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="group flex justify-between items-center w-full pr-6 text-left rounded-full bg-bg-tertiary dark:bg-bg-tertiary-dark hover:bg-bg-hover dark:hover:bg-bg-hover-dark text-text-primary dark:text-text-primary-dark transition-colors cursor-pointer"
+                className="group flex justify-between items-center w-full pr-6 pl-1 py-1 text-left rounded-full bg-bg-tertiary dark:bg-bg-tertiary-dark hover:bg-bg-hover dark:hover:bg-bg-hover-dark text-text-primary dark:text-text-primary-dark transition-colors cursor-pointer"
             >
                 <div className="flex items-center gap-2">                
                     {/* TABS AREA */}
                     {editions.length > 1 ? (
-                        <div className="group flex rounded-full hover:bg-bg-hover dark:hover:bg-bg-hover-dark transition-colors">
+                        <div className="flex gap-2 rounded-full">
                             {editions.map(edition => (
                                 <button
                                     key={edition}
                                     onClick={(e) => handleTabClick(e, edition)}
-                                    className={`px-6 py-2 pt-2.5 text-xs uppercase rounded-full transition-all ease-linear cursor-pointer
+                                    className={`px-5 py-1.5 pt-2 text-xs uppercase rounded-full transition-all ease-linear cursor-pointer
                                         ${activeTab === edition 
-                                            ? 'px-6.5 bg-red-200 dark:bg-red-100 text-text-accent font-bold' 
-                                            : 'bg-bg-tertiary hover:bg-bg-hover dark:bg-bg-tertiary-dark dark:hover:bg-bg-hover-dark text-text-primary dark:text-text-primary-dark'
+                                            ? 'px-5 bg-bg-accent dark:bg-bg-accent-dark text-text-accent font-bold' 
+                                            : 'bg-bg-tertiary group-hover:bg-bg-hover hover:bg-bg-secondary dark:bg-bg-tertiary-dark text-text-primary group-hover:bg-bg-hover-dark dark:hover:bg-bg-secondary-dark dark:text-text-primary-dark'
                                         }`}
                                 >
                                     {edition}
