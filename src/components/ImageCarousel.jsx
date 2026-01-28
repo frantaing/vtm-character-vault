@@ -13,7 +13,7 @@ import { Navigation, Pagination, A11y } from 'swiper/modules';
 import { createMarkdownRenderers } from '../utils/MarkdownComponents';
 
 // caption link styles
-const captionLinkClasses = "rounded-md underline transition-all hover:px-2 hover:py-0.5 hover:text-black hover:bg-white";
+const captionLinkClasses = "rounded-lg underline transition-all hover:px-2 hover:py-0.5 hover:text-black hover:bg-white";
 const captionRenderers = createMarkdownRenderers(captionLinkClasses, true);
 
 function ImageCarousel({ images, type, clan, characterName }) {
@@ -33,7 +33,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
   
     // CHECK: is this a clan symbol?
     // YES: add invert filter for dark mode
-    const imageClasses = `w-full h-full object-contain rounded-md transition-all ${
+    const imageClasses = `w-full h-full object-contain rounded-lg transition-all ${
         type === 'clan' ? 'dark:brightness-0 dark:invert opacity-80' : ''
     }`;
   
@@ -41,7 +41,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
     if (images.length === 1) {
         const image = images[0];
         return (
-            <div className="group relative w-full h-fit mb-4 rounded-md">
+            <div className="group relative w-full h-fit mb-4 rounded-lg">
                 <img
                     src={getImagePath(image.file)} // <-- use image.file
                     alt={characterName || 'Image'}
@@ -49,7 +49,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
                 />
                 {/* conditionally render the caption */}
                 {image.artist && (
-                  <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                  <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-text-primary-dark bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
                     <ReactMarkdown components={captionRenderers}>
                         {`Art by ${image.artist}`}
                     </ReactMarkdown>
@@ -72,7 +72,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
             }}
             pagination={{ clickable: true }}
             loop={true}
-            className="custom-carousel group relative w-full h-fit mb-4 rounded-md"
+            className="custom-carousel group relative w-full h-fit mb-4 rounded-lg"
         >
             {images.map((image, index) => ( // <-- `image` is now an object
                 <SwiperSlide key={index}>
@@ -83,7 +83,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
                     />
                     {/* conditionally render the caption inside the slide */}
                     {image.artist && (
-                      <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-white bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                      <div className="absolute bottom-0 left-0 right-0 z-10 p-2 text-center text-xs italic text-text-primary-dark bg-black/50 opacity-100 rounded-b-md transition sm:opacity-0 sm:group-hover:opacity-100">
                         <ReactMarkdown components={captionRenderers}>
                             {`Art by ${image.artist}`}
                         </ReactMarkdown>

@@ -9,7 +9,7 @@ import { DetailPanel, ImageCarousel } from '../components';
 import { createMarkdownRenderers } from '../utils/MarkdownComponents';
 
 // markdown link styles
-const markdownLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-md transition-all hover:px-2 hover:py-1 hover:italic";
+const markdownLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic";
 const mainContentRenderers = createMarkdownRenderers(markdownLinkClasses);
 
 function ClanPage() {

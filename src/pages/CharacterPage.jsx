@@ -11,7 +11,7 @@ import { createMarkdownRenderers } from '../utils/MarkdownComponents';
 import { DetailPanel, CharacterSheetPanel } from '../components';
 
 // markdown link styles
-const markdownLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-md transition-all hover:px-2 hover:py-1 hover:italic";
+const markdownLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic";
 const mainContentRenderers = createMarkdownRenderers(markdownLinkClasses);
 
 function CharacterPage() {
@@ -67,7 +67,7 @@ function CharacterPage() {
         </div>
       </div>
 
-      <div className="w-full md:w-5/12 flex flex-col gap-3">
+      <div className="w-full md:w-5/12 flex flex-col gap-5">
         {/* Detail sidebar panel */}
         <DetailPanel type="character" data={characterData} className="order-first md:order-last" />
         {/* Character sheet sidebar panel */}

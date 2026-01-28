@@ -5,7 +5,7 @@ import { createMarkdownRenderers, formatLabel } from '../utils/MarkdownComponent
 import { ImageCarousel } from '.';
 
 // markdown link styles
-const detailLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-hover dark:bg-bg-hover-dark rounded-md transition-all hover:px-2 hover:py-1 hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-hover dark:hover:bg-bg-hover-dark";
+const detailLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-hover dark:bg-bg-hover-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-hover dark:hover:bg-bg-hover-dark";
 const detailPanelRenderers = createMarkdownRenderers(detailLinkClasses, true);
 
 // To avoid rendering empty detail rows
@@ -31,7 +31,7 @@ function DetailPanel({ type, data }) {
   const detailEntries = Object.entries(data).filter(([key]) => !ignoredKeys.includes(key));
 
   return (
-    <aside className="overflow-x-hidden flex flex-col w-full md:max-w-2xl h-fit md:mt-20 p-6 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-md">
+    <aside className="overflow-x-hidden flex flex-col w-full md:max-w-2xl h-fit md:mt-20 p-6 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg">
       {/* Image carousel */}
       <ImageCarousel 
         images={data.images}

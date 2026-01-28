@@ -16,7 +16,7 @@
     --color-bg-primary: #ffffff;           /* bg-white */
     --color-bg-secondary: #f3f4f6;         /* bg-gray-100 */
     --color-bg-tertiary: #e5e7eb;          /* bg-gray-200 */
-    --color-bg-accent: #fee2e2;            /* bg-red-100 */
+    --color-bg-accent: #fecaca;            /* bg-red-200 */
     --color-bg-hover: #d1d5dc;             /* bg-gray-300 */
     
     /* text */
@@ -29,6 +29,7 @@
     --color-bg-primary-dark: #111827;      /* bg-gray-900 */
     --color-bg-secondary-dark: #1f2937;    /* bg-gray-800 */
     --color-bg-tertiary-dark: #374151;     /* bg-gray-700 */
+    --color-bg-accent-dark: #fee2e2;      /* bg-red-100 */
     --color-bg-hover-dark: #4a5565;        /* bg-gray-600 */
     
     /* text */
