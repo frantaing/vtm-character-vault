@@ -10,7 +10,6 @@ import {
 function App() {
   return (
     <Routes>
-  
       {/* default layout */}
       <Route path="/" element={<Layout />}>
   
@@ -20,13 +19,9 @@ function App() {
         {/* clan pages */}
         <Route path="/:type/:clan" element={<ClanPage />} />
   
-        {/* bloodline pages */}
-  
         {/* character page */}
         <Route path="/:type/:clan/:character" element={<CharacterPage />} />
-  
       </Route>
-      
     </Routes>
   );
 }
