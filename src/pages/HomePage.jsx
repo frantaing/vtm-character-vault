@@ -1,5 +1,6 @@
 // imports
-import { Link } from "react-router-dom";
+import { PageLink } from "../components";
+
 // nav links array
 const clanLinks = [ // clans
   { href: '/clan/banu-haqim', text: 'Banu Haqim' },
@@ -38,36 +39,33 @@ function HomePage(){
             <section className="flex flex-col">
                 {/* links! */}
                 <h2>Clans</h2>
-                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 dark:border-gray-700 mt-4">
+                <nav className="flex flex-col w-fit mt-4">
                     {clanLinks.map((link) => (
-                            // change <a> to custom link component when made!
-                            <Link key={link.href} to={link.href} className="pageLink">
-                                {link.text}
-                            </Link>
+                        <PageLink key={link.href} to={link.href}>
+                            {link.text}
+                        </PageLink>
                     ))}
                 </nav>
             </section>
             <section className="flex flex-col">
                 {/* bloodline links! */}
                 <h2>Bloodlines</h2>
-                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 dark:border-gray-700 mt-4">
+                <nav className="flex flex-col w-fit mt-4">
                     {bloodlineLinks.map((link) => (
-                            // change <a> to custom link component when made!
-                            <Link key={link.href} to={link.href} className="pageLink line-through">
-                                {link.text}
-                            </Link>
+                        <PageLink key={link.href} to={link.href}>
+                            {link.text}
+                        </PageLink>
                     ))}
                 </nav>
             </section>
             <section className="flex flex-col">
                 {/* misc links! */}
                 <h2>Non-clans</h2>
-                <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 dark:border-gray-700 mt-4">
+                <nav className="flex flex-col w-fit mt-4">
                     {nonclanLinks.map((link) => (
-                            // change <a> to custom link component when made!
-                            <Link key={link.href} to={link.href} className="pageLink">
-                                {link.text}
-                            </Link>
+                        <PageLink key={link.href} to={link.href}>
+                            {link.text}
+                        </PageLink>
                     ))}
                 </nav>
             </section>
