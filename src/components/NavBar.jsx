@@ -28,7 +28,7 @@ function NavBar() {
           <div className="flex px-3">
             {/* Link to repo */}
             <a href='https://github.com/frantaing/vtm-character-vault' className='group flex gap-2 items-center pl-3 pr-2 py-1 pt-1 bg-transparent rounded-full transition hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark'>
-              <span className='text-xs text-text-primary dark:text-text-primary-dark opacity-0 translate-x-2 transition group-hover:opacity-100 group-hover:translate-x-0'>Made by Frantaing</span>
+              <span className='italic text-xs text-text-primary dark:text-text-primary-dark opacity-0 translate-x-2 transition group-hover:opacity-100 group-hover:translate-x-0'>Made by Frantaing</span>
               <img src={isDarkMode ? '/assets/icons/github_light.png' : '/assets/icons/github.png'} className='w-4 h-4' alt="GitHub" />
             </a>
             {/* Theme toggle button */}

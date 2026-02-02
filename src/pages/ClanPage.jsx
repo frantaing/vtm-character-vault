@@ -1,12 +1,14 @@
+// Import: React stuff
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-// import components
+// Import: Components
 import { DetailPanel, ImageCarousel } from '../components';
 import { createMarkdownRenderers } from '../utils/MarkdownComponents';
+import { PageLink } from '../components';
 
 // markdown link styles
 const markdownLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic";
@@ -80,11 +82,11 @@ function ClanPage() {
                     <section>
                         <h2 className="text-2xl font-bold mb-4">Known Members of Clan {clanInfo.name}</h2>
                         {characters.length > 0 ? (
-                            <nav className="flex flex-col w-fit pl-2 border-l-4 border-gray-300 dark:border-gray-700 mt-4">
+                            <nav className="flex flex-col w-fit mt-4">
                                 {characters.map((char) => (
-                                  <Link key={char.slug} to={`/${type}/${clan}/${char.slug}`} className="pageLink">
+                                    <PageLink key={char.slug} to={`/${type}/${clan}/${char.slug}`}>
                                         {char.name}
-                                    </Link>
+                                    </PageLink>
                                 ))}
                             </nav>
                         ) : (
