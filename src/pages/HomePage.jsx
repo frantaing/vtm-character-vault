@@ -36,39 +36,46 @@ function HomePage(){
                 <span className="text-text-primary dark:text-text-primary-dark text-xs italic">Please be kind, even though some are cringe 🥺</span>
             </section>
 
-            <section className="flex flex-col">
-                {/* links! */}
-                <h2>Clans</h2>
-                <nav className="flex flex-col w-fit mt-4">
-                    {clanLinks.map((link) => (
-                        <PageLink key={link.href} to={link.href}>
-                            {link.text}
-                        </PageLink>
-                    ))}
-                </nav>
-            </section>
-            <section className="flex flex-col">
-                {/* bloodline links! */}
-                <h2>Bloodlines</h2>
-                <nav className="flex flex-col w-fit mt-4">
-                    {bloodlineLinks.map((link) => (
-                        <PageLink key={link.href} to={link.href}>
-                            {link.text}
-                        </PageLink>
-                    ))}
-                </nav>
-            </section>
-            <section className="flex flex-col">
-                {/* misc links! */}
-                <h2>Non-clans</h2>
-                <nav className="flex flex-col w-fit mt-4">
-                    {nonclanLinks.map((link) => (
-                        <PageLink key={link.href} to={link.href}>
-                            {link.text}
-                        </PageLink>
-                    ))}
-                </nav>
-            </section>
+            <div className="grid gap-y-4 min-[500px]:grid-cols-2 max-w-md">
+                {/* Main clans */}
+                <section className="flex flex-col">
+                    {/* links! */}
+                    <h2>Clans</h2>
+                    <nav className="flex flex-col w-fit mt-4">
+                        {clanLinks.map((link) => (
+                            <PageLink key={link.href} to={link.href}>
+                                {link.text}
+                            </PageLink>
+                        ))}
+                    </nav>
+                </section>
+                
+                {/* Bloodlines + Non-Clans */}
+                <div className="flex flex-col gap-4">
+                    <section className="flex flex-col">
+                        {/* bloodline links! */}
+                        <h2>Bloodlines</h2>
+                        <nav className="flex flex-col w-fit mt-4 line-through">
+                            {bloodlineLinks.map((link) => (
+                                <PageLink key={link.href} to={link.href}>
+                                    {link.text}
+                                </PageLink>
+                            ))}
+                        </nav>
+                    </section>
+                    <section className="flex flex-col">
+                        {/* misc links! */}
+                        <h2>Non-clans</h2>
+                        <nav className="flex flex-col w-fit mt-4">
+                            {nonclanLinks.map((link) => (
+                                <PageLink key={link.href} to={link.href}>
+                                    {link.text}
+                                </PageLink>
+                            ))}
+                        </nav>
+                    </section>
+                </div>
+            </div>
             
         </div>
     );
