@@ -1,0 +1,85 @@
+---
+
+// Imports
+import { ClientRouter } from 'astro:transitions'; // Was ViewTransitions (deprecated)
+import '../styles/global.css';
+
+import ContentBox from '../components/ContentBox.astro'
+
+// Props
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="A personal Vampire: The Masquerade character vault." />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+		<title>{title}</title>
+
+        <!-- Enable ViewTransitions -->
+		<ClientRouter />
+
+        <!-- Dark mode blocking: prevent white flash -->
+        <script is:inline>
+            const getTheme = () => {
+                if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                    return localStorage.getItem('theme');
+                }
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            };
+
+            const theme = getTheme();
+            
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // Persist for later use
+            window.localStorage.setItem('theme', theme);
+
+            // Handle ViewTransitions
+            document.addEventListener('astro:after-swap', () => {
+                const storedTheme = localStorage.getItem('theme');
+                if (storedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            });
+        </script>
+	</head>
+	
+	<body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300 overflow-hidden">
+        
+        <div class="flex flex-col gap-5 w-screen max-w-4xl h-screen mx-auto p-10">
+            
+            <!-- <NavBar /> -->
+            
+            <main class="flex-1 min-h-0 w-full">
+                <ContentBox>
+                    <slot /> <!-- Page content goes here! -->
+                </ContentBox>
+            </main>
+            
+        </div>
+	</body>
+</html>
