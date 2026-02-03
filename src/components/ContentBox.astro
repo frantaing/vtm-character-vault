@@ -1,0 +1,11 @@
+---
+
+const BoxStyles = "overflow-x-hidden flex flex-col gap-10 h-full p-5 bg-bg-secondary dark:bg-bg-secondary-dark rounded-lg min-h-0";
+
+---
+
+<div class={BoxStyles}>
+    <div class="overflow-y-auto h-full pr-2">
+        <slot />
+    </div>
+</div>
