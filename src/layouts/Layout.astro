@@ -5,6 +5,7 @@ import { ClientRouter } from 'astro:transitions'; // Was ViewTransitions (deprec
 import '../styles/global.css';
 
 import ContentBox from '../components/ContentBox.astro'
+import NavBar from '../components/NavBar.astro';
 
 // Props
 interface Props {
@@ -79,8 +80,8 @@ const { title } = Astro.props;
         
         <div class="flex flex-col gap-5 w-screen max-w-4xl h-screen mx-auto p-10">
             
-            <!-- <NavBar /> -->
-            
+            <NavBar />
+
             <main class="flex-1 min-h-0 w-full">
                 <ContentBox>
                     <slot /> <!-- Page content goes here! -->
