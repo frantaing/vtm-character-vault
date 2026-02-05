@@ -1,6 +1,5 @@
 // Imports
 import React, { useState, useMemo } from "react";
-import { useThemeContext } from '../context/ThemeContext';
 import { formatLabel } from '../utils/MarkdownComponents';
 
 // --- HELPER COMPONENTS ---
@@ -106,9 +105,7 @@ const SheetContent = ({ data }) => {
 
 // --- MAIN COMPONENT ---
 function CharacterSheetPanel({ sheet }) {
-    const { theme } = useThemeContext();
-    const isDarkMode = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-
+    // REMOVED: useThemeContext logic
     const [isOpen, setIsOpen] = useState(false);
 
     // Get all available editions from the sheet object keys (e.g., ['v20', 'v5'])
@@ -159,12 +156,16 @@ function CharacterSheetPanel({ sheet }) {
                     )}
                 </div>
 
-                {/* Chevron Icon */}
                 <span className={`text-2xl transition-transform duration-300 ${isOpen ? '-rotate-90' : 'rotate-90'}`}>
                     <img 
-                        src={isDarkMode ? "/assets/icons/chevron-right_light.png" : "/assets/icons/chevron-right.png"} 
+                        src="/assets/icons/chevron-right_light.png" 
                         alt="Toggle" 
-                        className="w-3 sm:w-4"
+                        className="w-3 sm:w-4 hidden dark:block"
+                    />
+                    <img 
+                        src="/assets/icons/chevron-right.png" 
+                        alt="Toggle" 
+                        className="w-3 sm:w-4 dark:hidden"
                     />
                 </span>
             </button>
@@ -186,4 +187,4 @@ function CharacterSheetPanel({ sheet }) {
     );
 }
 
-export default CharacterSheetPanel
+export default CharacterSheetPanel;

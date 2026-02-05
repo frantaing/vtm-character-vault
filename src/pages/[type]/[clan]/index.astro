@@ -50,7 +50,7 @@ const { Content } = await render(clanInfo);
 ---
 
 <Layout title={`Clan ${clanInfo.data.name} | VtM Vault`}>
-    <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5 border-pink-500 border-2">
         <h1 class='md:hidden'>Clan {clanInfo.data.name}</h1>
         
         {/* section for Clan Details */}
@@ -62,8 +62,8 @@ const { Content } = await render(clanInfo);
                     <h1 class='hidden md:inline'>Clan {clanInfo.data.name}</h1>
                     
                     {/* Render the markdown content */}
-                    {/* We use a class 'markdown-content' to target links with CSS below */}
-                    <div class="markdown-content prose max-w-none text-gray-900 dark:text-gray-100">
+                    {/* Use a class 'markdown-content' to target links with CSS below */}
+                    <div class="markdown-content prose max-w-none">
                         <Content />
                     </div>
                 </div> 
