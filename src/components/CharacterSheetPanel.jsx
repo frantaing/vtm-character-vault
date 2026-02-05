@@ -135,23 +135,34 @@ function CharacterSheetPanel({ sheet }) {
                     {editions.length > 1 ? (
                         <div className="flex gap-2 rounded-full">
                             {editions.map(edition => (
-                                <button
+                                <span
                                     key={edition}
-                                    onClick={(e) => handleTabClick(e, edition)}
+                                    onClick={(e) => {
+                                        e.stopPropagation(); 
+                                        setActiveTab(edition);
+                                    }}
                                     className={`px-5 py-1.5 pt-2 text-xs uppercase rounded-full transition-all ease-linear cursor-pointer
                                         ${activeTab === edition 
-                                            ? 'px-5 bg-bg-accent dark:bg-bg-accent-dark text-text-accent font-bold' 
+                                            ? 'bg-bg-accent dark:bg-bg-accent-dark text-text-accent font-bold' 
                                             : 'bg-bg-tertiary hover:bg-bg-secondary group-hover:bg-bg-hover dark:bg-bg-tertiary-dark text-text-primary group-hover:dark:bg-bg-hover-dark dark:hover:bg-bg-secondary-dark dark:text-text-primary-dark'
                                         }`}
+                                    role="button"          // ← for accessibility
+                                    tabIndex={0}           // ← keyboard focusable
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setActiveTab(edition);
+                                        }
+                                    }}
                                 >
-                                    {edition}
-                                </button>
+                                    {edition.toUpperCase()}
+                                </span>
                             ))}
                         </div>
                     ) : (
                         // If only one edition, just show a subtle label
                         <span className="text-xs uppercase text-text-primary dark:text-text-primary-dark mt-1 ml-6">
-                            {editions[0]}
+                            {editions[0].toUpperCase()}
                         </span>
                     )}
                 </div>
