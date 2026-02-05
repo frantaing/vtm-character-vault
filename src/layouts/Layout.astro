@@ -91,3 +91,20 @@ const { title } = Astro.props;
         </div>
 	</body>
 </html>
+
+<style>
+
+    @reference '../styles/global.css';
+
+    /* Prevent context menu/interaction with ImageCarousel images */
+    .protect-image {
+        pointer-events: none;           /* stops almost all interaction */
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-drag: none;       /* blocks drag on Safari/Chrome */
+        user-drag: none;
+    }
+
+</style>

@@ -19,7 +19,7 @@ const DetailRow = ({ label, children }) => {
     );
 };
 
-function DetailPanel({ type, data }) {
+function DetailPanel({ type, data, clanSlug = "" }) {
   // if there's no data for some reason, don't render the panel
   if (!data) return null; 
 

@@ -33,7 +33,7 @@ function ImageCarousel({ images, type, clan, characterName }) {
   
     // CHECK: is this a clan symbol?
     // YES: add invert filter for dark mode
-    const imageClasses = `w-full h-full object-contain rounded-lg transition-all ${
+    const imageClasses = `no-context-menu w-full h-full object-contain rounded-lg transition-all ${
         type === 'clan' ? 'dark:brightness-0 dark:invert opacity-80' : ''
     }`;
   
@@ -45,7 +45,8 @@ function ImageCarousel({ images, type, clan, characterName }) {
                 <img
                     src={getImagePath(image.file)} // <-- use image.file
                     alt={characterName || 'Image'}
-                    className={imageClasses}
+                    className={`${imageClasses} protect-image`}
+                    onContextMenu={(e) => e.preventDefault()}
                 />
                 {/* conditionally render the caption */}
                 {image.artist && (
@@ -79,7 +80,8 @@ function ImageCarousel({ images, type, clan, characterName }) {
                     <img
                       src={getImagePath(image.file)} // <-- Use image.file
                       alt={`${characterName || 'Image'} - ${index + 1}`}
-                      className={imageClasses}
+                      className={`${imageClasses} protect-image`}
+                        onContextMenu={(e) => e.preventDefault()}
                     />
                     {/* conditionally render the caption inside the slide */}
                     {image.artist && (
