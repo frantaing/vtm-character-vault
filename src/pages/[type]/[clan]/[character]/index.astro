@@ -1,0 +1,77 @@
+---
+
+// Imports
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../../layouts/Layout.astro';
+import DetailPanel from '../../../../components/DetailPanel.jsx';
+import CharacterSheetPanel from '../../../../components/CharacterSheetPanel.jsx';
+
+// getStaticPaths: Generate a page for every character file
+export async function getStaticPaths() {
+    const allCharacters = await getCollection('characters');
+
+    return allCharacters.map(char => {
+        // ID is "type/clan/filename" (e.g., "clan/brujah/alexandra")
+        const parts = char.id.split('/');
+        const type = parts[0];
+        const clan = parts[1];
+        const character = parts[2];
+
+        return {
+            params: { type, clan, character },
+            props: { char },
+        };
+    });
+}
+
+const { char } = Astro.props;
+const { type, clan } = Astro.params;
+
+// Render the markdown body
+const { Content } = await render(char);
+---
+
+<Layout title={`${char.data.name} | VtM Vault`}>
+    {/* Main layout container: Stacks on mobile, row on desktop */}
+    <div class="flex flex-col md:flex-row justify-between gap-10">
+        
+        {/* Main Content (Left Column) */}
+        <main class="w-full md:w-2/3 min-w-0 flex flex-col gap-5">
+            <h1>{char.data.name}</h1>
+            <h2>{char.data.clan}, {char.data.generation} generation</h2>
+            
+            {/* The Markdown Body */}
+            <div class="markdown-content prose max-w-none text-gray-900 dark:text-gray-100">
+                <Content />
+            </div>
+        </main>
+
+        {/* Sidebar (Right Column) */}
+        <div class="w-full md:w-1/3 min-w-0 flex flex-col gap-6">
+            {/* Hydrate DetailPanel for the ImageCarousel functionality */}
+            <DetailPanel 
+                client:load 
+                type="character" 
+                data={char.data} 
+                clanSlug={clan}
+                class="order-first sm:order-last"
+            />
+            
+            {/* Hydrate CharacterSheetPanel for the accordion and tab functionality */}
+            <CharacterSheetPanel 
+                client:load 
+                sheet={char.data.sheet} 
+            />
+        </div>
+
+    </div>
+</Layout>
+
+<style>
+
+    @reference "../../../../styles/global.css";
+
+    .markdown-content :global(a) {
+        @apply px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic;
+    }
+</style>
