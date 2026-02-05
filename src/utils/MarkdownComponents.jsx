@@ -23,7 +23,7 @@ const createLinkRenderer = (className) => {
     // Determine if the link is internal
     const isInternal = href.startsWith('/');
     
-    // In Astro, we use standard <a> tags for everything.
+    // In Astro, use standard <a> tags for everything.
     // Internal links are handled by the ClientRouter.
     return (
       <a 
