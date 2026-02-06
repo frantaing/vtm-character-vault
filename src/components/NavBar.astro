@@ -1,0 +1,70 @@
+---
+
+// Imports
+import BreadCrumbs from './BreadCrumbs.astro';
+
+---
+
+<script>
+  // Get the current theme _ function to change themes
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  };
+
+  // Add listener
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+
+  // Re-run listener setup on page navigation (ViewTransitions)
+  document.addEventListener('astro:after-swap', () => {
+    document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  });
+</script>
+
+<nav class="flex flex-col gap-5">
+    <section>
+        <div class="flex justify-between items-center pl-5 pr-2 py-2 bg-bg-secondary dark:bg-bg-secondary-dark rounded-full transition-colors">
+        
+            <!-- Logo + Title -->
+            <div class="flex gap-2.5 items-center">
+                <img src="/assets/favicon-dark.png" class="w-3.5 h-3.5 dark:hidden" alt="Vault Logo" />
+                <img src="/assets/favicon-light.png" class="w-3.5 h-3.5 hidden dark:block" alt="Vault Logo" />
+                <span class="hidden sm:block font-heading font-bold sm:text-base text-text-primary dark:text-text-primary-dark">vtm character vault</span>
+            </div>
+
+            <!-- Search (commented out for safekeeping) -->
+            <!--  <input type="text" placeholder="Search?" className="w-24 px-5 py-2 text-black text-xs text-right rounded-full transition hover:bg-gray-200 focus:outline-0" /> -->
+
+            <div class="flex px-3">
+                <!-- Link to repo -->
+                <a href='https://github.com/frantaing/vtm-character-vault' target="_blank" class='group flex gap-2 items-center pl-3 pr-2 py-1 pt-1 bg-transparent rounded-full transition hover:bg-bg-tertiary dark:hover:bg-bg-tertiary-dark'>
+                <span class='italic text-xs text-text-primary dark:text-text-primary-dark opacity-0 translate-x-2 transition group-hover:opacity-100 group-hover:translate-x-0'>Made by Frantaing</span>
+                <img src='/assets/icons/github.png' class='w-4 h-4 dark:hidden' alt="GitHub" />
+                <img src='/assets/icons/github_light.png' class='w-4 h-4 hidden dark:block' alt="GitHub" />
+                </a>
+
+                <!-- Theme toggle button -->
+                <button 
+                    id="theme-toggle"
+                    class="group px-1 py-0.5 rounded-full cursor-pointer transition hover:bg-black dark:hover:bg-white"
+                >
+                    <div class="relative w-4 h-4">
+                        <!-- Light Mode Icons (visible when NOT dark) -->
+                        <div class="dark:hidden">
+                            <img src="/assets/icons/moon_dark.png" class="transition group-hover:opacity-0" alt="Dark Mode" />
+                            <img src="/assets/icons/moon.png" class="absolute inset-0 opacity-0 transition group-hover:opacity-100" alt="Dark Mode" />
+                        </div>
+                        <!-- Dark Mode Icons (visible when dark) -->
+                        <div class="hidden dark:block">
+                            <img src="/assets/icons/sun-bright.png" class="transition group-hover:opacity-0" alt="Light Mode" />
+                            <img src="/assets/icons/sun-bright_dark.png" class="absolute inset-0 opacity-0 transition group-hover:opacity-100" alt="Light Mode" />
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+        </div>     
+    </section>
+
+    <BreadCrumbs />
+</nav>

@@ -1,0 +1,110 @@
+---
+
+// Imports
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import DetailPanel from '../../../components/DetailPanel.jsx';
+import PageLink from '../../../components/PageLink.astro';
+
+// markdown link styles (Preserved from React version)
+// Apply these classes using the <style> block below to target the generated HTML
+const markdownLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic";
+
+// --- getStaticPaths ---
+// This function tells Astro to generate a page for every Clan found in the content folder.
+// It replaces the `useParams` and `useEffect` fetching logic.
+export async function getStaticPaths() {
+    // fetch all clan index files
+    const allClans = await getCollection('clans');
+    // fetch all characters
+    const allCharacters = await getCollection('characters');
+
+    return allClans.map(clanEntry => {
+        // ID is expected to be "type/clanName" (e.g. "clan/brujah") based on folder structure
+        const [type, clanName] = clanEntry.id.split('/');
+
+        // filter characters that belong to this clan
+        // We look for characters whose ID starts with "type/clanName/"
+        const clanCharacters = allCharacters.filter(char => {
+            return char.id.startsWith(`${type}/${clanName}/`);
+        });
+
+        return {
+            // These params match the folder names: [type]/[clan]
+            params: { type, clan: clanName },
+            // Pass the data as props to the page
+            props: { 
+                clanInfo: clanEntry,
+                characters: clanCharacters 
+            },
+        };
+    });
+}
+
+// Access props passed from getStaticPaths
+const { clanInfo, characters } = Astro.props;
+const { type, clan } = Astro.params;
+
+// Render the markdown content for the clan description
+const { Content } = await render(clanInfo);
+---
+
+<Layout title={`Clan ${clanInfo.data.name} | VtM Vault`}>
+    <div class="flex flex-col gap-5">
+        <h1 class='md:hidden'>Clan {clanInfo.data.name}</h1>
+        
+        {/* section for Clan Details */}
+        <section class="flex flex-col justify-between gap-7 md:flex-row md:gap-10">
+            <div class="flex flex-col order-last gap-10 w-fit md:order-first">
+                
+                {/* section for page title + description */}
+                <div class="flex flex-col gap-5">
+                    <h1 class='hidden md:inline'>Clan {clanInfo.data.name}</h1>
+                    
+                    {/* Render the markdown content */}
+                    {/* Use a class 'markdown-content' to target links with CSS below */}
+                    <div class="markdown-content prose max-w-none">
+                        <Content />
+                    </div>
+                </div> 
+
+                {/* section for the character list */}
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">Known Members of Clan {clanInfo.data.name}</h2>
+                    {characters.length > 0 ? (
+                        <nav class="flex flex-col w-fit mt-4">
+                            {characters.map((char) => (
+                                /* Astro PageLink uses 'href', not 'to' */
+                                <PageLink href={`/${type}/${clan}/${char.id.split('/').pop()}`}>
+                                    {char.data.name}
+                                </PageLink>
+                            ))}
+                        </nav>
+                    ) : (
+                        <p>No members of this clan have been recorded.</p>
+                    )}
+                </section>                
+            </div>
+
+            {/* detail sidebar pane */}
+            {/* Hydrate this with client:load because it contains the ImageCarousel which needs interactivity */}
+            <div class="order-first md:order-last">
+                <DetailPanel 
+                    client:load 
+                    type="clan" 
+                    data={clanInfo.data}  
+                />
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style define:vars={{ markdownLinkClasses }}>
+
+    @reference '../../../styles/global.css';
+
+    /* Markdown link classes */
+    .markdown-content :global(a) {
+        @apply px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic;
+    }
+</style>

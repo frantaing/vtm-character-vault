@@ -1,27 +1,43 @@
-# Vampire: The Masquerade Character Vault
+# Astro Starter Kit: Minimal
 
-Welcome to my personal VtM Character Vault! This project started as a way for me to reference (and ponder) my characters/NPCs from any device, and as an excuse to learn React. It's a passion project that finally centralizes all my errant characters into one place.
+```sh
+npm create astro@latest -- --template minimal
+```
 
-This is a simple, wiki-esque collection of my characters (mostly V20), organized by clan, bloodline, or status (Caitiff/Thin-Blood). Each character has their own page with their character sheet, notes, images, and other details, all rendered dynamically from Markdown files.
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-> [!NOTE]
-> Currently under construction! Probably a little rough around the edges, and I haven't even added a single character aside from the test/placeholder, but I figured I'd just get the future pain of deployment out of the way and relish in the knowing that it does, indeed, work.
+## 🚀 Project Structure
 
-**[Check it out here!](https://vtm-character-vault.vercel.app/)**
+Inside of your Astro project, you'll see the following folders and files:
 
-## ✨ Highlights
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-- Dynamic character pages built from Markdown files
-- Reusable image carousel with artist attribution
-- Built with React, Tailwind CSS, and Vite
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-## 📌 Disclaimer
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Non-commercial fan project · 100 % personal & portfolio use  
-Vampire: The Masquerade is © Paradox Interactive
+Any static assets, like images, can be placed in the `public/` directory.
 
-All character portraits sourced from Pinterest, Tumblr, etc., credited when possible. If you’re the artist and want your work removed, please open an issue or contact me at frantan.github@manyme.com, and it'll be removed promptly.
+## 🧞 Commands
 
-## 📄 License
+All commands are run from the root of the project, from a terminal:
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. *This license applies to the code only; images remain under their respective copyrights.*
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

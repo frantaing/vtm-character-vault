@@ -1,0 +1,88 @@
+---
+
+// Imports
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../../layouts/Layout.astro';
+import DetailPanel from '../../../../components/DetailPanel.jsx';
+import CharacterSheetPanel from '../../../../components/CharacterSheetPanel.jsx';
+
+// getStaticPaths: Generate a page for every character file
+export async function getStaticPaths() {
+    const allCharacters = await getCollection('characters');
+
+    return allCharacters.map(char => {
+        // ID is "type/clan/filename" (e.g., "clan/brujah/alexandra")
+        const parts = char.id.split('/');
+        const type = parts[0];
+        const clan = parts[1];
+        const character = parts[2];
+
+        return {
+            params: { type, clan, character },
+            props: { char },
+        };
+    });
+}
+
+const { char } = Astro.props;
+const { type, clan } = Astro.params;
+
+// Render the markdown body
+const { Content } = await render(char);
+---
+
+<Layout title={`${char.data.name} | VtM Vault`}>
+    <div class="flex flex-col gap-6">
+
+        <!-- Mobile-only title -->
+        <div class="flex flex-col gap-1 md:hidden">
+            <h1 class="text-3xl font-bold">{char.data.name}</h1>
+            <h2 class="text-lg opacity-80">
+                {char.data.clan}, {char.data.generation} generation
+            </h2>
+        </div>
+
+        <!-- Main responsive section -->
+        <section class="flex flex-col justify-between gap-7 md:flex-row md:gap-10">
+
+            <!-- LEFT: Main content (bio, text, etc) -->
+            <div class="flex flex-col order-last gap-5 w-full md:order-first">
+                <div class='flex flex-col gap-2'>
+                    <h1 class='hidden md:inline'>{char.data.name}</h1>
+                    <h2 class='hidden md:inline'>{char.data.clan}, {char.data.generation} generation</h2>
+                </div>
+                <div class="markdown-content prose max-w-none">
+                    <Content />
+                </div>
+            </div>
+
+            <!-- RIGHT: Sidebar (DetailPanel + Sheet) -->
+            <aside class="flex flex-col gap-6 md:w-5/12 order-first md:order-last">
+                <DetailPanel 
+                    client:load 
+                    type="character" 
+                    data={char.data} 
+                    clanSlug={clan}
+                />
+                <CharacterSheetPanel 
+                    client:load 
+                    sheet={char.data.sheet} 
+                />
+            </aside>
+        </section>
+    </div>
+</Layout>
+
+<style>
+
+    @reference "../../../../styles/global.css";
+
+    .markdown-content :global(a) {
+        @apply px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-tertiary dark:bg-bg-tertiary-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic;
+    }
+
+    .prose :global(p) {
+        @apply my-0! py-0!;
+    }
+
+</style>

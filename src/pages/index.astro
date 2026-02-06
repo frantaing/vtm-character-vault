@@ -1,0 +1,87 @@
+---
+
+// imports
+import Layout from '../layouts/Layout.astro';
+import PageLink from '../components/PageLink.astro';
+
+// nav links array
+const clanLinks = [ // clans
+  { href: '/clan/banu-haqim', text: 'Banu Haqim' },
+  { href: '/clan/brujah', text: 'Brujah' },
+  { href: '/clan/gangrel', text: 'Gangrel' },
+  { href: '/clan/hecata', text: 'Hecata' },
+  { href: '/clan/lasombra', text: 'Lasombra' },
+  { href: '/clan/malkavian', text: 'Malkavian' },
+  { href: '/clan/ministry', text: 'Ministry' },
+  { href: '/clan/nosferatu', text: 'Nosferatu' },
+  { href: '/clan/ravnos', text: 'Ravnos' },
+  { href: '/clan/toreador', text: 'Toreador' },
+  { href: '/clan/tremere', text: 'Tremere' },
+  { href: '/clan/tzimisce', text: 'Tzimisce' },
+  { href: '/clan/ventrue', text: 'Ventrue' },
+];
+
+const bloodlineLinks = [ // bloodlines
+  { href: '/ahrimanes', text: 'Ahrimanes' }, // doesn't exit yet. to test for 404
+];
+
+const nonclanLinks = [
+  { href: '/non-clan/thin-blood', text: 'Thin-blood' },
+  { href: '/non-clan/caitiff', text: 'Caitiff' },
+];
+
+---
+
+<Layout title="Home | VtM Vault">
+    <div class="flex flex-col gap-10 h-full pr-5">
+
+        <section class="flex flex-col gap-5">
+            <h1>Welcome to my Character Vault!</h1>
+            <p>This is a personal, wiki-style vault for the Kindred from my various chronicles (or just characters I created and particularly liked). It's a way for me to keep notes, images, and character details all in one organized place.</p>
+            <p>Feel free to browse by Clan or Bloodline (or the clanless) using the links below!</p>
+            <span class="text-text-primary dark:text-text-primary-dark text-xs italic">Please be kind, even though some are cringe 🥺</span>
+        </section>
+
+        <div class="grid gap-y-4 min-[500px]:grid-cols-2 max-w-md">
+            {/* Main clans */}
+            <section class="flex flex-col">
+                {/* links! */}
+                <h2>Clans</h2>
+                <nav class="flex flex-col w-fit mt-4">
+                    {clanLinks.map((link) => (
+                        <PageLink href={link.href}>
+                            {link.text}
+                        </PageLink>
+                    ))}
+                </nav>
+            </section>
+            
+            {/* Bloodlines + Non-Clans */}
+            <div class="flex flex-col gap-4">
+                <section class="flex flex-col">
+                    {/* bloodline links! */}
+                    <h2>Bloodlines</h2>
+                    <nav class="flex flex-col w-fit mt-4 line-through">
+                        {bloodlineLinks.map((link) => (
+                            <PageLink href={link.href}>
+                                {link.text}
+                            </PageLink>
+                        ))}
+                    </nav>
+                </section>
+                <section class="flex flex-col">
+                    {/* misc links! */}
+                    <h2>Non-clans</h2>
+                    <nav class="flex flex-col w-fit mt-4">
+                        {nonclanLinks.map((link) => (
+                            <PageLink href={link.href}>
+                                {link.text}
+                            </PageLink>
+                        ))}
+                    </nav>
+                </section>
+            </div>
+        </div>
+        
+    </div>
+</Layout>

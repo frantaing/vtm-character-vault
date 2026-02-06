@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { createMarkdownRenderers, formatLabel } from '../utils/MarkdownComponents';
-import { ImageCarousel } from '.';
+import ImageCarousel from './ImageCarousel';
 
 // markdown link styles
 const detailLinkClasses = "px-1.5 py-0.5 text-text-primary dark:text-text-primary-dark bg-bg-hover dark:bg-bg-hover-dark rounded-lg transition-all hover:px-2 hover:py-1 hover:italic hover:text-text-primary dark:hover:text-text-primary-dark hover:bg-bg-hover dark:hover:bg-bg-hover-dark";
@@ -19,7 +19,7 @@ const DetailRow = ({ label, children }) => {
     );
 };
 
-function DetailPanel({ type, data }) {
+function DetailPanel({ type, data, clanSlug = "" }) {
   // if there's no data for some reason, don't render the panel
   if (!data) return null; 
 

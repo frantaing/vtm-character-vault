@@ -1,6 +1,5 @@
 // Imports
 import React, { useState, useMemo } from "react";
-import { useThemeContext } from '../context/ThemeContext';
 import { formatLabel } from '../utils/MarkdownComponents';
 
 // --- HELPER COMPONENTS ---
@@ -106,9 +105,7 @@ const SheetContent = ({ data }) => {
 
 // --- MAIN COMPONENT ---
 function CharacterSheetPanel({ sheet }) {
-    const { theme } = useThemeContext();
-    const isDarkMode = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-
+    // REMOVED: useThemeContext logic
     const [isOpen, setIsOpen] = useState(false);
 
     // Get all available editions from the sheet object keys (e.g., ['v20', 'v5'])
@@ -138,33 +135,48 @@ function CharacterSheetPanel({ sheet }) {
                     {editions.length > 1 ? (
                         <div className="flex gap-2 rounded-full">
                             {editions.map(edition => (
-                                <button
+                                <span
                                     key={edition}
-                                    onClick={(e) => handleTabClick(e, edition)}
+                                    onClick={(e) => {
+                                        e.stopPropagation(); 
+                                        setActiveTab(edition);
+                                    }}
                                     className={`px-5 py-1.5 pt-2 text-xs uppercase rounded-full transition-all ease-linear cursor-pointer
                                         ${activeTab === edition 
-                                            ? 'px-5 bg-bg-accent dark:bg-bg-accent-dark text-text-accent font-bold' 
+                                            ? 'bg-bg-accent dark:bg-bg-accent-dark text-text-accent font-bold' 
                                             : 'bg-bg-tertiary hover:bg-bg-secondary group-hover:bg-bg-hover dark:bg-bg-tertiary-dark text-text-primary group-hover:dark:bg-bg-hover-dark dark:hover:bg-bg-secondary-dark dark:text-text-primary-dark'
                                         }`}
+                                    role="button"          // ← for accessibility
+                                    tabIndex={0}           // ← keyboard focusable
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setActiveTab(edition);
+                                        }
+                                    }}
                                 >
-                                    {edition}
-                                </button>
+                                    {edition.toUpperCase()}
+                                </span>
                             ))}
                         </div>
                     ) : (
                         // If only one edition, just show a subtle label
                         <span className="text-xs uppercase text-text-primary dark:text-text-primary-dark mt-1 ml-6">
-                            {editions[0]}
+                            {editions[0].toUpperCase()}
                         </span>
                     )}
                 </div>
 
-                {/* Chevron Icon */}
                 <span className={`text-2xl transition-transform duration-300 ${isOpen ? '-rotate-90' : 'rotate-90'}`}>
                     <img 
-                        src={isDarkMode ? "/assets/icons/chevron-right_light.png" : "/assets/icons/chevron-right.png"} 
+                        src="/assets/icons/chevron-right_light.png" 
                         alt="Toggle" 
-                        className="w-3 sm:w-4"
+                        className="w-3 sm:w-4 hidden dark:block"
+                    />
+                    <img 
+                        src="/assets/icons/chevron-right.png" 
+                        alt="Toggle" 
+                        className="w-3 sm:w-4 dark:hidden"
                     />
                 </span>
             </button>
@@ -186,4 +198,4 @@ function CharacterSheetPanel({ sheet }) {
     );
 }
 
-export default CharacterSheetPanel
+export default CharacterSheetPanel;
