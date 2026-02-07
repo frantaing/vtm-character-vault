@@ -43,35 +43,43 @@ const { title } = Astro.props;
 
         <!-- Dark mode blocking: prevent white flash -->
         <script is:inline>
-            const getTheme = () => {
-                if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            // Returns 'dark' | 'light'
+            function getPreferredTheme() {
+                // localStorage has highest priority
+                if (localStorage.getItem('theme')) {
                     return localStorage.getItem('theme');
                 }
+                // Then system preference
                 if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     return 'dark';
                 }
                 return 'light';
-            };
-
-            const theme = getTheme();
-            
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
             }
-            
-            // Persist for later use
-            window.localStorage.setItem('theme', theme);
 
-            // Handle ViewTransitions
-            document.addEventListener('astro:after-swap', () => {
-                const storedTheme = localStorage.getItem('theme');
-                if (storedTheme === 'dark') {
-                    document.documentElement.classList.add('dark');
+            // Apply theme to a given document (works for current doc + incoming doc)
+            function applyTheme(doc = document) {
+                const theme = getPreferredTheme();
+                if (theme === 'dark') {
+                    doc.documentElement.classList.add('dark');
                 } else {
-                    document.documentElement.classList.remove('dark');
+                    doc.documentElement.classList.remove('dark');
                 }
+                // Keep localStorage in sync (mainly useful for initial load or toggle)
+                localStorage.setItem('theme', theme);
+            }
+
+            // Apply immediately on current page (prevents flash on hard reload)
+            applyTheme();
+
+            // Re-apply after every client navigation (fallback / safety)
+            document.addEventListener('astro:after-swap', () => {
+                applyTheme();
+            });
+
+            // BEFORE the new content is painted
+            document.addEventListener('astro:before-swap', (event) => {
+                // event.newDocument is the incoming page's document
+                applyTheme(event.newDocument);
             });
         </script>
 	</head>
