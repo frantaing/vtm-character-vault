@@ -52,12 +52,18 @@
     /* text-gray-400 */
 }
 
+@layer base {
+    html {
+        @apply bg-bg-primary dark:bg-bg-primary-dark text-text-primary dark:text-text-primary-dark
+    }
+}
+
 /* classes */
 @layer utilities {
 
     /* big boi base */
     body {
-        @apply flex justify-center items-center min-h-screen font-body leading-relaxed bg-bg-primary dark:bg-bg-primary-dark text-text-primary dark:text-bg-primary-dark transition-colors
+        @apply flex justify-center items-center min-h-screen font-body leading-relaxed transition-colors;
     }
 
     /* headings */
