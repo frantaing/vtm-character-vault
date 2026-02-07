@@ -2,18 +2,19 @@
 
 Welcome to my personal VtM Character Vault! This project started as a way for me to reference (and ponder) my characters/NPCs from any device, and as an excuse to learn React. It's a passion project that finally centralizes all my errant characters into one place.
 
-This is a simple, wiki-esque collection of my characters (mostly V20), organized by clan, bloodline, or status (Caitiff/Thin-Blood). Each character has their own page with their character sheet, notes, images, and other details, all rendered dynamically from Markdown files.
+This is a simple, wiki-esque collection of my characters (mostly V20), organized by clan, bloodline, or status (Caitiff/Thin-Blood). Each character has their own page with their character sheet, notes, images, and other details, all rendered dynamically from Markdown files via Astro 5 and React.
 
 > [!NOTE]
-> Currently under construction! Probably a little rough around the edges, and I haven't even added a single character aside from the test/placeholder, but I figured I'd just get the future pain of deployment out of the way and relish in the knowing that it does, indeed, work.
+> Currently under construction! Probably a little rough around the edges, and I haven't even added a single character aside from the test/placeholder. But rest assured I *will* be adding at least *one* character! 🌝
 
 **[Check it out here!](https://vtm-character-vault.vercel.app/)**
 
 ## ✨ Highlights
 
-- Dynamic character pages built from Markdown files
-- Reusable image carousel with artist attribution
-- Built with React, Tailwind CSS, and Vite
+- **Astro 5 + Markdown:** Dynamic wiki pages that load instantly.
+- **React Islands:** Interactive character sheets and image carousels where they’re actually needed.
+- **View Transitions:** Smooth, SPA-like navigation between pages.
+- **Tailwind v4:** Modern styling with proper dark mode support.
 
 ## 📌 Disclaimer
 
