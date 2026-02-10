@@ -88,7 +88,7 @@ const { Content } = await render(clanInfo);
 
             {/* detail sidebar pane */}
             {/* Hydrate this with client:load because it contains the ImageCarousel which needs interactivity */}
-            <aside class="md:min-w-[45%] order-first md:order-last">
+            <aside class="md:min-w-[45%] order-first md:order-last" transition:name="panels">
                 <DetailPanel 
                     client:load 
                     type="clan" 
