@@ -7,7 +7,7 @@ import { getEntry } from 'astro:content';
 const { pathname } = Astro.url;
 const parts = pathname.split("/").filter(Boolean);
 
-// Filter out "middleman" routes if necessary (maybe not even need here in Astro...)
+// Filter out the 'middleman' routes
 const filteredParts = parts.filter(part => !['clan', 'bloodline', 'non-clan'].includes(part));
 
 function prettyCrumb(crumb: string) {
@@ -16,7 +16,7 @@ function prettyCrumb(crumb: string) {
         .replace(/\b\w/g, (l) => l.toUpperCase());
 }
 
-// ASYNC LOGIC: Resolve names from Content Collections
+// Resolve names from Content Collections
 const crumbs = await Promise.all(filteredParts.map(async (part, i) => {
     const originalIdx = parts.indexOf(part);
     const to = "/" + parts.slice(0, originalIdx + 1).join("/");
@@ -28,10 +28,8 @@ const crumbs = await Promise.all(filteredParts.map(async (part, i) => {
     if (clanEntry) {
         displayName = clanEntry.data.name;
     } else {
-
-        // If not a clan, try to find if it's a Character
-        // Look for characters...
-        // Look for an entry where the slug matches the current 'part'
+        // Find Character Entry
+        // We look for characters. Astro 5 IDs are usually 'folder/slug'
         const charEntry = await getEntry('characters', `${parts[originalIdx-1]}/${part}`);
         if (charEntry) {
             displayName = charEntry.data.name;
@@ -43,7 +41,7 @@ const crumbs = await Promise.all(filteredParts.map(async (part, i) => {
 
 ---
 
-<nav class="overflow-x-auto flex items-center gap-1 w-full text-sm whitespace-nowrap sm:gap-2">
+<nav class="overflow-x-auto flex items-center gap-1 w-full whitespace-nowrap text-xs sm:gap-2 sm:text-sm" transition:name="breadcrumbs">
     
     <!-- Home Crumb -->
     <a 
@@ -57,7 +55,7 @@ const crumbs = await Promise.all(filteredParts.map(async (part, i) => {
         const isLast = i === crumbs.length - 1;
 
         return (
-            <div class="flex items-center gap-1 sm:gap-2 slide-in" style={`animation-delay: ${i * 0.05}s`}>
+            <div class="flex items-center gap-1 sm:gap-2">
                 {/* Separators */}
                 <img src="/assets/icons/chevron-right.png" class="w-3 sm:w-4 dark:hidden" alt="" />
                 <img src="/assets/icons/chevron-right_light.png" class="w-3 sm:w-4 hidden dark:block" alt="" />
@@ -77,19 +75,3 @@ const crumbs = await Promise.all(filteredParts.map(async (part, i) => {
         )
     })}
 </nav>
-
-<style>
-    /* Replicating the previous React crumbAnimation logic with pure CSS */
-    .slide-in {
-        opacity: 0;
-        transform: translateX(10px);
-        animation: fadeInRight 0.3s ease-out forwards;
-    }
-
-    @keyframes fadeInRight {
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-</style>
