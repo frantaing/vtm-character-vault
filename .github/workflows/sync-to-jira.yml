@@ -1,0 +1,30 @@
+name: Sync to Jira
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch: # Allows manual testing from any branch
+
+jobs:
+  create_jira_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Jira work-item
+        run: |
+          AUTH=$(echo -n "${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}" | base64)
+          
+          curl -X POST \
+            -H "Authorization: Basic $AUTH" \
+            -H "Content-Type: application/json" \
+            --data '{
+              "fields": {
+                "project": {
+                  "key": "VAULT"
+                },
+                "summary": "${{ github.event.issue.title }}",
+                "description": "Created from GitHub: ${{ github.event.issue.html_url }}\n\n${{ github.event.issue.body }}",
+                "issuetype": {
+                  "name": "Task"
+                }
+              }
+            }' \
+            "https://${{ secrets.JIRA_DOMAIN }}/rest/api/2/issue"
