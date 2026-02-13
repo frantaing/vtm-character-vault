@@ -2,29 +2,34 @@ name: Sync to Jira
 on:
   issues:
     types: [opened]
-  workflow_dispatch: # Allows manual testing from any branch
+  workflow_dispatch:
 
 jobs:
   create_jira_issue:
     runs-on: ubuntu-latest
     steps:
       - name: Create Jira work-item
+        env:
+          JIRA_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          JIRA_DOMAIN: ${{ secrets.JIRA_DOMAIN }}
         run: |
-          AUTH=$(echo -n "${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}" | base64)
+          # 1. Create the Auth string
+          AUTH=$(echo -n "${JIRA_EMAIL}:${JIRA_TOKEN}" | base64)
           
+          # 2. Build the JSON payload safely using jq
+          PAYLOAD=$(jq -n \
+            --arg proj "VAULT" \
+            --arg summ "$ISSUE_TITLE" \
+            --arg desc "GitHub Link: $ISSUE_URL\n\n$ISSUE_BODY" \
+            '{fields: {project: {key: $proj}, summary: $summ, description: $desc, issuetype: {name: "Task"}}}')
+
+          # 3. Send to Jira
           curl -X POST \
             -H "Authorization: Basic $AUTH" \
             -H "Content-Type: application/json" \
-            --data '{
-              "fields": {
-                "project": {
-                  "key": "VAULT"
-                },
-                "summary": "${{ github.event.issue.title }}",
-                "description": "Created from GitHub: ${{ github.event.issue.html_url }}\n\n${{ github.event.issue.body }}",
-                "issuetype": {
-                  "name": "Task"
-                }
-              }
-            }' \
-            "https://${{ secrets.JIRA_DOMAIN }}/rest/api/2/issue"
+            -d "$PAYLOAD" \
+            "https://$JIRA_DOMAIN/rest/api/2/issue"
