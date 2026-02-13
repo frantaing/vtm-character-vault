@@ -6,6 +6,8 @@ on:
 
 jobs:
   create_jira_issue:
+    # Only run this job if the person who opened the issue is repo owner (ME)
+    if: github.event.issue.user.login == 'frantaing'
     runs-on: ubuntu-latest
     steps:
       - name: Login to Jira
