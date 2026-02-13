@@ -8,28 +8,17 @@ jobs:
   create_jira_issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Jira work-item
+      - name: Login to Jira
+        uses: atlassian/gajira-login@v3
         env:
-          JIRA_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-          JIRA_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-          ISSUE_TITLE: ${{ github.event.issue.title }}
-          ISSUE_BODY: ${{ github.event.issue.body }}
-          ISSUE_URL: ${{ github.event.issue.html_url }}
-          JIRA_DOMAIN: ${{ secrets.JIRA_DOMAIN }}
-        run: |
-          # 1. Create the Auth string
-          AUTH=$(echo -n "${JIRA_EMAIL}:${JIRA_TOKEN}" | base64)
-          
-          # 2. Build the JSON payload safely using jq
-          PAYLOAD=$(jq -n \
-            --arg proj "VAULT" \
-            --arg summ "$ISSUE_TITLE" \
-            --arg desc "GitHub Link: $ISSUE_URL\n\n$ISSUE_BODY" \
-            '{fields: {project: {key: $proj}, summary: $summ, description: $desc, issuetype: {name: "Task"}}}')
+          JIRA_BASE_URL: https://${{ secrets.JIRA_DOMAIN }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
-          # 3. Send to Jira
-          curl -X POST \
-            -H "Authorization: Basic $AUTH" \
-            -H "Content-Type: application/json" \
-            -d "$PAYLOAD" \
-            "https://$JIRA_DOMAIN/rest/api/2/issue"
+      - name: Create Jira Issue
+        uses: atlassian/gajira-create@v3
+        with:
+          project: VAULT
+          issuetype: Task
+          summary: "${{ github.event.issue.title }}"
+          description: "${{ github.event.issue.body }}"
