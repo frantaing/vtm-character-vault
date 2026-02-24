@@ -20,6 +20,7 @@ const clanLinks = [
 ];
 const bloodlineLinks = [
     { href: '/ahrimanes', text: 'Ahrimanes' },
+    // Add more...
 ];
 const nonclanLinks = [
     { href: '/non-clan/thin-blood', text: 'Thin-blood' },
@@ -53,11 +54,11 @@ const nonclanLinks = [
             </section>
             
             {/* Bloodlines + Non-Clans */}
-            <div class="flex flex-col gap-4">
+            <div class="hidden flex flex-col gap-4">
                 <section class="flex flex-col">
                     {/* bloodline links! */}
                     <h2>Bloodlines</h2>
-                    <nav class="flex flex-col w-fit mt-4 line-through">
+                    <nav class="flex flex-col w-fit mt-4">
                         {bloodlineLinks.map((link) => (
                             <PageLink href={link.href}>
                                 {link.text}
