@@ -1,35 +1,30 @@
 ---
-
 // imports
 import Layout from '../layouts/Layout.astro';
 import PageLink from '../components/PageLink.astro';
 
-// nav links array
-const clanLinks = [ // clans
-  { href: '/clan/banu-haqim', text: 'Banu Haqim' },
-  { href: '/clan/brujah', text: 'Brujah' },
-  { href: '/clan/gangrel', text: 'Gangrel' },
-  { href: '/clan/hecata', text: 'Hecata' },
-  { href: '/clan/lasombra', text: 'Lasombra' },
-  { href: '/clan/malkavian', text: 'Malkavian' },
-  { href: '/clan/ministry', text: 'Ministry' },
-  { href: '/clan/nosferatu', text: 'Nosferatu' },
-  { href: '/clan/ravnos', text: 'Ravnos' },
-  { href: '/clan/toreador', text: 'Toreador' },
-  { href: '/clan/tremere', text: 'Tremere' },
-  { href: '/clan/tzimisce', text: 'Tzimisce' },
-  { href: '/clan/ventrue', text: 'Ventrue' },
+const clanLinks = [
+    { href: '/clan/banu-haqim', text: 'Banu Haqim' },
+    { href: '/clan/brujah', text: 'Brujah' },
+    { href: '/clan/gangrel', text: 'Gangrel' },
+    { href: '/clan/hecata', text: 'Hecata' },
+    { href: '/clan/lasombra', text: 'Lasombra' },
+    { href: '/clan/malkavian', text: 'Malkavian' },
+    { href: '/clan/ministry', text: 'Ministry' },
+    { href: '/clan/nosferatu', text: 'Nosferatu' },
+    { href: '/clan/ravnos', text: 'Ravnos' },
+    { href: '/clan/toreador', text: 'Toreador' },
+    { href: '/clan/tremere', text: 'Tremere' },
+    { href: '/clan/tzimisce', text: 'Tzimisce' },
+    { href: '/clan/ventrue', text: 'Ventrue' },
 ];
-
-const bloodlineLinks = [ // bloodlines
-  { href: '/ahrimanes', text: 'Ahrimanes' }, // doesn't exit yet. to test for 404
+const bloodlineLinks = [
+    { href: '/ahrimanes', text: 'Ahrimanes' },
 ];
-
 const nonclanLinks = [
-  { href: '/non-clan/thin-blood', text: 'Thin-blood' },
-  { href: '/non-clan/caitiff', text: 'Caitiff' },
+    { href: '/non-clan/thin-blood', text: 'Thin-blood' },
+    { href: '/non-clan/caitiff', text: 'Caitiff' },
 ];
-
 ---
 
 <Layout title="Home | VtM Vault">
@@ -43,6 +38,7 @@ const nonclanLinks = [
         </section>
 
         <div class="grid gap-y-4 min-[500px]:grid-cols-2 max-w-md">
+
             {/* Main clans */}
             <section class="flex flex-col">
                 {/* links! */}
