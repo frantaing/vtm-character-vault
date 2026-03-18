@@ -19,15 +19,10 @@ const DetailRow = ({ label, children }) => {
     );
 };
 
-function DetailPanel({ type, data, clanSlug = "" }) {
-  // if there's no data for some reason, don't render the panel
-  if (!data) return null; 
+function DetailPanel({ type, data, clanSlug }) {
+  if (!data) return null;
 
-  // Define keys to IGNORE!
-  // 'sheet' goes to the CharacterSheetPanel, 'images' goes to ImageCarousel, 'name' is the title.
   const ignoredKeys = ['name', 'images', 'sheet', 'layout', 'tags'];
-
-  // Filter the data
   const detailEntries = Object.entries(data).filter(([key]) => !ignoredKeys.includes(key));
 
   return (
@@ -42,20 +37,30 @@ function DetailPanel({ type, data, clanSlug = "" }) {
        
       {/* Everything else */}
       <dl className="grid grid-cols-3 gap-x-16 gap-y-3 text-sm mt-4">
-        {/* Map dynamically! */}
         {detailEntries.map(([key, value]) => {
-          // Check if value is likely markdown (contains links or formatting)
-          // Or if it's the specific 'sire' field
-          const isMarkdown = typeof value === 'string' && (value.includes('[') || key === 'sire');
+          // If value is null/undefined, show a dash
+          if (value === null || value === undefined) {
+              return <DetailRow key={key} label={formatLabel(key)}>—</DetailRow>;
+          }
 
           return (
             <DetailRow key={key} label={formatLabel(key)}>
-              {isMarkdown ? (
-                <ReactMarkdown components={detailPanelRenderers}>
-                  {value}
-                </ReactMarkdown>
+              {/* CASE 1: Value is an Array (Bullet Points) */}
+              {Array.isArray(value) ? (
+                <ul className="list-disc pl-4 space-y-1">
+                  {value.map((item, i) => (
+                    <li key={i}>
+                      <ReactMarkdown components={inlineMarkdownRenderers}>
+                        {String(item)}
+                      </ReactMarkdown>
+                    </li>
+                  ))}
+                </ul>
               ) : (
-                value
+                /* CASE 2: Value is a String/Number (Markdown Rendered) */
+                <ReactMarkdown components={detailPanelRenderers}>
+                  {String(value)}
+                </ReactMarkdown>
               )}
             </DetailRow>
           );
