@@ -18,52 +18,49 @@ const imageSchema = z.union([
 
 // --- CLANS COLLECTION ---
 const clans = defineCollection({
-    // Find all '_index.md' files
     loader: glob({ pattern: "**/_index.md", base: "./src/content/characters" }),
-
-    // The schema
-    schema: z.object({
-        // MUST HAVE
-        name: z.string(),
-
-        // OPTIONALS
-        nickname: z.string().optional().nullable(),
-        disciplines: z.string().optional().nullable(),
-        disciplinesv5: z.string().optional().nullable(),
-        bane: z.string().optional().nullable(),
-        compulsion: z.string().optional().nullable(),
-
-        // Clan images
-        images: z.array(imageSchema).optional().nullable(),
-    
-    // Allow any other field (anything goes: sect, bloodlines, whatever)
-    }).catchall(z.any()),
+    schema: z.record(z.any()).superRefine((data, ctx) => {
+        if (!data.name) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Clan name is required",
+                path: ["name"]
+            });
+        }
+    }),
 });
 
 // --- CHARACTER SCHEMA ---
 const characters = defineCollection({
-    // Find the files...
-    // Ignore '_index.md' files
     loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/characters" }),
     
-    // The schema
-    schema: z.object({
-        // MUST HAVE
-        name: z.string(),
-        clan: z.string(),
-
-        // Optional fields
-        generation: z.string().optional().nullable(),
-        sire: z.string().optional().nullable(),
-
-        // Character portrait images
-        images: z.array(imageSchema).optional().nullable(),
-        
-        // Character Sheet: allow any structure (to allow variance between V5/V20/etc)
-        sheet: z.record(z.any()).optional().nullable(),
-
-    // Allow any other field (anything goes: sect, ambition, whatever)
-    }).catchall(z.any()),
+    /* 
+       Instead of z.object({ ... }).catchall(), use z.record(z.any()).
+       This treats the frontmatter as one single, ordered object.
+    */
+    schema: z.record(z.any()).superRefine((data, ctx) => {
+        if (!data.name) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Character name is required",
+                path: ["name"]
+            });
+        }
+        if (!data.clan) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Character clan is required",
+                path: ["clan"]
+            });
+        }
+        if (data.images && !Array.isArray(data.images)) {
+             ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Images must be an array",
+                path: ["images"]
+            });
+        }
+    }),
 });
 
 export const collections = { clans, characters };
