@@ -1,7 +1,7 @@
 // Imports
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { createMarkdownRenderers, formatLabel, inlineMarkdownRenderers } from '../utils/MarkdownComponents';
+import { createMarkdownRenderers, formatLabel } from '../utils/MarkdownComponents';
 import ImageCarousel from './ImageCarousel';
 
 // markdown link styles
@@ -58,7 +58,7 @@ function DetailPanel({ type, data, clanSlug }) {
                 </ul>
               ) : (
                 /* CASE 2: Value is a String/Number (Markdown Rendered) */
-                <ReactMarkdown components={inlineMarkdownRenderers}>
+                <ReactMarkdown components={detailPanelRenderers}>
                   {String(value)}
                 </ReactMarkdown>
               )}
